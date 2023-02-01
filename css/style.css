@@ -33,7 +33,7 @@ p {
   background-color: #e40e0e;
 }
 
-.circle {
+//.circle {
   width: 100px;
   height: 100px;
   background-color: coral;
@@ -43,7 +43,7 @@ p {
   animation-direction: alternate;
 }
 
-.circle-1 {
+//.circle-1 {
   animation-name: animacion1;
 }
 @keyframes animacion1 {
@@ -52,7 +52,7 @@ p {
   }
 }
 
-.circle-2 {
+//.circle-2 {
   animation-name: animacion2;
 }
 @keyframes animacion2 {
@@ -61,7 +61,7 @@ p {
   }
 }
 
-.circle-3 {
+//.circle-3 {
   animation-name: animacion3;
 }
 @keyframes animacion3 {
@@ -70,7 +70,7 @@ p {
   }
 }
 
-.circle-4 {
+//.circle-4 {
   animation-name: animacion4;
 }
 @keyframes animacion4 {
@@ -79,7 +79,7 @@ p {
   }
 }
 
-.circle-5 {
+//.circle-5 {
   animation-name: animacion5;
   animation-direction: alternate-reverse;
 }
