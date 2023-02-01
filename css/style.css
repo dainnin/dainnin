@@ -26,10 +26,11 @@
 }
 
 p {
- justify-content: flex-end;
+  
+ justify-content: flex;
    Color: black; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-
+h2{color: red}
 .nav {
   background-color: #e40e0e;
 }
