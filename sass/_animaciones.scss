@@ -1,0 +1,23 @@
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  border-radius: 69%;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@for $iterador from 1 through 5 {
+  .circle-#{$iterador} {
+    animation-name: animacion#{$iterador};
+
+    @keyframes animacion#{$iterador} {
+      100% {
+        transform: translate(50% * $iterador);
+      }
+    }
+    @if $iterador == 5 {
+      animation-direction: alternate-reverse;
+    }
+  }
+}
