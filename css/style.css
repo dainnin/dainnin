@@ -26,7 +26,8 @@
 }
 
 p {
-  Color: black; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+ justify-content: center;
+   Color: black; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .nav {
