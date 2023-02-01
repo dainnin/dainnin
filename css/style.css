@@ -26,7 +26,7 @@
 }
 
 p {
- justify-content: center;
+ justify-content: flex-end;
    Color: black; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
