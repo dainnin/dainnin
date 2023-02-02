@@ -46,9 +46,9 @@ h2{color: red}
 }
 
 .circle-2 {
-    animation-name: animacion2;
+    animation-name: animacionx;
 }
-@keyframes animacion2 {
+@keyframes animacionx {
   100% {
     transform: translate(100%);
   }
