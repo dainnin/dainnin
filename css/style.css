@@ -47,7 +47,7 @@ h2{color: red}
 
 
 
-.circle-2 {background-size: contain;
+.circle-2 {background-size: cover;
  background-image: url("../img/1.jpg");
   animation-name: animacion2;
 }
