@@ -35,7 +35,7 @@ h2{color: red}
   background-color: #e40e0e;
 }
 
-//.circle {
+.circle {
   width: 100px;
   height: 100px;
   background-color: coral;
@@ -45,7 +45,7 @@ h2{color: red}
   animation-direction: alternate;
 }
 
-//.circle-1 {
+.circle-1 {
   animation-name: animacion1;
 }
 @keyframes animacion1 {
