@@ -54,7 +54,7 @@ h2{color: red}
   }
 }
 
-//.circle-2 {
+/*.circle-2 {
   animation-name: animacion2;
 }
 @keyframes animacion2 {
@@ -89,7 +89,7 @@ h2{color: red}
   100% {
     transform: translate(250%);
   }
-}
+}*/
 
 .hero__container {
   height: calc(100vh - 70px);
