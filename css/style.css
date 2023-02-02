@@ -49,7 +49,7 @@ h2{color: red}
 
 
 .circle-1 {
-  background-color: coral;
+  background-color: violet;
   animation-name: animacion1;
 }
 @keyframes animacion1 {
