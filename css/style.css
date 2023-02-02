@@ -49,8 +49,7 @@ h2{color: red}
 
 
 .circle-1 {
-  background-color: violet;
-  animation-name: animacion1;
+    animation-name: animacion1;
 }
 @keyframes animacion1 {
   100% {
@@ -59,8 +58,7 @@ h2{color: red}
 }
 
 .circle-2 {
-  background-color: blue;
-  animation-name: animacion2;
+    animation-name: animacion2;
 }
 @keyframes animacion2 {
   100% {
