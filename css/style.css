@@ -49,9 +49,9 @@ h2{color: red}
 
 .circle-2 {
   background-image:url("../img/1.jpg);
-  animation-name: animacionx;
+  animation-name: animacion2;
 }
-@keyframes animacion {
+@keyframes animacion2 {
   100% {
     transform: translate(100%);
   }
