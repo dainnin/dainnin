@@ -63,7 +63,7 @@ h2{color: red}
   }
 }
 
-//.circle-3 {
+.circle-3 {
   animation-name: animacion3;
 }
 @keyframes animacion3 {
@@ -72,7 +72,7 @@ h2{color: red}
   }
 }
 
-//.circle-4 {
+.circle-4 {
   animation-name: animacion4;
 }
 @keyframes animacion4 {
@@ -81,7 +81,7 @@ h2{color: red}
   }
 }
 
-//.circle-5 {
+.circle-5 {
   animation-name: animacion5;
   animation-direction: alternate-reverse;
 }
