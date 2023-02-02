@@ -47,8 +47,8 @@ h2{color: red}
 
 
 
-.circle-2 {
-  background-image: url("../img/1.jpg");
+.circle-2 {background-size: auto;
+ background-image: url("../img/1.jpg");
   animation-name: animacion2;
 }
 @keyframes animacion2 {
