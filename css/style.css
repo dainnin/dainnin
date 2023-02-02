@@ -45,16 +45,8 @@ h2{color: red}
   animation-direction: alternate;
 }
 
-}
 
-.circle-2 {
-  animation-name: animacion1;
-}
-@keyframes animacion1 {
-  100% {
-    transform: translate(50%);
-  }
-}
+
 
 .circle-1 {
   animation-name: animacion1;
@@ -66,7 +58,7 @@ h2{color: red}
 }
 
 .circle-2 {
-  background-color: url('https://dainnin.github.io/dainnin/img/1.jpg');
+  background-color: blue;
   animation-name: animacion2;
 }
 @keyframes animacion2 {
