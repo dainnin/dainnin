@@ -48,7 +48,7 @@ h2{color: red}
 .imgmov {
   width: 100px;
   height: 100px;
-  background-image:'img/1.jpg' ;
+  background-image:'https://dainnin.github.io/dainnin/img/1.jpg' ;
   border-radius: 69%;
   animation-duration: 1s;
   animation-iteration-count: infinite;
