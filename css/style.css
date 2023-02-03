@@ -58,7 +58,8 @@ h2{color: red}
 }
 
 .circle-1 {
-  background-color: blue;
+  background-size: cover;
+ background-image: url("../img/5.jpg");
   animation-name: animacion1;
   
 }      
