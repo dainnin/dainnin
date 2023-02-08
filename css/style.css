@@ -14,13 +14,6 @@
 .nav__item--active {
   text-decoration: underline;
 }
-@media (min-width: 764px) {
-  .tanga {
- width:auto;
- height:auto;
- position:absolute;
- pointer-events:none
-}
   .nav__container {
     justify-content: flex-end;
   }
@@ -45,6 +38,8 @@ h2{color: red}
   .tanga {
  width:auto;
  height:auto;
+ position-top:500;
+ position-right:500;
  pointer-events:none
 }
 }
