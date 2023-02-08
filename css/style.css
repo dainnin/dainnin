@@ -25,14 +25,7 @@
   .nav__container {
     justify-content: flex-end;
   }
-}
-@media (min-width: 600) {
-  .tanga {
- width:auto;
- height:auto;
- pointer-events:none
-}
-}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -48,7 +41,14 @@ h2{color: red}
   background-color: #e40e0e;
 }
 
-
+}
+@media (min-width: 600) {
+  .tanga {
+ width:auto;
+ height:auto;
+ pointer-events:none
+}
+}
 .circle {
   width: 100px;
   height: 100px;
