@@ -7,7 +7,7 @@
   .videogrid
   {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(90, 1fr);
     grid-auto-rows: 100px;
   }
 
