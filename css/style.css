@@ -32,7 +32,7 @@
     grid-row-end: 150;
     width: 100%;
 height: 100%;
-
+ background-image: url("../img/5.jpg");
   }
   #pericles {
     grid-column-start: 3;
