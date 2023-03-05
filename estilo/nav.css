@@ -1,0 +1,17 @@
+#nav 
+{
+font-size: 19px; 
+  
+}
+
+#navcont
+{
+    gap:1rem;
+    display: flex;
+padding-right: 50px;
+padding-bottom: 10px;
+justify-content:flex-end; 
+}
+a{
+        justify-content: flex;
+}

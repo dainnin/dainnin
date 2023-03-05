@@ -1,0 +1,21 @@
+#barizq{
+        scrollbar-width: thin;          /* "auto" or "thin" */
+        scrollbar-color: blue rgb(115, 59, 167);   /* scroll thumb and track */
+      
+    
+    overflow: scroll;
+    overflow-x: hidden;
+    }
+    #barizq::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
+      }
+      
+      #barizq::-webkit-scrollbar-track {
+        background: orange;        /* color of the tracking area */
+      }
+      
+      #barizq::-webkit-scrollbar-thumb {
+        background-color: blue;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid orange;  /* creates padding around scroll thumb */
+      }

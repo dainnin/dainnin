@@ -1,41 +1,25 @@
+
+         
 $(document).ready(function () {
-      $(window).resize(function () {
-           Harry();
-      });
-      
-      Harry();
-      
-      function Harry(){
-          
-         var screenWidth2 = screen.width/screen.width*100;
-         var pte = window.innerWidth/screen.width*100;
-        if (pte>=screenWidth2) {
-          var lupi=document.getElementById(lupi);
-          $("#lupi").css({"font-size":"150%"});
-          
-          } else {
-            var lupi=document.getElementById(lupi);
-          $("#lupi").css({"font-size":"100%"});
-              
-          }
-      }
-  }); 
-           
-$(document).ready(function () {
-      $(window).resize(function () {
-           pezon();
-      });
-      
-     pezon();
-      
-      function pezon(){     
+    $(window).resize(function () {
+         pezon();
+    });
+    
+   pezon();
+    
+    function pezon(){     
 // Get the size of the device screen
 var screenWidth = screen.width;
-var screenHeight = window.innerHeight;
+var screenHeight = screen.height;
 
 // Get the browser window size
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
+var centnav=document.getElementById('centnav');centnav.style.width= windowWidth*0.7+"px";
+centnav.style.height= windowHeight*0.98-33+"px";
+var barizq=document.getElementById('barizq');barizq.style.width= windowWidth*0.27+"px";
+barizq.style.height= windowHeight*0.98-33+"px";
+
 
 // Get the size of the entire webpage
 const pageWidth  = document.documentElement.scrollWidth;
@@ -50,7 +34,9 @@ y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHei
 
 var z = document.getElementById("page");
 z.innerHTML = "Webpage: width:" + pageWidth + ", height: " + pageHeight + ".";
+
+
 }
 
 }); 
-      
+    

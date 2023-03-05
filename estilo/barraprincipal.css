@@ -1,0 +1,10 @@
+#boody section
+{
+    
+    float: right;
+    scrollbar-color:  transparent transparent;
+    scroll-margin-bottom: hidden;
+    overflow-y: scroll;
+}
+#boody{
+    overflow: hidden;}
