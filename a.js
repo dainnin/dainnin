@@ -9,7 +9,7 @@ $(document).ready(function () {
           
          var screenWidth2 = screen.width/screen.width*100;
          var pte = window.innerWidth/screen.width*100;
-        if (pte>=screenWidth2) {
+      if (screen.width < screen.height ) { if (pte>=screenWidth2) {
           var lupi=document.getElementById(lupi);
           $("#lupi").css({"font-size":"150%"});
           
@@ -17,7 +17,7 @@ $(document).ready(function () {
             var lupi=document.getElementById(lupi);
           $("#lupi").css({"font-size":"100%"});
               
-          }
+          }}else{}
       }
   }); 
            
