@@ -17,7 +17,7 @@ var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
 var centnav=document.getElementById('centnav');centnav.style.width= windowWidth*0.7+"px";
 centnav.style.height= windowHeight*0.98-33+"px";
-var barizq=document.getElementById('barizq');barizq.style.width= windowWidth*0.27+"px";
+var barizq=document.getElementById('barizq');barizq.style.width= windowWidth*0.27-10+"px";
 barizq.style.height= windowHeight*0.98-33+"px";
 
 
