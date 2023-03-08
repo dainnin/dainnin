@@ -15,9 +15,9 @@ var screenHeight = screen.height;
 // Get the browser window size
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
-var centnav=document.getElementById('centnav');centnav.style.width= windowWidth*0.67+"px";
+var centnav=document.getElementById('centnav');centnav.style.width= windowWidth*0.70+"px";
 centnav.style.height= windowHeight*0.98-33+"px";
-var barizq=document.getElementById('barizq');barizq.style.width= windowWidth*0.27-2+"px";
+var barizq=document.getElementById('barizq');barizq.style.width= windowWidth*0.27-7+"px";
 barizq.style.height= windowHeight*0.98-33+"px";
 
 
