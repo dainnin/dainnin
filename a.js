@@ -1,28 +1,5 @@
 $(document).ready(function () {
       $(window).resize(function () {
-           Harry();
-      });
-      
-      Harry();
-      
-      function Harry(){
-          
-         var screenWidth2 = screen.width/screen.width*100;
-         var pte = window.innerWidth/screen.width*100;
-        if (pte>=screenWidth2) {
-          var lupi=document.getElementById(lupi);
-          $("#lupi").css({"font-size":"150%"});
-          
-          } else {
-            var lupi=document.getElementById(lupi);
-          $("#lupi").css({"font-size":"100%"});
-              
-          }
-      }
-  }); 
-           
-$(document).ready(function () {
-      $(window).resize(function () {
            pezon();
       });
       
@@ -40,6 +17,8 @@ var windowHeight = window.innerHeight;
 // Get the size of the entire webpage
 const pageWidth  = document.documentElement.scrollWidth;
 const pageHeight = document.documentElement.scrollHeight;
+var lupi = document.getElementById('lupi');lupi.style.color = 'red'; 
+if ( windowWidth < 650 && windowWidth > 450){('lupi');lupi.style.fontSize = windowWidth / windowWidth * 120 + "%";} else if (windowWidth <= 450) {('lupi');lupi.style.fontSize = windowWidth / screenWidth * 105 + "%"} else{('lupi');lupi.style.fontSize = windowWidth / screenWidth * 100 + 70 + "%"}
 
 // Showing the sizes on the webpage
 var x = document.getElementById("screen");
@@ -50,7 +29,9 @@ y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHei
 
 var z = document.getElementById("page");
 z.innerHTML = "Webpage: width:" + pageWidth + ", height: " + pageHeight + ".";
+
+};
 }
 
-}); 
+);
       
