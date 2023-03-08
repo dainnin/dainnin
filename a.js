@@ -18,9 +18,9 @@ var windowHeight = window.innerHeight;
 const pageWidth  = document.documentElement.scrollWidth;
 const pageHeight = document.documentElement.scrollHeight;
 var lupi = document.getElementById('lupi');lupi.style.color = 'red'; 
-if ( windowWidth < 650 && windowWidth > 450){('lupi');lupi.style.fontSize = windowWidth / windowWidth * 120 + "%";} else if (windowWidth <= 450) {('lupi');lupi.style.fontSize = windowWidth / screenWidth * 105 + "%"} else{('lupi');lupi.style.fontSize = windowWidth / screenWidth * 100 + 70 + "%"}
+if ( windowWidth < 650 && windowWidth > 449){('lupi');lupi.style.fontSize = windowWidth / windowWidth * 120 - 12 + "%";} else if (windowWidth <= 450) {('lupi');lupi.style.fontSize = windowWidth / screenWidth * 105 + "%"} else{('lupi');lupi.style.fontSize = windowWidth / screenWidth * 100 + 70 + "%"}
 
-// Showing the sizes on the webpage
+// Showing the sizes on the webpage9
 var x = document.getElementById("screen");
 x.innerHTML = "Device Screen: width: " + screenWidth + ", height: " + screenHeight + ".";
 
@@ -32,6 +32,6 @@ z.innerHTML = "Webpage: width:" + pageWidth + ", height: " + pageHeight + ".";
 
 };
 }
-
+9
 );
       
