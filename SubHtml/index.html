@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#!" type="image/x-icon">
+    <title>AJAX PHP - SAVE USER DATA </title>
+</head>
+
+<body>
+
+    <h1>User: <span data-username>Unknown</span></h1>
+
+    <form id="form-login" action="./save.php" method="post">
+        <div class="form-group">
+            <label>
+                <span>Username</span>
+                <input placeholder="Username" autocomplete="off" type="text" name="username">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <span>Password</span>
+                <input placeholder="Password" autocomplete="off" type="password" name="password">
+            </label>
+        </div>
+        <input id="button1" class="btn btn-success" type="submit" value="Login">
+    </form>
+
+    <script>
+        const EL_formLogin = document.querySelector("#form-login");
+        EL_formLogin.addEventListener("submit", (ev) => {
+            ev.preventDefault(); // Stop default form submit - we'll use AJAX
+            fetch(EL_formLogin.action, {
+                method: 'POST',
+                body: new FormData(EL_formLogin),
+            }).then(res => res.json()).then(data => {
+                // Hide the form
+                EL_formLogin.hidden = true;
+                // Show the user name
+                document.querySelector("[data-username]").textContent = data.username;
+            });
+        });
+    </script>
+
+</body>
+</html>
