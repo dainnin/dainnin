@@ -15,7 +15,7 @@ $(document).ready(function () {
             logwi.textContent=""+xheader.clientWidth;
             let marglog = (xheader.clientWidth*0.918789-logohr.width)/2+"px";
             let mhr = (xheader.clientWidth*0.918789-menuheader.clientWidth)/2+"px";
-            xheader.padding="0px 0px 0px 0px";
+            
             
             logohr.style.padding= "0 0 0 "+ marglog; 
             menuheader.style.float="none";
