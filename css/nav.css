@@ -24,7 +24,8 @@ html{
 
 #navx 
 {
-   
+    
+    
 background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
@@ -34,9 +35,9 @@ height: 388px;
 
 }
 .xnav{
-    
--webkit-backdrop-filter: blur(3px);
-backdrop-filter: blur(3px);
+
+-webkit-backdrop-filter:  blur(30px);
+backdrop-filter: url('../img/funkos-banner.webp') blur(3px);
 background-color: "";
 width: 100%;
 height: 100%;
