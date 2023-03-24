@@ -5,9 +5,22 @@ $(document).ready(
     if(window.innerWidth<=965)
     {
         readhrx();
-    }else{
-        readhrt();
     }
+    else{
+        readhrt();
+        
+    }
+    if(window.innerWidth<=450){
+        /*menormenor*/
+        
+        headerx.style.padding= "2rem 0 2rem 0";
+        headerx.style.height="12.4rem";
+        headerx.style.fontSize="2.5rem";
+        menuhr.style.float="none"
+        logwi.textContent="";
+    }
+    
+
    }
 
 
@@ -17,7 +30,7 @@ $(window).resize(
     
 function redimen(){
     
-    if(window.innerWidth<=965)
+    if(450<window.innerWidth<=965)
     {
         readhrx();
     }else{
