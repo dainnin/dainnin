@@ -1,6 +1,48 @@
-main
-{
-display: flex;
-float: right;
-background-color: antiquewhite ;
+/*Main###################
+###################################
+###################*/
+
+main{
+    display: inline-block;
+    
 }
+ main img{
+    
+    width: 75%;
+ }
+ main>div{
+    display: grid;
+    grid-template-rows: (3, 1fr);
+    align-items: baseline;
+    font-size: 3rem;
+}
+main :nth-child(odd) img{
+float:right;  
+    width: 75%;
+ }
+ main :nth-child(even) img{
+    float:left;  
+        width: 75%;
+     }
+ #prsh{
+    display: inline-flex;
+    overflow: hidden;
+    overflow-x:scroll ;
+    
+    width: 95vw;
+    height: 47rem;
+ }
+ #prsh div p{
+    display: inline;
+    position: relative;
+
+ }
+ #prsh img {
+    height: 100%;
+   width: auto;
+   
+    
+ }
+ .prshp {
+    font-size: 5rem;
+ }
