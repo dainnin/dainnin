@@ -21,13 +21,14 @@ html{
 /*Nav###################
 ###################################
 ###################*/
-.blurx, .noblur, .noblurx{
+.blurx, .noblur{
     position: absolute;
 }
 #navx 
 {
-    z-index: -1;
-        
+
+
+z-index: -1;
 background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
@@ -36,14 +37,8 @@ width: 100%;
 height: 388px;
 
 }
-.xnav{
 
--webkit-backdrop-filter:  blur(30px);
-backdrop-filter: url('../img/funkos-banner.webp') blur(3px);
-width: 100%;
-height: 100%;
 
-}
 .blurx{
     filter: blur(3px);
     width: 100%;
@@ -54,15 +49,7 @@ background-position-y: 82%;
 overflow:hidden;
     z-index: 0;
 }
-.noblurx{z-index: 100;}
-/*#navbanner{
-    
-    left: 0px;
-    top: -246px;
-    filter: blur(3px);
-    width: 100%;
-    
-}*/
+
 #decoshop{
     border-radius: 50px;
     padding-top: 10px;
@@ -72,168 +59,85 @@ overflow:hidden;
     width: 200px;
     height: 40px;
 }
-.wite{
-    color:white;
-}
 
-.dispflex{
+.noblur,nav p{
 display: inline-block;
 flex-direction: column;
 font-size: 3rem;
-
+z-index: 100;
 }
 #decoshopx{
    padding: 1.15em 0 0 3.75em; 
 }
 
-#text1
-{
-    
 
-padding: 0 4em 0 4em; 
 
-}
 
-#text2{
-   
-    
-    padding: 4em 0 0 3em; 
-}
 /*Header###################
 ###################################
 ###################*/
-header{
-    padding: 0 4vw 0 4vw;
-    font-size: 3rem;
-   color: aliceblue;
-   background-color: #30343F;
-}
-.headerx{
-    
-   /* display: grid;
-    grid-template-columns: repeat(406,1fr);
-    grid-auto-rows: 8.35px;  */
-    height: 144px;
-}
-.espmhr{
-    padding: 0 13px 0 0;
-}
-#gridrow
+
+header
 {
-    /* grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1   ;
-    grid-row-end: 18;*/
+
+padding: 4.8rem 4vw 4.8rem 4vw;
+font-size: 3rem;
+color: aliceblue;
+background-color: #30343F;
+height: 48px;
 }
-#logohr{
-   /* grid-column-start: 31;
-    grid-column-end: 144;
-    grid-row-start: 6;
-    grid-row-end: 14;*/
-    background-size: auto;
-    
-    
-    
+header p{
+padding: 0 13px 0 0;
 }
-#menuheader
-{
-    
-/* 900 widthpage max*/
-    display:inline-block;    
+header img:first-child{
+padding: 0 50px 0 0;
+
+
+}
+
+
+
+header div{
+    align-items: center;  
     float: right;
+    user-select: none;
 }
-.xmenuheaderx
+ header div p
+ {
+    display:inline-block;
+    user-select: none;
+}
+header img:nth-child(2)  {
+       padding: 0 13px 0 0;
+}
+header div p:nth-child(1)
 {
-    display: inline-block;
-    align-items: center;
-
+    padding: 0.33em 7px 0 0;
 }
-#carrito{
-   
-   /* grid-column-start: 355;
-    grid-column-end: 370;
-    grid-row-start: 6;
-    grid-row-end: 14;
-    width: 33px;*/
-     height: 30px;
-     border: none;
-     
-     
-      
- }
-#contacx{
-   /* grid-column-start: 275;
-    grid-column-end: 370;
-    grid-row-start: 6;
-    grid-row-end: 14;*/
-    
-}
-#ingrex{
 
-
-
-    /*grid-column-start: 315;
-        grid-column-end: 370;
-        grid-row-start: 6;
-        grid-row-end: 14;*/
-        
-    }
-
-    #shopx
-    { 
-        
-
-       /* grid-column-start: 240;
-        grid-column-end: 370;
-        grid-row-start: 6;
-        grid-row-end: 14;*/
-    }
-    #shopxicon
-    { 
-        position: relative;
-        background-size: cover;
-        padding: 0 13px 0 0;
-
-       /* grid-column-start: 262;
-        grid-column-end: 370;
-        grid-row-start: 8;
-        grid-row-end: 14;*/
-    }
-
-
-
-
- 
-
-
-
-#submenu{
-    
-}
-#menuheader{
-    
-}
 
 /*Main###################
 ###################################
 ###################*/
 
-/*main{
-    
-    
+main{
+    display: inline-block;
 }
-#sectx{
-  
+ main img{
+    width: 100%;
+ }
+ #prsh{
+    display: inline-flex;
+    overflow: hidden;
+    overflow-x:scroll ;
     
-}
-::-webkit-scrollbar{
-    width: 0%;
-}
-
-#barra{
-
-   
-   
- 
-    }*/
- 
+    width: 95vw;
+    height: 47rem;
+ }
+ #prsh div{
+    display: inline-block;
+    position: relative;
+ }
+ #prsh img{
+    height: 100%;
+ }
