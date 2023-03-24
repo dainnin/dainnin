@@ -66,6 +66,7 @@ display: inline-block;
 flex-direction: column;
 font-size: 3rem;
 z-index: 100;
+user-select: none;
 }
 #decoshopx{
    padding: 1.15em 0 0 3.75em; 
