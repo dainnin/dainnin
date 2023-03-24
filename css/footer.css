@@ -1,5 +1,6 @@
 footer
 {
-    background-color: cadetblue;
+    display: Block;
+background-color: cadetblue;
     font-size: 25px;
 }
