@@ -8,14 +8,16 @@
            
        } 
        section{
-       filter: blur(2px);    
+       filter: blur(0.5px);    
            
            
        }
     </style>
 
 <script type="text/javascript" charset="utf-8">
-   function b1(){ p1.textContent=i1.value;}
+   function b1(){ p1.textContent=i1.value;
+  sct.style.background=i2.value;
+}
 </script>
 <head>
 
@@ -30,7 +32,7 @@
     
   <input type="text" name="Nombre" id="i1" value="" /> <input type="button" name="" id="" onclick="b1()"value="Listo"
   >
-  <input type="text" name="" id="" value="" />
+  <input type="text" name="" id="i2" value="" />
   
    <hr /> 
     </nav>
