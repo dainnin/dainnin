@@ -1,16 +1,36 @@
 #prsh img:hover
 {
     height: 480px;
-    filter: drop-shadow(11px 11px 11px rgb(16, 131, 160));
+    filter: drop-shadow(0px 10px 30px rgb(16, 131, 160));
 }
-#prsh {
-    border: 1px solid navy;
+
+#btnprshi
+{
+    color: transparent;
+    background-color: aqua;
+    border: 1px solid black;
+    width: 2.51vw;
+    height: 90dvh;
+}
+#btnprshd
+{  
+    color: transparent;
+    background-color: aqua;
+    border: 1px solid black;
+    width: 2.51vw;
+    height: 90dvh;}
+
+#dibx
+{
+    
+    display: inline-flex;
     
 }
-#btnprsh
+#btnprshi:hover
 {
-    display: inline-block;
-    border: 1px solid black;
-    width: 2vw;
-    height: 80vmax;
+    filter: drop-shadow(11px 11px 11px red);
+}
+#btnprshd:hover
+{
+    filter: drop-shadow( -11px 11px 11px red);
 }
