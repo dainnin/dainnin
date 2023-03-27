@@ -24,26 +24,3 @@ float:right;
     float:left;  
         width: 75%;
      }
- #prsh{
-    display: inline-flex;
-    overflow: hidden;
-    overflow-x:scroll ;
-    
-    width: 95vw;
-    height: 47rem;
- }
- #prsh div p{
-    display: inline;
-    position: relative;
-
- }
- #prsh img {
-   height: 450px;
-   width: auto;
-   
-    
- }
- .prshp {
-    font-size: 5rem;
- }
- 
