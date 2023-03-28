@@ -1,6 +1,6 @@
 #prsh img:hover
 {
-    height: 55dvh;
+    height: 60dvh;
     filter: drop-shadow(0px 10px 30px rgb(16, 131, 160));
 }
 
@@ -11,7 +11,7 @@
     background-color: aqua;
     border: 1px solid black;
     
-    height: 90dvh;
+    height: 50dvh;
 }
 #btnprshd
 {  
@@ -20,14 +20,14 @@
     background-color: aqua;
     border: 1px solid black;
     
-    height: 90dvh;
+    height: 50dvh;
 }
 
 #dibx
 {
-    border: 2px solid green;
+    
     display: grid;
-    grid-template-columns: 2.51vw 1fr 2.51vw;
+    grid-template-columns: 3vw 1fr 3vw;
     
     
 }
@@ -40,7 +40,7 @@
     filter: drop-shadow( -11px 11px 11px red);
 }
 #prsh img {
-    height: 45dvb;
+    height: 50dvb;
     width: auto;
     
      
@@ -51,7 +51,7 @@
     overflow-x:scroll ;
     
     width: 95vw;
-    height: 90dvh;
+    height: 60vh;
  }
  #prsh div p{
     display: inline;
@@ -60,8 +60,15 @@
  }
 
  #prsh p {
-    font-size: 7dvh;
+    font-size: 2dvh;
  }
  #prsh div {
     width: 29vw;
+ }
+
+ #prsh>div {
+    display: grid;
+    grid-column: auto;
+    row-gap: 0 30px;
+    
  }
