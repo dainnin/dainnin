@@ -13,7 +13,7 @@ main{
  main>div{
     display: grid;
     grid-template-rows: (3, 1fr);
-    align-items: baseline;
+    
     font-size: 3rem;
 }
 main :nth-child(odd) img{
