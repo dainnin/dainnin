@@ -53,22 +53,122 @@
     width: 95vw;
     height: 485px;
  }
- #prsh div p{
-    display: inline;
-    position: relative;
-
+ #prsh div h3::before{
+    font-weight: var(--font-bold);
+    font-size: 2.5rem;
+    content: "luna lovegood lion mask";
  }
 
- #prsh p {
-    font-size: 2dvh;
+ #prsh div h4::before {
+   
+    font-size: 3rem;
+    content: "Star Wars Trooper";
  }
- #prsh div {
+
+
+ #prsh div::before {
     width: 350px;
  }
 
- #prsh>div {
+ #prsh>div::before {
     display: grid;
     grid-column: auto;
-    
+   
     
  }
+
+ #prsh div div:nth-child(4)::before {
+    font-weight: var(--font-regular);
+    font-size: 2.75rem;
+    color: var(--gray1);
+    content: "$ 1799,99-";
+ } 
+
+ #prsh div div:nth-child(5)::before {
+    font-weight: var(--font-bold);
+    font-size: 2rem;
+    color: var(--blue1);
+    content: "3 cuotas sin interés";
+ } 
+ 
+ .item__seaga {
+    font-weight: var(--font-medium);
+    font-size: 0.875em;
+  }
+  
+  .item__name {
+    font-weight: var(--font-bold);
+    font-size: 1.125em;
+  }
+  
+  .item__price {
+    font-weight: var(--font-regular);
+    font-size: 1em;
+    color: var(--gray1);
+  }
+  .item__amount-fees {
+    font-weight: var(--font-bold);
+    font-size: 0.75em;
+    color: var(--blue1);
+  }
+  
+
+
+
+
+ /*#prsh img:hover
+{
+    width: 347px;
+    filter: drop-shadow(0px 10px 30px rgb(16, 131, 160));
+}
+
+#btnprshi
+{
+    
+        background-color: aqua;
+    border: 1px solid black;
+    height: 485px;
+}
+#btnprshd
+{  
+    background-color: aqua;
+    border: 1px solid black;
+    
+    height: 485px;
+}
+
+#dibx
+{
+    display: grid;
+    grid-template-columns: 3vw 92vw 3vw;
+        
+}
+#btnprshi:hover
+{
+    filter: drop-shadow(11px 11px 11px red);
+}
+#btnprshd:hover
+{
+    filter: drop-shadow( -11px 11px 11px red);
+}
+#prsh img {
+    height: auto;
+    width: 320px;
+    
+     
+  }
+  #prsh{
+    display: inline-flex;
+    overflow-x:auto ;
+    overflow-y: hidden;
+    height: 485px;
+ }
+
+
+ #prsh p {
+    font-size: 3dvh;
+ }
+ */
+
+
+    

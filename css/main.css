@@ -13,8 +13,8 @@ main{
  main>div{
     display: grid;
     grid-template-rows: (3, 1fr);
-    
-    font-size: 3rem;
+   
+   
 }
 main :nth-child(odd) img{
 float:right;  
