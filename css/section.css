@@ -89,7 +89,7 @@
     content: "3 cuotas sin interés";
  } 
  
- @media only screen and (max-width:500px){
+ @media only screen and (max-width:650px){
 
     #prsh div h3::before{
         font-weight: var(--font-bold);
