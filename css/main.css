@@ -55,7 +55,7 @@ flex-direction: row-reverse;
   margin-top: 1.75em;
   border: 3px solid var(--red1);
 }
-@media only screen and (max-width:500px){
+@media only screen and (max-width:650px){
 
  #prsv p {
   
