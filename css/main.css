@@ -2,25 +2,72 @@
 ###################################
 ###################*/
 
-main{
-    display: inline-block;
-    
+
+#prsv div {
+  width: 90vw;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
- main img{
+
+#prsv div div {
+  width: 45vw; 
+   align-items: center;
+   flex-direction: column;
+}
+
+#prsv img{
     
-    width: 75%;
+    width: 45vw;
+    height: auto;
  }
- main>div{
+#prsv {
     display: grid;
-    grid-template-rows: (3, 1fr);
-   
-   
+    grid-template-rows: (3, auto);
+    margin-top: 4.25em;
+    text-transform: uppercase;
+    
+
 }
-main :nth-child(odd) img{
-float:right;  
-    width: 75%;
+#prsv div:nth-child(even) {
+
+flex-direction: row-reverse;
+   
  }
- main :nth-child(even) img{
-    float:left;  
-        width: 75%;
-     }
+
+ #prsv p {
+  
+  margin-top: 0.375em;
+  font-size: 2.25rem;
+  color: var(--gray1);
+}
+
+#prsv  h2{
+  font-weight: var(--font-medium);
+  font-size: 3.875rem;
+  
+    
+  
+}
+#prsv hr {
+  width: 100%;
+  margin-top: 1.75em;
+  border: 3px solid var(--red1);
+}
+@media only screen and (max-width:500px){
+
+ #prsv p {
+  
+  margin-top: 0.375em;
+  font-size: 1.25rem;
+  color: var(--gray1);
+}
+#prsv  h2{
+  font-weight: var(--font-medium);
+  font-size: 2.25rem;
+  
+    
+  
+}
+}

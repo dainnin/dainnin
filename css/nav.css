@@ -1,6 +1,7 @@
 /*General###################
 ###################################
 ###################*/
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap");
 :root {
     --primary-color: #30343f;
     --white: #ffffff;
@@ -17,7 +18,7 @@
     --font-extraBold: 800;
 }
 html{
-    
+    scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 62.5%;/* 100% = 16px */
 }
@@ -25,7 +26,10 @@ html{
 
     user-select: none;
 }
-
+body{
+    font-family: "Raleway", sans-serif;
+    color: var(--black);
+}
 *{
     
     padding: 0;
