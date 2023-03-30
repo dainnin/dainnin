@@ -4,22 +4,15 @@
     filter: drop-shadow(0px 10px 30px rgb(16, 131, 160));
 }
 
-#btnprshi
+#btnprshi, #btnprshd
 {
     
     background-color: transparent ;
     border: 1px solid black;
     height: 485px;
 }
-#btnprshd
-{  
-    
-    
-    background-color: transparent;
-    border: 1px solid black;
-    
-    height: 485px;
-}
+
+
 
 #dibx
 {
