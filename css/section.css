@@ -121,20 +121,13 @@
  
    height: 400px;
 }
-#btnprshi
+#btnprshi, #btnprshd
+
 {
     
-    background-color: aqua;
-    border: 1px solid black;
-    height: 400px;
-}
-#btnprshd
-{  
-    
-    
-    background-color: aqua;
-    border: 1px solid black;
+    background-color: red ;
     
     height: 400px;
 }
+
    }
