@@ -1,6 +1,6 @@
 
 
-$(document).ready(
+/*$(document).ready(
    function(){
     if(window.innerWidth<=450){
         readhrxm()
@@ -76,4 +76,4 @@ else{
              menuhr.style.float="none";
              logwi.textContent="";
         
-    }
+    }*/

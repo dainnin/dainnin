@@ -12,22 +12,24 @@
 }
 
 #prsv div div {
-  width: 45vw; 
-   align-items: center;
-   flex-direction: column;
+  width: 40vw; 
+  align-items: center;
+  overflow: visible;
+  flex-direction: column;
+  
 }
 
 #prsv img{
     
-    width: 45vw;
+    width: 55vw;
     height: auto;
  }
 #prsv {
     display: grid;
-    grid-template-rows: (3, auto);
+    grid-template-rows: auto;
     margin-top: 4.25em;
     text-transform: uppercase;
-    
+   
 
 }
 #prsv div:nth-child(even) {
@@ -55,19 +57,59 @@ flex-direction: row-reverse;
   margin-top: 1.75em;
   border: 3px solid var(--red1);
 }
-@media only screen and (max-width:650px){
+@media only screen and (max-width:770px){
+
+  #prsv p {
+   
+   width: 35vw;
+   font-size: 2rem;
+   
+ }
+ #prsv  h2{
+   width: 35vw;
+   font-size: 3rem;
+   
+     
+   
+ }
+ #prsv div div {
+   width: 35vw; 
+   
+ }
+ 
+ #prsv img{
+     
+     width: 60vw;
+     
+  }
+ 
+ }
+ 
+@media only screen and (max-width:560px){
 
  #prsv p {
   
-  margin-top: 0.375em;
-  font-size: 1.25rem;
-  color: var(--gray1);
+  width: 35vw;
+  font-size: 1.1rem;
+  
 }
 #prsv  h2{
-  font-weight: var(--font-medium);
-  font-size: 2.25rem;
+  width: 35vw;
+  font-size: 1.7rem;
   
     
   
 }
+#prsv div div {
+  width: 35vw; 
+  
 }
+
+#prsv img{
+    
+    width: 60vw;
+    
+ }
+
+}
+

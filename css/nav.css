@@ -21,6 +21,7 @@ html{
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 62.5%;/* 100% = 16px */
+    width: 100vw;
 }
 .noselec{
 
@@ -53,8 +54,7 @@ body{
 }
 #navx 
 {
-
-
+display: flex;
 z-index: -1;
 background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
@@ -77,29 +77,42 @@ overflow:hidden;
     z-index: 0;
 }
 
-#decoshop{
-    border-radius: 50px;
-    padding-top: 10px;
-    text-align: center;
-    font-family:  sans-serif;
-    background-color: white;
-    width: 200px;
-    height: 40px;
-}
 
+.noblur{
+    color: white;
+    padding: 110px 0 0 10vw;
+}
 .noblur,nav p{
-display: inline-block;
+display: block;
 flex-direction: column;
 font-size: 3rem;
 z-index: 100;
 user-select: none;
 }
 #decoshopx{
-   padding: 1.15em 0 0 3.75em; 
+    
+   color: black;
+   padding: 4rem 0 0 0; 
+}
+#navx div:nth-child(2)>p:nth-child(1){
+font-size: 5rem;
 }
 
+#navx div:nth-child(2)>p:nth-child(2){
+    font-size: 2rem;
+    }
 
-
+#decoshop{
+    font-size: 2.7rem;
+    border-radius: 50px;
+    padding:3px 0 0 0;
+    text-align: center;
+    text-justify: center;
+    font-family:  sans-serif;
+    background-color: white;
+    width: 200px;
+    height: 40px;
+}
 
 
 

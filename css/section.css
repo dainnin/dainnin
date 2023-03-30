@@ -92,26 +92,56 @@
  @media only screen and (max-width:650px){
 
     #prsh div h3::before{
-        font-weight: var(--font-bold);
+        
         font-size: 1.75rem;
-        content: "luna lovegood lion mask";
+        
      }
      #prsh div h4::before {
        
         font-size: 3rem;
-        content: "Star Wars Trooper";
+        
      }
      #prsh div div:nth-child(4)::before {
-        font-weight: var(--font-regular);
+        
         font-size: 2rem;
-        color: var(--gray1);
-        content: "$ 1799,99-";
+        
      } 
     
      #prsh div div:nth-child(5)::before {
-        font-weight: var(--font-bold);
+        
         font-size: 1.25rem;
-        color: var(--blue1);
-        content: "3 cuotas sin interés";
+        
+        
      } 
+   }
+   @media only screen and (max-width:650px){
+      #prsh img {
+         height: 250px;
+         width: auto;
+              }
+              #prsh img:hover
+{
+    height: 280px;
+   
+}
+#prsh{
+ 
+   height: 400px;
+}
+#btnprshi
+{
+    
+    background-color: aqua;
+    border: 1px solid black;
+    height: 400px;
+}
+#btnprshd
+{  
+    
+    
+    background-color: aqua;
+    border: 1px solid black;
+    
+    height: 400px;
+}
    }
