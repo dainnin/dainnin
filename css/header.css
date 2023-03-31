@@ -46,6 +46,12 @@ visibility: visible;
 }
 header div div p + a:focus {
   color:blue;
+  background-color:#3a445f ;
+  text-justify:distribute;
+  text-align: center;
+  text-align: left;
+  padding: 14px 0 0 0;   
+  grid-column-start: 1;
 visibility: visible;
 }
 header div div :nth-child(2), div div :nth-child(3), div div :nth-child(4){
