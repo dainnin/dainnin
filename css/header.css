@@ -15,6 +15,7 @@ height: 144px;
 }
 header p{
 text-transform: uppercase;
+user-select: none;
 padding: 0 13px 0 0;
 }
 header img:first-child{
@@ -23,21 +24,80 @@ width: 367px;
 
 
 
-header div{
-    display: flex;
-    
-    align-items: center;  
-    
-    user-select: none;
+#menuhr{
+  display:grid;
+  padding: 56px 0 0 0;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;  
+  position: relative;
+  z-index: 100;     
 }
- header div p
+ header div>div
  {
-    display:inline;
-    user-select: none;
+  padding: 5px 0 0 0;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    text-align: right;
 }
-header img:nth-child(2)  {
-       padding: 0 13px 0 0;
+header div div p:focus + a, header div div p:focus + p +p,header div div p:focus + p +p+p{
+  color:red;
+visibility: visible;
 }
+header div div p + a:focus {
+  color:blue;
+visibility: visible;
+}
+header div div :nth-child(2), div div :nth-child(3), div div :nth-child(4){
+  background-color:#3a445f ;
+  text-justify:distribute;
+  text-align: center;
+  text-align: left;
+  padding: 14px 0 0 0;   
+  grid-column-start: 1;
+ visibility: hidden;
+  
+}
+header div div :nth-child(2) {/* 5 6 7*/
+
+  
+  grid-row-start: 3;
+  grid-row-end: 3;
+  color: red;
+}
+header div + p + p{
+  grid-column-start: 3;
+  
+}
+header div  + p{
+  grid-column-start: 2;
+  
+}
+header div div :nth-child(3) {/* 5 6 7*/
+ 
+
+  grid-row-start: 4;
+  grid-row-end: 4;
+  color: red;
+ 
+}
+header div div :nth-child(4) {/* 5 6 7*/
+  
+  grid-row-start: 5;
+  grid-row-end: 5;
+  color: red;
+  
+  
+}
+
+ header div :nth-child(5){
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2 ;
+  grid-row-end: 2;
+  /*background-color: violet;*/
+ }
+  
 
 @media only screen and (max-width:900px) {
     header
@@ -48,7 +108,10 @@ header img:nth-child(2)  {
     
     }
     
-    
+    #menuhr{
+           
+      padding: 5dvh 0 5dvh 0;
+     
    
 }
 @media only screen and (max-width:460px) {
