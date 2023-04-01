@@ -54,7 +54,7 @@ header div div p + a:focus {
   grid-column-start: 1;
 visibility: visible;
 }
-header div div :nth-child(2), div div :nth-child(3), div div :nth-child(4){
+header div div :nth-child(2), header div div :nth-child(3), header div div :nth-child(4){
   background-color:#3a445f ;
   text-justify:distribute;
   text-align: center;
