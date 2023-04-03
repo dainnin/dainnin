@@ -32,62 +32,48 @@ width: 367px;
   position: relative;
   z-index: 100;     
 }
- header div>div
+#menuhr>p
  {
-  padding: 5px 0 0 0;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-row-end: 4;
+    
     text-align: right;
 }
-header div div p:focus + a, header div div p:focus + p +p,header div div p:focus + p +p+p{
-  color:red;
-visibility: visible;
-}
-header div div p + a:focus {
-  color:blue;
-  background-color:#3a445f ;
-  text-justify:distribute;
-  text-align: center;
-  text-align: left;
-  padding: 14px 0 0 0;   
-  grid-column-start: 1;
-visibility: visible;
-}
-header div div :nth-child(2), header div div :nth-child(3), header div div :nth-child(4){
-  background-color:#3a445f ;
-  text-justify:distribute;
-  text-align: center;
-  text-align: left;
-  padding: 14px 0 0 0;   
-  grid-column-start: 1;
- visibility: hidden;
-  
-}
-header div div :nth-child(2) {/* 5 6 7*/
 
-  
+#menuhr a:hover, #menuhr  a + a:hover,#menuhr  a+a + a:hover  {
+  visibility: visible;
+}
+#menuhr p:focus + a ,#menuhr p:focus + a +a,#menuhr p:focus + a +a+a{
+  color:red;
+  background-color:#597474da;
+ 
+  visibility: visible;
+z-index: 100  ;
+}
+
+ #menuhr :nth-child(2), #menuhr :nth-child(3), #menuhr :nth-child(4){
+  grid-column-start: 1;
+  text-align: center;
+  text-align: left;
+  padding: 14px 0 0 0;   
+  grid-column-start: 1;
+  visibility: collapse; 
+}
+
+#menuhr :nth-child(2) {/* 5 6 7*/
+ 
+ 
   grid-row-start: 3;
   grid-row-end: 3;
   color: red;
 }
-header div + p + p{
-  grid-column-start: 3;
-  
-}
-header div  + p{
-  grid-column-start: 2;
-  
-}
-header div div :nth-child(3) {/* 5 6 7*/
- 
 
+#menuhr :nth-child(3) {/* 5 6 7*/
+  
   grid-row-start: 4;
   grid-row-end: 4;
   color: red;
- 
+  
 }
-header div div :nth-child(4) {/* 5 6 7*/
+#menuhr :nth-child(4) {/* 5 6 7*/
   
   grid-row-start: 5;
   grid-row-end: 5;
@@ -95,14 +81,34 @@ header div div :nth-child(4) {/* 5 6 7*/
   
   
 }
+#menuhr :nth-child(5)
+{
+  grid-column-start: 2;
+  
+  
+}
+#menuhr :nth-child(6)
+{
+  grid-column-start: 3;
+  
+  
+}
 
- header div :nth-child(5){
+#menuhr :nth-child(7)
+{
+  grid-column-start: 4;
+  
+  
+}
+
+
+/* #menuhr :nth-child(5){
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 2 ;
   grid-row-end: 2;
-  /*background-color: violet;*/
- }
+  /*background-color: violet;
+ }*/
   
 
 @media only screen and (max-width:900px) {
@@ -116,9 +122,10 @@ header div div :nth-child(4) {/* 5 6 7*/
     
     #menuhr{
            
-      padding: 5dvh 0 5dvh 0;
+      padding: 0dvh 0 0dvh 0;
      
    
+}
 }
 @media only screen and (max-width:460px) {
     
