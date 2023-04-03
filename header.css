@@ -1,0 +1,140 @@
+/*Header###################
+###################################
+###################*/
+
+header
+{
+display: flex;
+justify-items: center;
+justify-content: space-around;
+font-size: 2.1rem;
+color: rgb(255, 255, 255);
+background-color: #30343F;
+height: 144px;
+
+}
+header p{
+text-transform: uppercase;
+user-select: none;
+padding: 0 13px 0 0;
+}
+header img:first-child{
+width: 367px;
+}
+
+
+
+#menuhr{
+  display:grid;
+  padding: 56px 0 0 0;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;  
+  position: relative;
+  z-index: 100;     
+}
+#menuhr>p
+ {
+    
+    text-align: right;
+}
+
+#menuhr a:hover, #menuhr  a + a:hover,#menuhr  a+a + a:hover  {
+  visibility: visible;
+}
+#menuhr p:focus + a ,#menuhr p:focus + a +a,#menuhr p:focus + a +a+a{
+  color:red;
+  background-color:#597474da;
+ 
+  visibility: visible;
+z-index: 100  ;
+}
+
+ #menuhr :nth-child(2), #menuhr :nth-child(3), #menuhr :nth-child(4){
+  grid-column-start: 1;
+  text-align: center;
+  text-align: left;
+  padding: 14px 0 0 0;   
+  grid-column-start: 1;
+  visibility: collapse; 
+}
+
+#menuhr :nth-child(2) {/* 5 6 7*/
+ 
+ 
+  grid-row-start: 3;
+  grid-row-end: 3;
+  color: red;
+}
+
+#menuhr :nth-child(3) {/* 5 6 7*/
+  
+  grid-row-start: 4;
+  grid-row-end: 4;
+  color: red;
+  
+}
+#menuhr :nth-child(4) {/* 5 6 7*/
+  
+  grid-row-start: 5;
+  grid-row-end: 5;
+  color: red;
+  
+  
+}
+#menuhr :nth-child(5)
+{
+  grid-column-start: 2;
+  
+  
+}
+#menuhr :nth-child(6)
+{
+  grid-column-start: 3;
+  
+  
+}
+
+#menuhr :nth-child(7)
+{
+  grid-column-start: 4;
+  
+  
+}
+
+
+/* #menuhr :nth-child(5){
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2 ;
+  grid-row-end: 2;
+  /*background-color: violet;
+ }*/
+  
+
+@media only screen and (max-width:900px) {
+    header
+    {
+    display: grid;
+    justify-content: space-around;
+    padding: 5dvh 0 5dvh 0;
+    
+    }
+    
+    #menuhr{
+           
+      padding: 0dvh 0 0dvh 0;
+     
+   
+}
+}
+@media only screen and (max-width:460px) {
+    
+    header 
+     {
+    font-size: 1.5rem;
+}
+header img:first-child{
+       width: 90%;
+       padding: 2dvh 0 1dvh 0;
+}
+}
