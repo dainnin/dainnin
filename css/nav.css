@@ -86,7 +86,7 @@ overflow:hidden;
 display: block;
 flex-direction: column;
 font-size: 3rem;
-z-index: 100;
+z-index: 1;
 user-select: none;
 }
 #decoshopx{
