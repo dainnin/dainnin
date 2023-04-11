@@ -1,75 +1,34 @@
-/*General###################
-###################################
-###################*/
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap");
-:root {
-    --primary-color: #30343f;
-    --white: #ffffff;
-    --black: #111111;
-    --gray0: #857b7b;
-    --gray1: #4f4f4f;
-    --gray2: #30343f;
-    --red1: #ff3333;
-    --blue1: #1d84b5;
-    --font-light: 300;
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-bold: 700;
-    --font-extraBold: 800;
-}
-html{
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    font-size: 62.5%;/* 100% = 16px */
-    width: 100vw;
-}
-.noselec{
 
-    user-select: none;
-}
-body{
-    font-family: "Raleway", sans-serif;
-    color: var(--black);
-}
-*{
-    
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.derc{
-    font-size: 30px;
-    color: aliceblue;
-    background-color: transparent;
-    border: none; 
-     
-        
-}
 /*Nav###################
 ###################################
 ###################*/
+
 .blurx, .noblur{
     position: absolute;
 }
+.noblur a{
+z-index:100;
+}
 #navx 
 {
+    grid-area: n;
 display: flex;
 z-index: -1;
 background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
+
 overflow:hidden;
-width: 100%;
-height: 388px;
+width: 100vw;
+height: calc(22.5rem + 10vw);
 
 }
 
 
 .blurx{
     filter: blur(3px);
-    width: 100%;
-    height: 388px;
+    width: 100vw;
+    height: calc(22.5rem + 10vw);
     background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
@@ -80,13 +39,14 @@ overflow:hidden;
 
 .noblur{
     color: white;
-    padding: 110px 0 0 10vw;
+    padding: calc(10vw - 2vw) 0 0 10vw;
+    
 }
 .noblur,nav p{
 display: block;
 flex-direction: column;
-font-size: 3rem;
-z-index: 1;
+
+
 user-select: none;
 }
 #decoshopx{
@@ -95,15 +55,15 @@ user-select: none;
    padding: 4rem 0 0 0; 
 }
 #navx div:nth-child(2)>p:nth-child(1){
-font-size: 5rem;
+font-size: calc(2rem + 2.25vw);
 }
 
 #navx div:nth-child(2)>p:nth-child(2){
-    font-size: 2rem;
+    font-size: calc(1.5rem + 0.8vw);
     }
 
 #decoshop{
-    font-size: 2.7rem;
+    font-size: calc(2rem + 1vw);
     border-radius: 50px;
     padding:3px 0 0 0;
     text-align: center;

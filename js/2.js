@@ -1,168 +1,85 @@
 
 
-$(document).ready(function () {
-    $(window).resize(function () {
-     
-    });
-    
-   pezo();
-    
-    function pezo(){  
-        
-    if (window.innerWidth<=890){
-        alert("asd");
+async function objList() {
 
-    }
+  const requestURL = './prsh.json';
+  const request = new Request(requestURL);
 
-        
-        /*if(window.innerWidth<=1005){
-            logwi.textContent="";
-            let marglog = (xheader.clientWidth*0.918789-logohr.width)/2+"px";
-            let mhr = (xheader.clientWidth*0.918789-menuheader.clientWidth)/2+"px";
-            
-            let shopx = document.getElementById('shopx');
-            shopx.style.fontSize=3*0.7+'rem';            
-            let contacx = document.getElementById('contacx');
-            contacx.style.fontSize=3*0.7+'rem';  
-            let ingrex = document.getElementById('ingrex');
-                       ingrex.style.fontSize=3*0.7+'rem'; 
-                       logohr.style.padding= "10px 0 0 "+ marglog; 
-                       menuheader.style.float="none";
-                       menuheader.style.padding= "0 0 0 " + mhr;
-                       
-        }*/
+  const response = await fetch(request);
+  const jsonObjListText = await response.text();
 
-
-
-            
-            
-                     
-        
-       /*  if(window.innerWidth>1005.1){
-            let centloghr=(xheader.clientHeight-logohr.height)/2+"px";
-            let centhr=(xheader.clientHeight-menuheader.clientHeight)/2+"px";
-            xheader.style.padding = "0 4vw 0 4vw";
-            logohr.style.padding=centloghr + " 0 "+centloghr +" 0"; 
-            menuheader.style.float="right";
-            menuheader.style.padding= centhr + " 0 "+centhr +" 0"; 
-            logwi.textContent="";
-            let shopx = document.getElementById('shopx');
-            shopx.style.fontSize= '3rem';            
-            let contacx = document.getElementById('contacx');
-            contacx.style.fontSize= '3rem';  
-            let ingrex = document.getElementById('ingrex');
-            ingrex.style.fontSize= '3rem'; 
-            
-        }          
-           
-        
-       if (window.innerWidth>1275) {
-            let shopx = document.getElementById('shopx')
-            shopx.style.fontSize=30+'px';            
-            let contacx = document.getElementById('contacx')
-            contacx.style.fontSize=30+'px';  
-            let ingrex = document.getElementById('ingrex')
-            ingrex.style.fontSize=30+'px'; 
-        } 
-       
-        if (window.innerWidth<=1275){
-          
-        let shopx = document.getElementById('shopx');
-        shopx.style.fontSize=30*0.9+'px';            
-        let contacx = document.getElementById('contacx');
-        contacx.style.fontSize=30*0.9+'px';  
-        let ingrex = document.getElementById('ingrex');
-        ingrex.style.fontSize=30*0.9+'px';  
-        } 
-        if (window.innerWidth<=1157) {
-            let shopx = document.getElementById('shopx');
-            shopx.style.fontSize=30*0.8+'px';            
-            let contacx = document.getElementById('contacx');
-            contacx.style.fontSize=30*0.8+'px';  
-            let ingrex = document.getElementById('ingrex');
-            ingrex.style.fontSize=30*0.8+'px'; 
-        } 
-        
-        if (window.innerWidth<=1030) {
-            let shopx = document.getElementById('shopx');
-            shopx.style.fontSize=30*0.7+'px';            
-            let contacx = document.getElementById('contacx');
-            contacx.style.fontSize=30*0.7+'px';  
-            let ingrex = document.getElementById('ingrex');
-            ingrex.style.fontSize=30*0.7+'px'; 
-        } 
-        if (window.innerWidth<=926){
-        let shopx = document.getElementById('shopx');
-        let shopxicon = document.getElementById('shopxicon');
-        
-            shopx.style.fontSize=30*0.7+'px';
-           
-            shopxicon.style.gridColumnStart=143;
-            shopxicon.style.gridColumnEnd=155;
-            shopxicon.style.gridRowStart=14;
-            shopxicon.style.gridRowEnd=16;
-            shopx.style.gridColumnStart=111;
-            shopx.style.gridColumnEnd=121;
-            shopx.style.gridRowStart=13;
-            shopx.style.gridRowEnd=15;
-          
-        let contacx = document.getElementById('contacx');
-            contacx.style.fontSize=30*0.7+'px'; 
-            
-            contacx.style.gridColumnStart=165;
-            contacx.style.gridColumnEnd=175;
-            contacx.style.gridRowStart=13;
-            contacx.style.gridRowEnd=15;
-
-        let ingrex = document.getElementById('ingrex');
-            ingrex.style.fontSize=30*0.7+'px';
-              
-            ingrex.style.gridColumnStart=229;
-            ingrex.style.gridColumnEnd=250;
-            ingrex.style.gridRowStart=13;
-            ingrex.style.gridRowEnd=15;
-        
-            let carrito = document.getElementById('carrito');
-            ingrex.style.fontSize=30*0.7+'px';
-              
-            carrito.style.gridColumnStart=290;
-            carrito.style.gridColumnEnd=300;
-            carrito.style.gridRowStart=13;
-            carrito.style.gridRowEnd=15;
-
-            let logohr = document.getElementById('logohr');
-            ingrex.style.fontSize=30*0.7+'px';
-              
-            logohr.style.gridColumnStart=111;
-            logohr.style.gridColumnEnd=270;
-            logohr.style.gridRowStart=3;
-            logohr.style.gridRowEnd=12;
-        } */
-
-      /* mainx.style.width= window.innerWidth*1+ "px";
-
-       let ax = mainx.style.height=  window.innerHeight * 1-200 + "px";
-       
-       barra.style.width= window.innerWidth*0.3+ "px";
-        
-        wh.textContent=  "Alto ventana: " + window.innerHeight +" px"  ;    
-        
-        barwh.textContent="Alto Barra: " + ax;*/
-
-
+  const jsonObjList = JSON.parse(jsonObjListText);
+  objImglistprsh(jsonObjList);
+  objImglistprvh(jsonObjList);
 }
 
-});
+function objImglistprvh(obj) {
+  const prsvo = obj.prvh;
 
-
-/*function menuHeaderx(){
+  for (const product of prsvo) {
+    const contx1 = document.createElement('div');
+    const contx2 = document.createElement('div');
+    const contx3 = document.createElement('div');
+    const he2x = document.createElement('h2');
+    const px = document.createElement('p');
+    const hrx = document.createElement('hr');
+    const ax = document.createElement('a');
+    const imgx1 = document.createElement('img');
     
-var a=document.getElementById("headerx");
-    
-    if (headerx.style.height<="1px"){
-       
-        
-    headerx.style.height="1px";}
    
+   
+    imgx1.setAttribute("src", product.imgz);
+    he2x.textContent = product.serpel;
+    px.textContent = product.descrip;
+    ax.textContent = product.linka[0];
     
-}*/
+
+   
+    contx1.appendChild(contx2);
+    contx2.appendChild(contx3);
+    contx3.appendChild(he2x);
+    contx3.appendChild(px);
+    contx2.appendChild(hrx);
+    contx2.appendChild(ax);
+    contx1.appendChild(imgx1);
+
+    prsv.appendChild(contx1);
+}
+}
+function objImglistprsh(obj) {
+  
+  const prsho = obj.prsh;
+
+  for (const product of prsho) {
+    const cont1 = document.createElement('div');
+    const imgx = document.createElement('img');
+    const he4 = document.createElement('h4');
+    const he3 = document.createElement('h3');
+    const div1 = document.createElement('div');
+    const div2 = document.createElement('div');
+   
+    imgx.setAttribute("src", product.imgz);
+    he4.textContent = product.serpel;
+    he3.textContent = product.nompro;
+    div1.textContent = product.precio;
+    div2.textContent = product.cuotas;
+
+   /* const superPowers = hero.powers;
+    for (const power of superPowers) {
+      const listItem = document.createElement('li');
+      listItem.textContent = power;
+      myList.appendChild(listItem);
+    }*/
+   cont1.appendChild(imgx);
+    cont1.appendChild(he4);
+    cont1.appendChild(he3);
+    cont1.appendChild(div1);
+    cont1.appendChild(div2);
+    
+
+    prsh.appendChild(cont1);
+  }
+}
+
+objList();
+

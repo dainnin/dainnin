@@ -1,7 +1,8 @@
 footer
 {
-    display: Block;
-Width: 99vw;
+
+grid-area: c;
 background-color: cadetblue;
-    font-size: 25px;
+font-size: 25px;
+
 }

@@ -3,7 +3,9 @@
 /*Main###################
 ###################################
 ###################*/
-
+main{
+  grid-area: b;
+}
 
 #prsv div {
   width: 90vw;
@@ -43,13 +45,13 @@ flex-direction: row-reverse;
  #prsv p {
   
   margin-top: 0.375em;
-  font-size: 2.25rem;
+  font-size: calc( 1rem + 1vw);
   color: var(--gray1);
 }
 
 #prsv  h2{
   font-weight: var(--font-medium);
-  font-size: 3.875rem;
+  font-size: calc( 1rem + 2vw);
   
     
   
@@ -59,17 +61,17 @@ flex-direction: row-reverse;
   margin-top: 1.75em;
   border: 3px solid var(--red1);
 }
-@media only screen and (max-width:770px){
+/*@media only screen and (max-width:770px){
 
   #prsv p {
    
    width: 35vw;
-   font-size: 2rem;
+   font-size: calc( 1rem + 0.5vw);
    
  }
  #prsv  h2{
    width: 35vw;
-   font-size: 3rem;
+   font-size: calc( 1rem + 2vw);
    
      
    
@@ -87,7 +89,7 @@ flex-direction: row-reverse;
  
  }
  
-@media only screen and (max-width:560px){
+/*@media only screen and (max-width:560px){
 
  #prsv p {
   

@@ -1,6 +1,4 @@
- 
-
-/*!
+ /*!
  * jQuery JavaScript Library v3.6.3
  * https://jquery.com/
  *
@@ -12,7 +10,7 @@
  * https://jquery.org/license
  *
  * Date: 2022-12-20T21:28Z
- *//*
+ */
 ( function( global, factory ) {
 
 	"use strict";
@@ -10994,4 +10992,3 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-*/

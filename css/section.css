@@ -1,33 +1,28 @@
+section{
+   display: flex;
+   grid-area: d;}
 #prsh img:hover
 {
-    height: 345px;
-    filter: drop-shadow(0px 10px 30px rgb(16, 131, 160));
+    height: calc(230px + 7.75vw);
+    filter: drop-shadow(0px 10px 22px rgb(16, 131, 160));
 }
 
-#btnprshi
-{
-    
-    background-color: aqua;
-    border: 1px solid black;
-    height: 485px;
-}
-#btnprshd
-{  
-    
-    
-    background-color: aqua;
-    border: 1px solid black;
-    
-    height: 485px;
-}
 
 #dibx
 {
     
     display: grid;
-    grid-template-columns: 3vw 1fr 3vw;
-    
-    
+    grid-template-columns: 3vw 93vw 1fr;
+    grid-template-rows: auto auto;
+    text-align:center;
+    align-items: center;
+        
+}
+#dibx h1{
+
+   font-size: calc(2rem + 1.5vw);
+   grid-column-start: 2;
+   grid-column-end: 3;
 }
 #btnprshi:hover
 {
@@ -38,7 +33,7 @@
     filter: drop-shadow( -11px 11px 11px red);
 }
 #prsh img {
-    height: 320px;
+    height: calc(200px + 7.75vw);
     width: auto;
     
      
@@ -47,79 +42,59 @@
     display: inline-flex;
     overflow: hidden;
     overflow-x:scroll ;
-    
-    width: 95vw;
+   grid-column-start: 2;
+   grid-column-end: 3;
+   box-sizing: content-box;
     height: 485px;
  }
- #prsh div h3::before{
+ #prsh div h3{
     font-weight: var(--font-bold);
-    font-size: 2.5rem;
-    content: "luna lovegood lion mask";
- }
-
- #prsh div h4::before {
+    font-size:  calc(1.25rem + 0.6vw);
    
-    font-size: 3rem;
-    content: "Star Wars Trooper";
+ }
+
+ #prsh div h4 {
+   
+    font-size: calc(1.5rem + 0.8vw);
+   
  }
 
 
- #prsh div::before {
-    width: 350px;
+ #prsh div {
+    width: calc(235px + 7.75vw);
  }
 
- #prsh>div::before {
+ #prsh>div {
     display: grid;
     grid-column: auto;
    
     
  }
 
- #prsh div div:nth-child(4)::before {
+ #prsh div div:nth-child(4) {
     font-weight: var(--font-regular);
-    font-size: 2.75rem;
+    font-size: calc(1.5em + 0.5vw);
     color: var(--gray1);
-    content: "$ 1799,99-";
+    
  } 
 
- #prsh div div:nth-child(5)::before {
+ #prsh div div:nth-child(5) {
     font-weight: var(--font-bold);
-    font-size: 2rem;
+    font-size: calc(1.5rem + 0.5vw);
     color: var(--blue1);
-    content: "3 cuotas sin interés";
+   
  } 
  
  @media only screen and (max-width:650px){
 
-    #prsh div h3::before{
-        
-        font-size: 1.75rem;
-        
-     }
-     #prsh div h4::before {
-       
-        font-size: 3rem;
-        
-     }
-     #prsh div div:nth-child(4)::before {
-        
-        font-size: 2rem;
-        
-     } 
-    
-     #prsh div div:nth-child(5)::before {
-        
-        font-size: 1.25rem;
-        
-        
-     } 
+
    }
    @media only screen and (max-width:650px){
       #prsh img {
          height: 250px;
          width: auto;
               }
-              #prsh img:hover
+  #prsh img:hover
 {
     height: 280px;
    
@@ -128,20 +103,9 @@
  
    height: 400px;
 }
-#btnprshi
-{
-    
-    background-color: aqua;
-    border: 1px solid black;
-    height: 400px;
-}
-#btnprshd
-{  
-    
-    
-    background-color: aqua;
-    border: 1px solid black;
-    
-    height: 400px;
-}
+
    }
+
+
+
+
