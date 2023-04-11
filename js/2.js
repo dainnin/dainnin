@@ -2,7 +2,7 @@
 
 async function objList() {
 
-  const requestURL = './prsh.json';
+  const requestURL = 'https://raw.githubusercontent.com/dainnin/dainnin/main/prsh.json';
   const request = new Request(requestURL);
 
   const response = await fetch(request);
