@@ -2,7 +2,7 @@
 
 async function objList() {
 
-  const requestURL = 'https://raw.githubusercontent.com/dainnin/dainnin/main/prsh.json';
+  const requestURL = './prsh.json';
   const request = new Request(requestURL);
 
   const response = await fetch(request);
@@ -31,6 +31,7 @@ function objImglistprvh(obj) {
     imgx1.setAttribute("src", product.imgz);
     he2x.textContent = product.serpel;
     px.textContent = product.descrip;
+    ax.setAttribute("href", product.linka[1]);
     ax.textContent = product.linka[0];
     
 

@@ -93,7 +93,7 @@
         "idpro" : "1x",
         "estado" : "",
         "imgz"   : "./img/star-wars/baby-yoda-1.webp",
-        "linka"  : ["ver colección" ,""]  
+        "linka"  : ["ver colección" ,"#"]  
       },
       {
         "serpel" :  "POKEMON indigo",
@@ -111,7 +111,7 @@
         "imgz"   : "./img/harry-potter/snape-patronus-1.webp",
         "linka"  : ["ver colección" ,""]  
       }
-     
+    
     
     ]
-}
+  }

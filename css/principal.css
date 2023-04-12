@@ -25,11 +25,7 @@ html{
     user-select: none;
 }
 body{
-    display: grid;
-    grid-template-columns: 100vw;
-    grid-template-rows: 144px calc(22.5rem + 10vw) auto 200px;
-    /*grid-template-areas: "a" "b" "c" "d" "e";*/
-    grid-template-areas: "a" "n" "b" "c";
+    
     
     font-family: "Raleway", sans-serif;
     color: var(--black);
