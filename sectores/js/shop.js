@@ -22,7 +22,7 @@ async function objList() {
     cont2.setAttribute("class", "prsh");
     cont2.setAttribute("id", "harrypx2");
     sectionxs.appendChild(cont1);
-    cont1.appendChild(he1) 
+    cont1.appendChild(he1);
     cont1.appendChild(cont2);
 
     /****/
@@ -35,7 +35,7 @@ async function objList() {
     contx2.setAttribute("class", "prsh");
     contx2.setAttribute("id", "starwarsx2");
     sectionxs.appendChild(contx1);
-    contx1.appendChild(hex1) 
+    contx1.appendChild(hex1);
     contx1.appendChild(contx2);
 /********/
 
@@ -48,7 +48,7 @@ const contz2 = document.createElement('div');
 contz2.setAttribute("class", "prsh");
 contz2.setAttribute("id", "pokemonx2");
 sectionxs.appendChild(contz1);
-contz1.appendChild(hez1) 
+contz1.appendChild(hez1);
 contz1.appendChild(contz2);
 
   })
