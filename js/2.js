@@ -18,7 +18,7 @@ function objImglistprvh(obj) {
   let b=2;
   let za1=[ "starwars", "pokemon","harryp"]
   let za = za1[Math.floor(Math.random()*3)] ;
-  console.log(za)
+  console.log(prsho[za][i]["imgz"],za)
   for (i; i<b , 0!=b%6; ++i,++b) {
 
     const contx1 = document.createElement('div');
