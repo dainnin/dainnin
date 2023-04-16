@@ -16,9 +16,9 @@ async function objList() {
 function objImglistprvh(obj) {
   let i=1;
   let b=2;
-  let za1=[ "starwars", "pokemon","harryp"]
+  let za1=[ "starwars", "pokemon","harryp"];
   let za = za1[Math.floor(Math.random()*3)] ;
-  console.log(prsho[za][i]["imgz"],za)
+  console.log(prsho[za][i]["imgz"],za);
   for (i; i<b , 0!=b%6; ++i,++b) {
 
     const contx1 = document.createElement('div');
@@ -54,7 +54,7 @@ function objImglistprvh(obj) {
 function objImglistprsh(obj) {
   let i=1;
   let b=2;
-  let za1=[ "starwars", "pokemon","harryp"]
+  let za1=[ "starwars", "pokemon","harryp"];
   let za = za1[Math.floor(Math.random()*3)] ;
  
   const prsho = obj;
@@ -81,7 +81,7 @@ function objImglistprsh(obj) {
     cont1.appendChild(he3);
     cont1.appendChild(div1);
     cont1.appendChild(div2);
-    console.log(prsho[za][i]["imgz"])
+    console.log(prsho[za][i]["imgz"]);
    
     prsh.appendChild(cont1);
   }
