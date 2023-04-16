@@ -41,7 +41,7 @@ async function objList() {
 
 const contz1 = document.createElement('div');
 contz1.setAttribute("class", "dibx");
-contz1.setAttribute("id", "harrypx");
+contz1.setAttribute("id", "pokemonx");
 const hez1 = document.createElement('h1');
 hez1.textContent="Pokemon";
 const contz2 = document.createElement('div');

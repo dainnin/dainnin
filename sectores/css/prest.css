@@ -9,7 +9,7 @@ body{
 section{
     display: grid;
     grid-auto-rows: auto;
-   grid-area: b;
+    grid-area: b;
    
 }
 
@@ -27,6 +27,15 @@ section{
      grid-template-rows: auto auto;
      text-align:center;
      align-items: center;
+    
+         
+ }
+ .dibx button
+ {
+  
+     
+     grid-column-start: 2;
+     grid-column-end: 3;
          
  }
  .dibx h1{
