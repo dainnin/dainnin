@@ -81,7 +81,7 @@ function objImglistprsh(obj) {
     cont1.appendChild(he3);
     cont1.appendChild(div1);
     cont1.appendChild(div2);
-    /* console.log(prsho[za][i]["imgz"]) */
+    console.log(prsho[za][i]["imgz"])
    
     prsh.appendChild(cont1);
   }
