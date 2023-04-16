@@ -2,7 +2,7 @@
 
 async function objList() {
 
-  const requestURL = 'https://raw.githubusercontent.com/dainnin/proyectowebimg/449c9c3d358a93d0e8cc307f7f6d63a29adb4a21/inventario.json';
+  const requestURL = 'https://raw.githubusercontent.com/dainnin/proyectowebimg/main/inventario.json';
   const request = new Request(requestURL);
 
   const response = await fetch(request);
