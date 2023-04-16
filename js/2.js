@@ -3,7 +3,7 @@
 
 
   const requestURL = 'https://raw.githubusercontent.com/dainnin/proyectowebimg/main/inventario.json';
-     const request = new XMLHttpRequest;
+   const request = new XMLHttpRequest;
     request.open('GET', requestURL);
     request.responseType='json';
     request.send();
