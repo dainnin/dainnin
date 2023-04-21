@@ -1,8 +1,41 @@
 footer
 {
-
+display: grid;
+grid-template-columns: 13fr 70fr 13fr;
 grid-area: c;
-background-color: cadetblue;
+background-color: #30343F;
 font-size: 25px;
 
 }
+
+footer div{
+    display: grid;
+    grid-template-columns: 20fr 60fr 20fr;
+    grid-template-rows: 10% auto 25%;
+    grid-column-start: 2;
+   grid-column-end: 3;
+   
+}
+footer div img{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start:2 ;
+    grid-row-end: 3;
+}
+footer div p{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start:3 ;
+    grid-row-end: 4;
+
+}
+footer div div {
+    display: flex;
+    flex-direction: column-reverse;
+    
+    grid-column-start: 0;
+    grid-column-end: 1;
+    grid-row-start:2 ;
+    grid-row-end: 3;
+}
+ 

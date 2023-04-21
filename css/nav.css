@@ -15,7 +15,7 @@ z-index:100;
 display: flex;
 z-index: -1;
 background-size: cover;   
-background-image: url('https://dainnin.github.io/proyectowebimg/img/funkos-banner.webp');
+background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
 
 overflow:hidden;
@@ -30,7 +30,7 @@ height: calc(22.5rem + 10vw);
     width: 100vw;
     height: calc(22.5rem + 10vw);
     background-size: cover;   
-background-image: url('https://dainnin.github.io/proyectowebimg/img/funkos-banner.webp');
+background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
 overflow:hidden;
     z-index: 0;

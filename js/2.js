@@ -1,27 +1,39 @@
 
 
 
+  
+var i = 1;
+var b = 2;
+var ix = 1;
+var bx = 2;
 
-  const requestURL = 'https://raw.githubusercontent.com/dainnin/proyectowebimg/main/inventario.json';
-   const request = new XMLHttpRequest;
-    request.open('GET', requestURL);
-    request.responseType='json';
-    request.send();
-    request.onload = function () {
-    var obj = request.response;
-    objImglistprvh(obj);
+$(document).ready (function (){
+
+  const requestURL = './inventario.json';
+  const request = new XMLHttpRequest;
+  request.open('GET', requestURL);
+  request.responseType='json';
+  request.send();
+  request.onload = function () {
+  var obj = request.response;
+  objImglistprvh(obj);
+
 };
 
+ 
 function objImglistprvh(obj) {
-   
-  var i=1;
-  var b=2;
-  var za1=[ "starwars", "pokemon","harryp"];
-  var za = za1[Math.floor(Math.random()*3)] ;
+  
+  function randomx ()
+  { 
+    
+    return Math.floor(Math.random()* --Object.keys(obj).length);
+
+  }
+     
+  console.log("pepe grillo",Object.keys(obj).length);
 
 
-
-for (i; i<b , 0!=b%7; ++i,++b) {
+for (i; i<b , 0!=b%7; i++, b++) {
  
   const cont1z = document.createElement('div');
   const imgxz = document.createElement('img');
@@ -29,29 +41,29 @@ for (i; i<b , 0!=b%7; ++i,++b) {
   const he3z = document.createElement('h3');
   const div1z = document.createElement('div');
   const div2z = document.createElement('div');
-  
+   
+  var frcx=obj["frcrmd"][randomx()];
  
-  
-  imgxz.setAttribute("src", obj[za][i]["imgz"]);
-  he4z.textContent = obj[za][0];
-  he3z.textContent = obj[za][i]["nompro"];
-  div1z.textContent = obj[za][i]["precio"];
-  div2z.textContent = obj[za][i]["cuotas"];
+  imgxz.setAttribute("src", obj[frcx][i]["imgz"]);
+
+  he4z.textContent = obj[frcx][0]["frc"][0];
+  he3z.textContent = obj[frcx][i]["nompro"];
+  div1z.textContent = obj[frcx][i]["precio"];
+  div2z.textContent = obj[frcx][i]["cuotas"];
 
  cont1z.appendChild(imgxz);
   cont1z.appendChild(he4z);
   cont1z.appendChild(he3z);
   cont1z.appendChild(div1z);
   cont1z.appendChild(div2z);
-  
- 
+   
   prsh.appendChild(cont1z);
+
 };
 
-var ix=1;
-var bx=2;
-var zax = za1[Math.floor(Math.random()*3)] ;
-for (ix; ix<b , 0!=bx%5; ++ix,++bx) {
+
+
+for (ix; ix<bx , 0!=bx%5; ix++,bx++) {
 
   const contx1 = document.createElement('div');
   const contx2 = document.createElement('div');
@@ -63,12 +75,16 @@ for (ix; ix<b , 0!=bx%5; ++ix,++bx) {
   const imgx1 = document.createElement('img');
   
  
+ 
+  var frcz=obj["frcrmd"][randomx()];
+
   
-  imgx1.setAttribute("src", obj[zax][ix]["imgz"]);
-  he2x.textContent = obj[zax][0];
-  px.textContent = obj[zax][ix]["descrip"];
-  ax.setAttribute("href", obj[zax][ix]["linka"][1]);
-  ax.textContent = obj[zax][ix]["linka"][0];
+  
+  imgx1.setAttribute("src", obj[frcz][ix]["imgz"]);
+  he2x.textContent = obj[frcz][0]["frc"][0];
+  px.textContent = obj[frcz][0]["descrip"];
+  ax.setAttribute("href", obj[frcz][ix]["linka"][1]);
+  ax.textContent = obj[frcz][ix]["linka"][0];
   
 
  
@@ -86,3 +102,4 @@ for (ix; ix<b , 0!=bx%5; ++ix,++bx) {
  
 };
 };
+})

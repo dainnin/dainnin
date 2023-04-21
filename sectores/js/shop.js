@@ -1,28 +1,49 @@
-async function objList() {
 
-    const requestURL = 'https://raw.githubusercontent.com/dainnin/proyectowebimg/main/inventario.json';
-    const request = new Request(requestURL);
+  $(document).ready(function (){
+    const requestURL = '../inventario.json';
+    const request = new XMLHttpRequest;
+    request.open('GET', requestURL);
+    request.responseType='json';
+    request.send();
+    request.onload = function () {
+    const obj = request.response;
+      objImglistshop1(obj); 
+      
   
-    const response = await fetch(request);
-    const jsonObjListText = await response.text();
-  
-    const jsonObjList = JSON.parse(jsonObjListText);
-    objImglistshop1(jsonObjList);
-   /*  objImglistshop2(jsonObjList);
-    objImglistshop3(jsonObjList); */
-  }
-  $(document).ready (function (){
-   
+  };
+ 
+ 
+
+ 
+
+  })
+  function objImglistshop1(obj) {
+    
+    var i=1;
+    var b=2;
+    var frcx=obj["frcrmd"];
+    var za0=frcx[0];
+    var za1=frcx[1];
+    var za2=frcx[2];
+    
+    
+    
+    function aaa2(){
+      return Array.aaa=[starwarsx2, pokemonx2,harrypx2]; }
+
+
+
+    console.log("asdasdasd",); 
     const cont1 = document.createElement('div');
     cont1.setAttribute("class", "dibx");
-    cont1.setAttribute("id", "harrypx");
+    cont1.setAttribute("id", "pokemonx");
     const he1 = document.createElement('h1');
-    he1.textContent="Harry Potter";
+    he1.textContent="";
     const cont2 = document.createElement('div');
     cont2.setAttribute("class", "prsh");
-    cont2.setAttribute("id", "harrypx2");
+    cont2.setAttribute("id","pokemonx2");
     sectionxs.appendChild(cont1);
-    cont1.appendChild(he1);
+    cont1.appendChild(he1) 
     cont1.appendChild(cont2);
 
     /****/
@@ -30,39 +51,29 @@ async function objList() {
     contx1.setAttribute("class", "dibx");
     contx1.setAttribute("id", "starwarsx");
     const hex1 = document.createElement('h1');
-    hex1.textContent="Star Wars";
+    hex1.textContent= "";
     const contx2 = document.createElement('div');
     contx2.setAttribute("class", "prsh");
     contx2.setAttribute("id", "starwarsx2");
     sectionxs.appendChild(contx1);
-    contx1.appendChild(hex1);
+    contx1.appendChild(hex1) 
     contx1.appendChild(contx2);
 /********/
 
 const contz1 = document.createElement('div');
 contz1.setAttribute("class", "dibx");
-contz1.setAttribute("id", "pokemonx");
+contz1.setAttribute("id","harrypx");
 const hez1 = document.createElement('h1');
-hez1.textContent="Pokemon";
+hez1.textContent=obj[za2][0]["frc"][1];
 const contz2 = document.createElement('div');
 contz2.setAttribute("class", "prsh");
-contz2.setAttribute("id", "pokemonx2");
+contz2.setAttribute("id", "harrypx2" );
 sectionxs.appendChild(contz1);
-contz1.appendChild(hez1);
+contz1.appendChild(hez1) 
 contz1.appendChild(contz2);
 
-  })
-  function objImglistshop1(obj) {
-    
-  var i=1;
-  var b=2;
-  var za=[ "harryp","starwars", "pokemon"];
-  var za0=za[0];
-  var za1=za[1];
-  var za2=za[2];
-  console.log(obj[za0][0],obj[za0][i]["nompro"]);
-
-  for (i; i<b , 0!=b%6; ++i,++b) {
+console.log("Hola");
+  for (i; i<b , 0!=b%7; ++i,++b) {
       
       
       const contz3 = document.createElement('div');
@@ -73,9 +84,9 @@ contz1.appendChild(contz2);
       const div2z = document.createElement('div');
       
      
-      console.log(obj[za0][i]["imgz"]);
+      
       imgxz.setAttribute("src", obj[za2][i]["imgz"]);
-      he4z.textContent = obj[za2][0];
+      he4z.textContent = obj[za2][0]["frc"][0];
       he3z.textContent = obj[za2][i]["nompro"];
       div1z.textContent = obj[za2][i]["precio"];
       div2z.textContent = obj[za2][i]["cuotas"];
@@ -85,11 +96,9 @@ contz1.appendChild(contz2);
      contz3.appendChild(he3z);
      contz3.appendChild(div1z);
      contz3.appendChild(div2z);
-     
-      
-      
+         
   
-      pokemonx2.appendChild(contz3);
+     aaa2()[2].appendChild(contz3);
 
 
       const cont3 = document.createElement('div');
@@ -102,10 +111,11 @@ contz1.appendChild(contz2);
      
      
       imgx.setAttribute("src", obj[za0][i]["imgz"]);
-      he4.textContent =obj[za0][0];
+      he4.textContent =obj[za0][0]["frc"][0];
       he3.textContent = obj[za0][i]["nompro"];
       div1.textContent =obj[za0][i]["precio"];
       div2.textContent = obj[za0][i]["cuotas"];
+      
      
      
      cont3.appendChild(imgx);
@@ -114,10 +124,9 @@ contz1.appendChild(contz2);
      cont3.appendChild(div1);
      cont3.appendChild(div2);
      
-      
-      
-  
-      harrypx2.appendChild(cont3);
+   console.log(aaa2()[0]);
+   
+     aaa2()[0].appendChild(cont3);
 
       const contx3 = document.createElement('div');
       const imgxx = document.createElement('img');
@@ -129,7 +138,7 @@ contz1.appendChild(contz2);
      
      
       imgxx.setAttribute("src",obj[za1][i]["imgz"]);
-      he4x.textContent = obj[za1][0];
+      he4x.textContent = obj[za1][0]["frc"][0];
       he3x.textContent = obj[za1][i]["nompro"];
       div1x.textContent =obj[za1][i]["precio"];
       div2x.textContent = obj[za1][i]["cuotas"];
@@ -141,21 +150,11 @@ contz1.appendChild(contz2);
      contx3.appendChild(div2x);
      
       
-      
-  
-      starwarsx2.appendChild(contx3);
-    }
-   /* for (i; i<b , 0!=b%6; ++i,++b) {
-      
-      
-     
-    }
-    for (i; i<b , 0!=b%6; ++i,++b) {
-      
-      
     
-    } */
+  
+    aaa2()[1].appendChild(contx3);
+    }
+
   }
 
  
-  objList();
