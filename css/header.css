@@ -15,8 +15,8 @@ grid-area: a;
 
 
 header a img:first-child{
-  padding: 2.5vw 0 0 0;
-width: 367px;
+padding: 2.5vw 0 0 0;
+width: calc(20rem + 12vw);
 }
 
 
@@ -146,7 +146,8 @@ z-index: 100  ;
     
 
 header img:first-child{
-       width: 90%;
+       width: 90vw;
+       
        padding: 2dvh 0 1dvh 0;
 }
 header img{

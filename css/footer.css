@@ -1,17 +1,17 @@
 footer
 {
 display: grid;
-grid-template-columns: 13fr 70fr 13fr;
+grid-template-columns: 7fr 75fr 7fr;
 grid-area: c;
 background-color: #30343F;
-font-size: 25px;
-
+font-size: calc(1.35rem + 0.75vw);
+width: 99vw;
 }
 
 footer div{
     display: grid;
     grid-template-columns: 20fr 60fr 20fr;
-    grid-template-rows: 10% auto 25%;
+    grid-template-rows: 40px auto auto;
     grid-column-start: 2;
    grid-column-end: 3;
    
@@ -21,21 +21,37 @@ footer div img{
     grid-column-end: 4;
     grid-row-start:2 ;
     grid-row-end: 3;
+    width: calc(70px + 5vw);
+    position: relative;
+    padding: 20px 0 0 0;
 }
 footer div p{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start:3 ;
     grid-row-end: 4;
-
+    font-size: calc(1.15rem + 0.75vw);
+    overflow: visible;
+    position: relative;
+    justify-items: center;
+        text-align: center;
 }
 footer div div {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-items: center;
     
-    grid-column-start: 0;
-    grid-column-end: 1;
+    
+    grid-column-start: 1;
+    grid-column-end: 2;
     grid-row-start:2 ;
     grid-row-end: 3;
 }
- 
+@media only screen and (max-width:460px) {
+    
+    footer div p{
+        grid-column-start: 1;
+        grid-column-end: 4;
+     
+    }
+    }

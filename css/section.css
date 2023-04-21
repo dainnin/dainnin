@@ -33,7 +33,7 @@ section{
     filter: drop-shadow( -11px 11px 11px red);
 }
 #prsh img {
-    height: calc(200px + 7.75vw);
+    height: calc(120px + 15vw);
     width: auto;
     
      
