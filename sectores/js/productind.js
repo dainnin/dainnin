@@ -11,7 +11,7 @@
       
   
   };
- inindx.setAttribute("href","https://dainnin.github.io/proyectowebimg/index.html")
+ inindx.setAttribute("href","https://dainnin.github.io/dainnin/index.html")
  
 
  
