@@ -9,7 +9,7 @@ var bx = 2;
 
 $(document).ready (function (){
 
-  const requestURL = 'https://dainnin.github.io/proyectowebimg/inventario.json';
+  const requestURL = './inventario.json';
   const request = new XMLHttpRequest;
   request.open('GET', requestURL);
   request.responseType='json';
@@ -30,12 +30,12 @@ function objImglistprvh(obj) {
 
   }
      
-  console.log("pepe grillo",Object.keys(obj).length);
+ 
 
 
 for (i; i<b , 0!=b%7; i++, b++) {
- 
-  const cont1z = document.createElement('div');
+  const cont1az = document.createElement('article');
+  const cont1z = document.createElement('a');
   const imgxz = document.createElement('img');
   const he4z = document.createElement('h4');
   const he3z = document.createElement('h3');
@@ -45,19 +45,20 @@ for (i; i<b , 0!=b%7; i++, b++) {
   var frcx=obj["frcrmd"][randomx()];
  
   imgxz.setAttribute("src", obj[frcx][i]["imgz"]);
-
+  cont1z.setAttribute("href", obj[frcx][i]["prolink"]);;
   he4z.textContent = obj[frcx][0]["frc"][0];
   he3z.textContent = obj[frcx][i]["nompro"];
   div1z.textContent = obj[frcx][i]["precio"];
   div2z.textContent = obj[frcx][i]["cuotas"];
-
+ 
+  cont1az.appendChild(cont1z);
  cont1z.appendChild(imgxz);
   cont1z.appendChild(he4z);
   cont1z.appendChild(he3z);
   cont1z.appendChild(div1z);
   cont1z.appendChild(div2z);
    
-  prsh.appendChild(cont1z);
+  prsh.appendChild(cont1az);
 
 };
 

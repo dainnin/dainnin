@@ -1,6 +1,6 @@
 
   $(document).ready(function (){
-    const requestURL = 'https://dainnin.github.io/proyectowebimg/inventario.json';
+    const requestURL = '../inventario.json';
     const request = new XMLHttpRequest;
     request.open('GET', requestURL);
     request.responseType='json';
@@ -38,7 +38,7 @@
     cont1.setAttribute("class", "dibx");
     cont1.setAttribute("id", "pokemonx");
     const he1 = document.createElement('h1');
-    he1.textContent="";
+    he1.textContent=obj[za1][0]["frc"][1];
     const cont2 = document.createElement('div');
     cont2.setAttribute("class", "prsh");
     cont2.setAttribute("id","pokemonx2");
@@ -51,7 +51,7 @@
     contx1.setAttribute("class", "dibx");
     contx1.setAttribute("id", "starwarsx");
     const hex1 = document.createElement('h1');
-    hex1.textContent= "";
+    hex1.textContent=obj[za0][0]["frc"][1];
     const contx2 = document.createElement('div');
     contx2.setAttribute("class", "prsh");
     contx2.setAttribute("id", "starwarsx2");

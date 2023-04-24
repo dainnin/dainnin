@@ -1,8 +1,8 @@
 body{
     display: grid;
     grid-template-columns: 100vw;
-    grid-template-rows: 144px auto 200px;
-    grid-template-areas: "a" "b" "c";
+    grid-template-rows: 144px auto auto 200px;
+    grid-template-areas: "a" "b" "x1" "c";
 }
 
 
