@@ -28,7 +28,7 @@
     const oKT=frcx.length;
    
 for(ci;ci<oKT ;++ci){
-      console.log(oKT);
+      
       for(cix=0;cix<=oKT;++cix){
       if(obj[frcx[ci]][cix]["nompro"] == titlex.textContent) {
 
