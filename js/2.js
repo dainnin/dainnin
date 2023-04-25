@@ -9,7 +9,7 @@ var bx = 2;
 
 $(document).ready (function (){
 
-  const requestURL = 'https://dainnin.github.io/proyectowebimg/inventario.json';
+  const requestURL = './inventario.json';
   const request = new XMLHttpRequest;
   request.open('GET', requestURL);
   request.responseType='json';
@@ -26,7 +26,7 @@ function objImglistprvh(obj) {
   function randomx ()
   { 
     
-    return Math.floor(Math.random()* --Object.keys(obj).length);
+    return Math.floor(Math.random()* Object.keys(obj).length);
 
   }
      
@@ -41,8 +41,8 @@ for (i; i<b , 0!=b%7; i++, b++) {
   const he3z = document.createElement('h3');
   const div1z = document.createElement('div');
   const div2z = document.createElement('div');
-   
-  var frcx=obj["frcrmd"][randomx()];
+  var frc=Object.keys(obj);
+  var frcx=frc[randomx()];
  
   imgxz.setAttribute("src", obj[frcx][i]["imgz"]);
   cont1z.setAttribute("href", obj[frcx][i]["prolink"]);;
@@ -77,7 +77,8 @@ for (ix; ix<bx , 0!=bx%5; ix++,bx++) {
   
  
  
-  var frcz=obj["frcrmd"][randomx()];
+  
+  var frcz=frc[randomx()];
 
   
   

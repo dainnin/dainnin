@@ -60,21 +60,23 @@ section{
    box-sizing: content-box;
     height: 485px;
   }
-  .prsh div h3{
+  .prsh a h3{
      font-weight: var(--font-bold);
      font-size:  calc(1.25rem + 0.6vw);
     
   }
  
-  .prsh div h4 {
+  .prsh a h4 {
     
      font-size: calc(1.5rem + 0.8vw);
     
   }
  
  
-  .prsh div {
+  .prsh a {
      width: calc(235px + 7.75vw);
+     text-decoration: none;
+     color: black;
   }
  
   .prsh>div {
@@ -84,14 +86,14 @@ section{
      
   }
  
-  .prsh div div:nth-child(4) {
+  .prsh a div:nth-child(4) {
      font-weight: var(--font-regular);
      font-size: calc(1.5em + 0.5vw);
      color: var(--gray1);
      
   } 
  
-  .prsh div div:nth-child(5) {
+  .prsh a div:nth-child(5) {
      font-weight: var(--font-bold);
      font-size: calc(1.5rem + 0.5vw);
      color: var(--blue1);
