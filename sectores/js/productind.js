@@ -82,42 +82,7 @@
         contz1.appendChild(contz2);
          
         console.log("Cumplido");
-        prsh=[]
-        for(iz=1;iz<nObjp;++iz){
-          prsh.push(iz)
-           }
-           const cixa=(cix)-1;
-           prsh.splice(cixa,1);
-        console.log(prsh,cixa);
-        for (i=1 ,bx=0; i<=prsh.length; i++, bx++) {
-          const cont1az = document.createElement('article');
-          const cont1z = document.createElement('a');
-          const imgxz = document.createElement('img');
-          const he4z = document.createElement('h4');
-          const he3z = document.createElement('h3');
-          const div1z = document.createElement('div');
-          const div2z = document.createElement('div');
-          var frc=Object.keys(obj);
-          
-          
-        
-          imgxz.setAttribute("src", obj[frcx[ci]][prsh[bx]]["imgz"]);
-          cont1z.setAttribute("href", obj[frcx[ci]][prsh[bx]]["prolink"]);;
-          he4z.textContent = obj[frcx[ci]][0]["frc"][0];
-          he3z.textContent = obj[frcx[ci]][prsh[bx]]["nompro"];
-          div1z.textContent = obj[frcx[ci]][prsh[bx]]["precio"];
-          div2z.textContent = obj[frcx[ci]][prsh[bx]]["cuotas"];
-          console.log(prsh[bx]);
-          cont1az.appendChild(cont1z);
-         cont1z.appendChild(imgxz);
-          cont1z.appendChild(he4z);
-          cont1z.appendChild(he3z);
-          cont1z.appendChild(div1z);
-          cont1z.appendChild(div2z);
-           
-          harrypx2.appendChild(cont1az);
-        
-        };
+      
 
       } else { }
     }
