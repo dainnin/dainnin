@@ -79,7 +79,7 @@ function objImglistshop1(obj) {
 
         const contz1 = document.createElement('div');
         contz1.setAttribute("class", "dibx");
-        contz1.setAttribute("id", "harrypx");
+        contz1.setAttribute("id", obj[frcx[ci]][0]["frc"][2]);
         const hez1 = document.createElement('h1');
         hez1.textContent = obj[frcx[ci]][0]["frc"][1];
         const contz2 = document.createElement('div');
@@ -123,7 +123,7 @@ function objImglistshop1(obj) {
           cont1z.appendChild(div1z);
           cont1z.appendChild(div2z);
            
-          harrypx2.appendChild(cont1az);
+          document.getElementById(obj[frcx[ci]][0]["frc"][3]).appendChild(cont1az);
         
         };
 
