@@ -32,7 +32,7 @@
   
   
   
- console.log(nObj, nObjp);
+ console.log(nObj, nObjp, "Tu vieja");
   
 
     
