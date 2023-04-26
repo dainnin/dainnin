@@ -2,7 +2,7 @@
 
 
 $(document).ready(function () {
-  const requestURL = 'https://dainnin.github.io/dainnin//sectores/js/inventario.json';
+  const requestURL = 'https://dainnin.github.io/proyectowebimg/inventario.json';
   const request = new XMLHttpRequest;
   request.open('GET', requestURL);
   request.responseType = 'json';
