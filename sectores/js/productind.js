@@ -20,10 +20,19 @@ $(document).ready(function () {
 
 })
 function objImglistshop1(obj) {
+
+
+
+
+  
   let ci = 0;
+  
   var frcx = Object.keys(obj);
+  
   var  nObj=Object.keys(obj).length; 
+  
   var  nObjp=Object.keys(obj[frcx[ci]]).length;
+
 
   
   
@@ -88,7 +97,7 @@ function objImglistshop1(obj) {
            const cixa=(cix)-1;
            prsh.splice(cixa,1);
         console.log(prsh,cixa);
-        for (i=1; i<=prsh.length; i++) {
+        for (i=1 ,bx=0; i<=prsh.length; i++, bx++) {
           const cont1az = document.createElement('article');
           const cont1z = document.createElement('a');
           const imgxz = document.createElement('img');
@@ -100,13 +109,13 @@ function objImglistshop1(obj) {
           
           
         
-          imgxz.setAttribute("src", obj[frcx[4]][i]["imgz"]);
-          cont1z.setAttribute("href", obj[frcx[ci]][cix]["prolink"]);;
+          imgxz.setAttribute("src", obj[frcx[ci]][prsh[bx]]["imgz"]);
+          cont1z.setAttribute("href", obj[frcx[ci]][prsh[bx]]["prolink"]);;
           he4z.textContent = obj[frcx[ci]][0]["frc"][0];
-          he3z.textContent = obj[frcx[ci]][cix]["nompro"];
-          div1z.textContent = obj[frcx[ci]][cix]["precio"];
-          div2z.textContent = obj[frcx[ci]][cix]["cuotas"];
-         
+          he3z.textContent = obj[frcx[ci]][prsh[bx]]["nompro"];
+          div1z.textContent = obj[frcx[ci]][prsh[bx]]["precio"];
+          div2z.textContent = obj[frcx[ci]][prsh[bx]]["cuotas"];
+          console.log(prsh[bx]);
           cont1az.appendChild(cont1z);
          cont1z.appendChild(imgxz);
           cont1z.appendChild(he4z);
@@ -118,7 +127,7 @@ function objImglistshop1(obj) {
         
         };
 
-      } 
+      }
     }
   };
     
