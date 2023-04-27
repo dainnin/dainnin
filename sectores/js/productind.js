@@ -31,7 +31,7 @@ function objImglistshop1(obj) {
   
   var  nObj=Object.keys(obj).length; 
   
-  var  nObjp=Object.keys(obj[frcx[ci]]).length;
+ 
 
 
   
@@ -42,7 +42,7 @@ function objImglistshop1(obj) {
   
  console.log(nObj, nObjp);
   for (ci; ci <nObj; ++ci) {
-   
+    var  nObjp=Object.keys(obj[frcx[ci]]).length;
     for (cix = 0; cix <nObjp; ++cix) {
       if (obj[frcx[ci]][cix]["nompro"] == titlex.textContent) {
         
