@@ -1,4 +1,4 @@
-
+var csl=console.log;
   $(document).ready(function (){
     const requestURL = 'https://dainnin.github.io/proyectowebimg/inventario.json';
     const request = new XMLHttpRequest;
@@ -51,6 +51,7 @@ for (ci;ci<nObj;++ci){
       const div2 = document.createElement('div');
       
      
+     csl(obj[frcx[ci]][i]["prolink"])
       cont3.setAttribute("href", obj[frcx[ci]][i]["prolink"]);
       imgx.setAttribute("src",  obj[frcx[ci]][i]["imgz"]);
       he4.textContent =obj[frcx[ci]][0]["frc"][0];
@@ -58,7 +59,6 @@ for (ci;ci<nObj;++ci){
       div1.textContent =obj[frcx[ci]][i]["precio"];
       div2.textContent = obj[frcx[ci]][i]["cuotas"];
       
-     
      
      cont3.appendChild(imgx);
      cont3.appendChild(he4);
