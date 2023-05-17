@@ -4,7 +4,10 @@
 
 const csl=console.log;
 
-
+         function relx(a){
+ location.href="+a+";
+ location.href.reload;
+}
 
 const lectJson = async () => {
   try {
@@ -96,17 +99,14 @@ lectJson().then((obj) => {
           for (iz = 1; iz < nObjp; ++iz) {
             prsh.push(iz)
           }
-         function relx(){
- location.href="+obj[frcx[ci]][prsh[bx]]["prolink"]+";
- location.href.reload;
-}
+
           const cixa = (cix) - 1;
           prsh.splice(cixa, 1);
           console.log(prsh, cixa);
           for (i = 1, bx = 0; i <= prsh.length; i++, bx++) {
             const cont1az = document.createElement('article');
             const cont1z = document.createElement('a');
-            cont1z.setAttribute("onclick", "relx()")
+            cont1z.setAttribute("onclick", "relx(+"+obj[frcx[ci]][prsh[bx]]["prolink"]+"+)")
             const imgxz = document.createElement('img');
             const he4z = document.createElement('h4');
             const he3z = document.createElement('h3');
