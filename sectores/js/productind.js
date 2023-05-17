@@ -6,7 +6,7 @@ const csl=console.log;
 
          function relx(a){
  location.href=a;
- location.href.reload;
+ window.location.href.reload();
 }
 
 const lectJson = async () => {
