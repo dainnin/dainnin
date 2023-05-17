@@ -4,7 +4,7 @@
 
 const csl=console.log;
 function reload(a){
- $(document).reload(a)
+ a.reload()
 }
 
 
