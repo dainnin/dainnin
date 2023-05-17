@@ -49,7 +49,8 @@ lectJson().then((obj) => {
       if (obj[frcx[ci]][cix]["imgz"] != undefined) {
         csl("hola");
         if (lengurl.substring(lengurl.length - obj[frcx[ci]][cix]["idu"].length, lengurl.length).toLowerCase() ==  obj[frcx[ci]][cix]["idu"].toLowerCase()) {
-
+          
+          titlex.textContent=obj[frcx[ci]][cix]["nompro"];
           const contx1 = document.createElement('div');
           const contx2 = document.createElement('div');
           const contx3 = document.createElement('div');
@@ -65,7 +66,7 @@ lectJson().then((obj) => {
           he2x.textContent = obj[frcx[ci]][cix]["nompro"];
           px.textContent = obj[frcx[ci]][cix]["descrip"];
           ax.setAttribute("href", obj[frcx[ci]][cix]["linka"][1]);
-          ax.setAttribute("onclick", "reload()")
+         
           ax.textContent = obj[frcx[ci]][cix]["linka"][0];
 
 
@@ -116,6 +117,7 @@ lectJson().then((obj) => {
 
             imgxz.setAttribute("src", obj[frcx[ci]][prsh[bx]]["imgz"]);
             cont1z.setAttribute("href", obj[frcx[ci]][prsh[bx]]["prolink"]);;
+            cont1z.setAttribute("onclick", "reload()")
             he4z.textContent = obj[frcx[ci]][0]["frc"][0];
             he3z.textContent = obj[frcx[ci]][prsh[bx]]["nompro"];
             div1z.textContent = obj[frcx[ci]][prsh[bx]]["precio"];
