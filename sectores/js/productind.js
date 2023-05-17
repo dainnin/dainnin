@@ -4,8 +4,8 @@
 
 const csl=console.log;
 function reload(a){
- window.location.href=a;
- window.location.href.reload();
+ location.href=a;
+ location.href.reload;
 }
 
 
