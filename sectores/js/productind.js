@@ -4,7 +4,7 @@
 
 const csl=console.log;
 function reload(a){
- a.reload()
+ window.location.href=a;
 }
 
 
@@ -22,7 +22,6 @@ const lectJson = async () => {
 };
 const lengurl = location.href;
 lectJson().then((obj) => {
-
 
 
 
@@ -49,8 +48,7 @@ lectJson().then((obj) => {
       if (obj[frcx[ci]][cix]["imgz"] != undefined) {
         csl("hola");
         if (lengurl.substring(lengurl.length - obj[frcx[ci]][cix]["idu"].length, lengurl.length).toLowerCase() ==  obj[frcx[ci]][cix]["idu"].toLowerCase()) {
-          
-          titlex.textContent=obj[frcx[ci]][cix]["nompro"];
+
           const contx1 = document.createElement('div');
           const contx2 = document.createElement('div');
           const contx3 = document.createElement('div');
@@ -59,14 +57,14 @@ lectJson().then((obj) => {
           const hrx = document.createElement('hr');
           const ax = document.createElement('a');
           const imgx1 = document.createElement('img');
-
+          
 
 
           imgx1.setAttribute("src", obj[frcx[ci]][cix]["imgz"]);
           he2x.textContent = obj[frcx[ci]][cix]["nompro"];
           px.textContent = obj[frcx[ci]][cix]["descrip"];
           ax.setAttribute("href", obj[frcx[ci]][cix]["linka"][1]);
-         
+          titlex.textContent=obj[frcx[ci]][cix]["nompro"];
           ax.textContent = obj[frcx[ci]][cix]["linka"][0];
 
 
@@ -106,6 +104,7 @@ lectJson().then((obj) => {
           for (i = 1, bx = 0; i <= prsh.length; i++, bx++) {
             const cont1az = document.createElement('article');
             const cont1z = document.createElement('a');
+            cont1z.setAttribute("onclick", `reload(${obj[frcx[ci]][prsh[bx]]["prolink"]})`)
             const imgxz = document.createElement('img');
             const he4z = document.createElement('h4');
             const he3z = document.createElement('h3');
@@ -117,7 +116,6 @@ lectJson().then((obj) => {
 
             imgxz.setAttribute("src", obj[frcx[ci]][prsh[bx]]["imgz"]);
             cont1z.setAttribute("href", obj[frcx[ci]][prsh[bx]]["prolink"]);;
-            cont1z.setAttribute("onclick", `reload('${obj[frcx[ci]][prsh[bx]]["prolink"]}')`)
             he4z.textContent = obj[frcx[ci]][0]["frc"][0];
             he3z.textContent = obj[frcx[ci]][prsh[bx]]["nompro"];
             div1z.textContent = obj[frcx[ci]][prsh[bx]]["precio"];
