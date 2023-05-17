@@ -5,7 +5,7 @@
 const csl=console.log;
 
          function relx(a){
- location.href="+a+";
+ location.href=a;
  location.href.reload;
 }
 
@@ -106,7 +106,7 @@ lectJson().then((obj) => {
           for (i = 1, bx = 0; i <= prsh.length; i++, bx++) {
             const cont1az = document.createElement('article');
             const cont1z = document.createElement('a');
-            cont1z.setAttribute("onclick", "relx(+"+obj[frcx[ci]][prsh[bx]]["prolink"]+"+)")
+            cont1z.setAttribute("onclick", "relx("+"'"+obj[frcx[ci]][prsh[bx]]["prolink"]+"'"+")")
             const imgxz = document.createElement('img');
             const he4z = document.createElement('h4');
             const he3z = document.createElement('h3');
