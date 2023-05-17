@@ -5,6 +5,7 @@
 const csl=console.log;
 function reload(a){
  window.location.href=a;
+  return a.reload();
 }
 
 
