@@ -3,7 +3,9 @@
 
 
 const csl=console.log;
-
+function reload(){
+  location.reload()
+}
 
 
 const lectJson = async () => {
@@ -63,6 +65,7 @@ lectJson().then((obj) => {
           he2x.textContent = obj[frcx[ci]][cix]["nompro"];
           px.textContent = obj[frcx[ci]][cix]["descrip"];
           ax.setAttribute("href", obj[frcx[ci]][cix]["linka"][1]);
+          ax.setAttribute("onclick", "reload()")
           ax.textContent = obj[frcx[ci]][cix]["linka"][0];
 
 
