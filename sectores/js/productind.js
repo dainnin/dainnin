@@ -117,7 +117,7 @@ lectJson().then((obj) => {
 
             imgxz.setAttribute("src", obj[frcx[ci]][prsh[bx]]["imgz"]);
             cont1z.setAttribute("href", obj[frcx[ci]][prsh[bx]]["prolink"]);;
-            cont1z.setAttribute("onclick", `reload(${obj[frcx[ci]][prsh[bx]]["prolink"]})`)
+            cont1z.setAttribute("onclick", `reload('${obj[frcx[ci]][prsh[bx]]["prolink"]}')`)
             he4z.textContent = obj[frcx[ci]][0]["frc"][0];
             he3z.textContent = obj[frcx[ci]][prsh[bx]]["nompro"];
             div1z.textContent = obj[frcx[ci]][prsh[bx]]["precio"];
