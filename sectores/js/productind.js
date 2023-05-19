@@ -24,7 +24,6 @@ lectJson().then((obj) => {
 
 let compr=1;
 
-var frcx = Object.keys(obj).length;
 
 const contx1 = document.createElement('div');
           const contx2 = document.createElement('div');
