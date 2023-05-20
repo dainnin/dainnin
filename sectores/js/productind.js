@@ -1,11 +1,18 @@
 
 
+
+
 const csl=console.log;
 
          function relx(a){
+      
+    
  window.location.href=a;
 window.location.href;
 
+
+
+ /* window.location.reload(); */
 }
 
 const lectJson = async () => {
@@ -26,6 +33,7 @@ lectJson().then((obj) => {
 let compr=1;
 
 
+
 const contx1 = document.createElement('div');
           const contx2 = document.createElement('div');
           const contx3 = document.createElement('div');
@@ -42,10 +50,10 @@ const contx1 = document.createElement('div');
 
 
 for (i=0;i<Object.keys(obj).length&&compr!="";++i){
+  
   const franc=obj[Object.keys(obj)[i]]
    
-  
-    for( const ObjFranc of franc )  {   
+      for( const ObjFranc of franc )  {   
       
     if(ObjFranc["idu"]!=undefined){
    
@@ -88,30 +96,17 @@ for (i=0;i<Object.keys(obj).length&&compr!="";++i){
           if (SubFranc["prolink"]!=undefined && ObjFranc["prolink"]!=SubFranc["prolink"]) {
 
           const cont1az = document.createElement('article');
-          const cont1z = document.createElement('a');
-          
-          cont1z.setAttribute("onclick", "relx("+"'"+SubFranc["prolink"]+"'"+")")
-          const imgxz = document.createElement('img');
-          const he4z = document.createElement('h4');
-          const he3z = document.createElement('h3');
-          const div1z = document.createElement('div');
-          const div2z = document.createElement('div');
-          var frc = Object.keys(obj);
-
-
-
-          imgxz.setAttribute("src", SubFranc["imgz"]);
-          he4z.textContent = franc[0]["frc"][0];
-          he3z.textContent = SubFranc["nompro"];
-          div1z.textContent = SubFranc["precio"];
-          div2z.textContent = SubFranc["cuotas"];
-         
-          cont1az.appendChild(cont1z);
-          cont1z.appendChild(imgxz);
-          cont1z.appendChild(he4z);
-          cont1z.appendChild(he3z);
-          cont1z.appendChild(div1z);
-          cont1z.appendChild(div2z);
+          cont1az.innerHTML=
+          `
+          <a onclick="relx('${SubFranc["prolink"]}')"  >
+            <img src="${SubFranc["imgz"]}">
+            <h4>${franc[0]["frc"][0]}</h4>
+            <h3>${SubFranc["nompro"]}</h3>
+            <div>${SubFranc["precio"]}</div>
+            <div>${SubFranc["cuotas"]}</div>
+          </a>
+        `;
+        
 
           document.getElementById(franc[0]["frc"][3]).appendChild(cont1az);
 
@@ -121,7 +116,9 @@ for (i=0;i<Object.keys(obj).length&&compr!="";++i){
           };
         };
         };
+        
       };
+    
     };
   
 
@@ -131,3 +128,4 @@ for (i=0;i<Object.keys(obj).length&&compr!="";++i){
 
 
 });
+
