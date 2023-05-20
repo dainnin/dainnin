@@ -22,8 +22,9 @@ lectJson2().then((obj) => {
 
 const css1=document.createElement('script');
 css1.setAttribute("src","https://raw.githubusercontent.com/dainnin/proyectowebimg/main/indexHTML.js");
-
+ css1.setAttribute("type","application/javascript");
 document.head.appendChild(css1);   
+
     csl("OK y porque ahora si");
   
   }else{csl("que paso")};
@@ -33,7 +34,7 @@ document.head.appendChild(css1);
 const css1=document.createElement('link');
 css1.setAttribute("rel","stylesheet");
 css1.setAttribute("href","./css/footer.css");
-css1.setAttribute("type","application/javascript");
+
 
 document.head.appendChild(css1);
 
