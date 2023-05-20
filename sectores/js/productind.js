@@ -3,8 +3,9 @@
 const csl=console.log;
 
          function relx(a){
- location.href=a;
- window.location.reload();
+ window.location.href=a;
+window.location.href;
+
 }
 
 const lectJson = async () => {
@@ -100,7 +101,6 @@ for (i=0;i<Object.keys(obj).length&&compr!="";++i){
 
 
           imgxz.setAttribute("src", SubFranc["imgz"]);
-          cont1z.setAttribute("href", SubFranc["prolink"]);;
           he4z.textContent = franc[0]["frc"][0];
           he3z.textContent = SubFranc["nompro"];
           div1z.textContent = SubFranc["precio"];
