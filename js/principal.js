@@ -5,7 +5,7 @@ const linkLocal=location.href;
 const lectJson2 = async () => {
   try {
 
-    const resp = await fetch('../proyectowebimg-main/vinculos.json');
+    const resp = await fetch('https://raw.githubusercontent.com/dainnin/proyectowebimg/main/vinculos.json');
     const jsonObjList = await resp.json();
     return jsonObjList;
   } catch (pif) {
