@@ -5,14 +5,9 @@
 const csl=console.log;
 
          function relx(a){
-      
-    
- window.location.href=a;
+window.location.href=a;
 window.location.href;
-
-
-
- /* window.location.reload(); */
+window.location.reload(); 
 }
 
 const lectJson = async () => {
