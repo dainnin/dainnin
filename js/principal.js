@@ -21,7 +21,7 @@ lectJson2().then((obj) => {
   if( link == linkLocal){
 
 const css1=document.createElement('script');
-css1.setAttribute("src","https://raw.githubusercontent.com/dainnin/proyectowebimg/main/indexHTML.js");
+css1.setAttribute("src","./js/indexHTML.js");
  css1.setAttribute("type","application/javascript");
 document.head.appendChild(css1);   
 
