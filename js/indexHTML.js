@@ -4,7 +4,7 @@
 
 
 
-const csl=console.log;
+
 const urlCap =location.href;
          function relx(a){
 window.location.href=a;
