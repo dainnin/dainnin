@@ -16,7 +16,7 @@ var i = 1;
 var b = 2;
 var ix = 1;
 var bx = 2;
-let urlAct="";
+var urlAct="";
 
   if(urlCap=='https://dainnin.github.io/dainnin/'){
  csl("If ejecutado");
