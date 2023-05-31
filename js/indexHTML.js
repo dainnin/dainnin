@@ -16,17 +16,16 @@ var i = 1;
 var b = 2;
 var ix = 1;
 var bx = 2;
-var urlAct="";
-
-  if(urlCap=='https://dainnin.github.io/dainnin/'){
- csl("If ejecutado");
-  urlAct==`https://dainnin.github.io/proyectowebimg/`;
-csl(urlAct,"variable");
-  }else{
-    csl("Else ejecudatdo", urlAct, urlCap);
-      urlAct==urlCap;
-      
-  }
+const urlAct=[];
+if(urlCap=='https://dainnin.github.io/dainnin/'){
+  csl("If ejecutado");
+   urlAct[0]='https://dainnin.github.io/proyectowebimg/';
+ 
+   }else{
+     csl("Else ejecudatdo", urlAct, urlCap);
+       urlAct[0]=urlCap;
+       csl("Else ejecudatdo", urlAct[0]); 
+   }
 
     
  
