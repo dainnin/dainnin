@@ -20,7 +20,7 @@ const urlAct="";
 
   if(urlCap=='https://dainnin.github.io/dainnin/'){
  csl("If ejecutado");
-  urlAct='https://dainnin.github.io/proyectowebimg/';
+  urlAct=`https://dainnin.github.io/proyectowebimg/`;
 
   }else{
     csl("Else ejecudatdo", urlAct, urlCap);
