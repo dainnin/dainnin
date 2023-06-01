@@ -68,7 +68,7 @@ for (i=0;i<Object.keys(obj).length&&compr!="";++i){
           const cont1az = document.createElement('article');
           cont1az.innerHTML=
           `
-          <a onclick="relx('${urlAct+"#"+SubFranc["idu"]}')"  >
+          <a onclick="relx('${urlCap+"#"+SubFranc["idu"]}')"  >
             <img src="${SubFranc["imgz"]}">
             <h4>${franc[0]["frc"][0]}</h4>
             <h3>${SubFranc["nompro"]}</h3>
