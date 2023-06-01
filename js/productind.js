@@ -6,11 +6,7 @@ document.head.insertAdjacentHTML("afterbegin",`
 <link rel="stylesheet" href="./css/principal.css">
 `);
 
-         function relx(a){
-window.location.href=a;
-window.location.href;
-window.location.reload(); 
-}
+
 
 
 const lengurl = location.href;
