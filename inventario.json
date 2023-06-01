@@ -1,28 +1,31 @@
 {
-  "starwars":["START WARS & THE MANDALORIAN",
+  "starwars":[
+    {
+      "descrip":"Disfruta de una saga que sigue agregando personajes a su colección.",
+      "frc":["START WARS & THE MANDALORIAN","Star Wars","starwarsx","starwarsx2"]
+    },
+  
     {
       "nompro": "Baby Yoda",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      
       "estado": [
-        "Disponible",
-        "agotado"
+       true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
-      "imgz": "https://dainnin.github.io/proyectowebimg/img//star-wars/baby-yoda-1.webp",
+      "imgz": "https://dainnin.github.io/proyectowebimg/img/star-wars/baby-yoda-1.webp",
       "linka": [
         "ver colección",
         ""
-      ]
-    },
+      ],
+      "idu":"069001"
+        },
     {
       "nompro": "Trooper",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+     
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -30,15 +33,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069002"
     },
     {
       "nompro": "Luke",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+     
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -47,32 +50,52 @@
         "ver colección",
         ""
       ]
+      ,
+      "idu":"069003"
     },
     {
-      "nompro": "Boba Fett",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "nompro": "Bobba Feth",
+     
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
-      "imgz": "https://dainnin.github.io/proyectowebimg/img/bobbafeth-1.webp",
+      "imgz": "https://dainnin.github.io/proyectowebimg/img/star-wars/bobbafeth-1.webp",
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069004"
+    },
+    {
+      "nompro": "Darth Vader",
+     
+      
+      "estado": [
+        true,false
+      ],
+      "precio": "$ 1799,99-",
+      "cuotas": "3 Cuotas sin Interés",
+      "imgz": "https://dainnin.github.io/proyectowebimg/img/star-wars/darth-vader-1.jpg",
+      "linka": [
+        "ver colección",
+        ""
+      ],
+      "idu":"069005"
     }
   ],
-  "pokemon": ["POKEMON INDIGO",
+  "pokemon": [
+    { 
+      "descrip":"Atrapa todos los que puedas y disfruta de una colección llena de amigos.",
+      "frc":["POKEMON INDIGO","Pokemon","pokemonx","pokemonx2"]},
     {
       "nompro": "Charmander",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "descrip":"Atrapa todos los que puedas y disfruta de una colección llena de amigos.",
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -80,15 +103,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069006"
     },
     {
       "nompro": "Dragonite",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -96,15 +119,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069007"
     },
     {
       "nompro": "Pidgeotto",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -112,31 +135,31 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069008"
     },
     {
       "nompro": "Pikachu",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
-      "imgz": "./img/pokemon/pikachu-1.webp",
+      "imgz": "https://dainnin.github.io/proyectowebimg/img/pokemon/pikachu-1.webp",
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"069009"
     },
     {
       "nompro": "Vulpix",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      
+     
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -144,18 +167,21 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690010"
     }
    
   ],
-  "harryp": ["HARRY POTTER",
+  "harryp": [
+    {
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+      "frc":["HARRY POTTER", "Harry Potter","harrypx","harrypx2"]},
     {
       "nompro": "Harry",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+     
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -163,15 +189,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690011"
     },
     {
       "nompro": "Hermione",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+      
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -179,15 +205,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690012"
     },
     {
-      "nompro": "Luna leon",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "nompro": "Luna Leon",
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+    
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -195,15 +221,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690013"
     },
     {
       "nompro": "Luna",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+     
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -211,15 +237,15 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690014"
     },
     {
       "nompro": "Snape Patronus",
-      "descrip": "Revive los recuerdos de una saga llena de magia y encanto.",
-      "idpro": "1x",
+      "descrip":"Revive los recuerdos de una saga llena de magia y encanto.",
+    
       "estado": [
-        "Disponible",
-        "agotado"
+        true,false
       ],
       "precio": "$ 1799,99-",
       "cuotas": "3 Cuotas sin Interés",
@@ -227,8 +253,9 @@
       "linka": [
         "ver colección",
         ""
-      ]
+      ],
+      "idu":"0690015"
     }
   ]
-}
  
+}

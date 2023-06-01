@@ -1,43 +1,70 @@
+
+
+
 const csl=console.log;
-const linkLocal=location.href;
+const hash=location.hash;
+const urlCap =location.origin+location.pathname;
 
+function comprobarValor(a,b,c){
+ 
+  
+  if (a.substring(a.length-b.length,a.length)==b){
+    
+    csl("Encontrado",a);
+ 
+ return a.substring(0,a.length-b.length)
+}else{
+    a;
+   csl("Sin Coincidencia",a);
+   return a;
+  }
 
-const lectJson2 = async () => {
-  try {
+} 
+if(hash==""){
+  const scrypt1=document.createElement("script");
+  scrypt1.setAttribute("src", './js/indexHTML.js');
+  document.head.appendChild(scrypt1);
+ }
 
-    const resp = await fetch('https://raw.githubusercontent.com/dainnin/proyectowebimg/main/vinculos.json');
-    const jsonObjList = await resp.json();
-    return jsonObjList;
-  } catch (pif) {
-    csl(pif);
+const urlAct=[];
 
+if(urlCap==('https://dainnin.github.io/dainnin/' || 'https://dainnin.github.io/dainnin/index.html')){
+ 
+   urlAct[0]='https://dainnin.github.io/proyectowebimg/';
+   csl("If ejecutado",urlAct);
+   }else{
+   
+       urlAct[0] = [comprobarValor(urlCap,"index.html",hash)];
+      
+      
+   }
+ csl(urlAct)
+
+   
+ const lectJson=async()=>{
+    
+
+ 
+  try{
+  
+  const resp=await fetch(`${urlAct[0]}inventario.json`);
+  const jsonObjList= await resp.json();
+  return jsonObjList;
+  }catch(pif){
+  csl(pif);
+  
   };
-
-};
- 
-lectJson2().then((obj) => {
-  
-  for(const link of obj){
-  if( link == linkLocal){
-
-const css1=document.createElement('script');
-css1.setAttribute("src","./js/indexHTML.js");
- css1.setAttribute("type","application/javascript");
-document.head.appendChild(css1);   
-
-    csl("OK y porque ahora si");
-  
-  }else{csl("que paso")};
 }
+lectJson().then((obj) => {
+  for(const Obj in obj){
+    for(const SubObj of obj[Obj]){
+      if(hash=="#"+SubObj["idu"]){
+        const scrypt1=document.createElement("script");
+        scrypt1.setAttribute("src", './js/productind.js');
+        document.head.appendChild(scrypt1);
+        document.title=SubObj["nompro"];
+        csl("#"+SubObj["idu"])
+      }
+    }
+  }
 })
-
-const css1=document.createElement('link');
-css1.setAttribute("rel","stylesheet");
-css1.setAttribute("href","./css/footer.css");
-
-
-document.head.appendChild(css1);
-
-
- 
-
