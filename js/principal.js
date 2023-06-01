@@ -1,4 +1,9 @@
 
+function relx(a){
+  window.location.href=a;
+  window.location.href;
+  window.location.reload(); 
+  }
 
 
 const csl=console.log;
