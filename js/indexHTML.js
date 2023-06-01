@@ -69,7 +69,7 @@ const cont1az = document.createElement('article');
 
 var frc=Object.keys(obj);
 var frcx=frc[randomx()];
-cont1az.innerHTML=`<a onclick="relx('${location.origin+location.pathname+"#"+SubFranc["idu"]}')">
+cont1az.innerHTML=`<a onclick="relx('${urlCap+"#"+obj[frcx][i]["idu"]}')">
 <img src=${obj[frcx][i]["imgz"]}>
 <h4>${obj[frcx][0]["frc"][0]}</h4>
 <h3>${obj[frcx][i]["nompro"]}</h3>
