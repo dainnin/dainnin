@@ -1,0 +1,135 @@
+/*Header###################
+###################################
+###################*/
+header
+{
+display: flex;
+height: 174px;
+justify-content: space-around;
+
+background-color: #30343f;
+grid-area: a;
+
+}
+
+
+header > :nth-child(1) img{
+
+padding: calc(174px / 3) 0 0 0;
+} 
+a{
+  text-align: left;
+  padding-right: calc(5px + 0.75vw);
+  /* color: rgb(255, 255, 255); */
+  text-decoration: none;
+  color: blueviolet;
+ 
+}
+
+ 
+header > :nth-child(2){
+  font-size: calc(1rem + 1.1vw);
+
+  text-transform: uppercase;
+  user-select: none;
+  display:grid;
+  padding: 33px 0 0 0;
+  grid-template-columns:auto auto auto auto auto ;
+  grid-template-rows: calc(174px / 4.5) auto auto;
+  position: relative;
+  z-index: 100;   
+  
+   
+}
+header > :nth-child(2) img{
+  height: calc(1rem + 2vw);
+
+   
+}
+header > :nth-child(2) > a,header > :nth-child(2) > img {
+  display: inline-flex;
+ font-size:  calc(1rem + 1.4vw);
+  text-align: right;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+
+.collapsemen{
+  display: none;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  visibility: collapse; 
+  padding: 10px 0 10px 0;
+grid-template-columns: 1fr 7fr 3fr;
+grid-auto-rows: auto;
+background-color: rgba(48, 52, 87, 0.5);
+border-radius: 15%;
+} 
+
+.collapsemen>a{
+  grid-column-start: 2;
+}
+
+a:focus.coa.x1 + * + * + * + .collapsemen.x1,
+.collapsemen.x1 a:hover:any-link,
+a:focus.coa.x2 + * + * + * + .collapsemen.x2,
+.collapsemen.x2 a:hover:any-link,
+a:focus.coa.x3 + * + * + * + .collapsemen.x3,
+.collapsemen.x3 a:hover:any-link,
+a:focus.coa.x4 + * + * + * + .collapsemen.x4,
+.collapsemen.x4 a:hover:any-link,
+a:focus.coa.x5 + * + * + * + .collapsemen.x5,
+.collapsemen.x5 a:hover:any-link
+
+{ 
+  display: grid;
+  color: red;
+visibility: visible;
+}
+@media only screen and (max-width:900px) {
+    header
+    {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+    padding: 5dvh 0 5dvh 0;
+    
+    }
+    header>:nth-child(1) {
+           display: grid;
+      
+      
+   
+}    header>:nth-child(1) img,header>:nth-child(1){
+  grid-column-start: 2;
+
+   padding: calc(174px / 13) 0 0dvh 0; 
+
+}
+
+    header>:nth-child(2) {
+           
+      
+      grid-template-rows: calc(174px / 7) auto auto;
+      grid-column-start: 2;
+      grid-row-start: 2;
+     padding: 0;
+   
+}
+
+}
+@media only screen and (max-width:460px) {
+    
+header{
+  grid-template-columns: 3fr 5fr 3fr;
+}
+header :nth-child(1) img{
+       width: 90dvw;
+       
+       
+}
+a{
+padding-right: calc(0.25vw);}
+}
