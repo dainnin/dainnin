@@ -20,9 +20,8 @@ padding: calc(174px / 3) 0 0 0;
 a{
   text-align: left;
   padding-right: calc(5px + 0.75vw);
-  /* color: rgb(255, 255, 255); */
+  color: rgb(255, 255, 255);
   text-decoration: none;
-  color: blueviolet;
  
 }
 
@@ -56,27 +55,26 @@ header > :nth-child(2) > a,header > :nth-child(2) > img {
 
 
 .collapsemen{
-  display: none;
+  display: grid;
   grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-end: -1;
   grid-column-start: 1;
   grid-column-end: -1;
   visibility: collapse; 
   padding: 10px 0 10px 0;
-grid-template-columns: 1fr 7fr 3fr;
-grid-auto-rows: auto;
-background-color: rgba(48, 52, 87, 0.5);
-border-radius: 15%;
+  grid-template-columns: 1fr 7fr 3fr;
+  grid-auto-rows: calc(1rem + 1.1vw);
+  background-color: rgba(48, 52, 87, 0.5);
+  border-radius: 15%;
 } 
 
 .collapsemen>a{
   grid-column-start: 2;
 }
-
-a:focus.coa.x1 + * + * + * + .collapsemen.x1,
-.collapsemen.x1 a:hover:any-link,
+a:focus.coa.x1 + * + * + * + .collapsemen.x1, 
+.collapsemen.x1 a:hover, 
 a:focus.coa.x2 + * + * + * + .collapsemen.x2,
-.collapsemen.x2 a:hover:any-link,
+.collapsemen.x2 a:hover,
 a:focus.coa.x3 + * + * + * + .collapsemen.x3,
 .collapsemen.x3 a:hover:any-link,
 a:focus.coa.x4 + * + * + * + .collapsemen.x4,
@@ -85,9 +83,10 @@ a:focus.coa.x5 + * + * + * + .collapsemen.x5,
 .collapsemen.x5 a:hover:any-link
 
 { 
-  display: grid;
+ 
   color: red;
 visibility: visible;
+
 }
 @media only screen and (max-width:900px) {
     header
