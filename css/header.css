@@ -36,7 +36,7 @@ header > :nth-child(2){
   grid-template-columns:auto auto auto auto auto ;
   grid-template-rows: calc(174px / 4.5) auto auto;
   position: relative;
-  z-index: 100;   
+  z-index: 0;   
   
    
 }
@@ -55,25 +55,27 @@ header > :nth-child(2) > a,header > :nth-child(2) > img {
 
 
 .collapsemen{
-  heigth:min-content;
+  height: min-content;
   display: grid;
   grid-row-start: 3;
-  grid-row-end: -1;
+  grid-row-end: auto;
   grid-column-start: 1;
   grid-column-end: -1;
   visibility: collapse; 
   padding: 10px 0 10px 0;
   grid-template-columns: 1fr 7fr 3fr;
   grid-auto-rows: calc(1rem + 1.1vw);
-  background-color: rgba(48, 52, 87, 0.5);
+  filter:drop-shadow(0px 10px 22px rgb(65, 250, 164));
+  background-image:  linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
   border-radius: 15%;
 } 
 
 .collapsemen>a{
+  position: relative;
   grid-column-start: 2;
 }
 a:focus.coa.x1 + * + * + * + .collapsemen.x1, 
-.collapsemen.x1 a:hover, 
+.collapsemen.x1 a:hover:any-link, 
 a:focus.coa.x2 + * + * + * + .collapsemen.x2,
 .collapsemen.x2 a:hover,
 a:focus.coa.x3 + * + * + * + .collapsemen.x3,
@@ -84,11 +86,14 @@ a:focus.coa.x5 + * + * + * + .collapsemen.x5,
 .collapsemen.x5 a:hover:any-link
 
 { 
- 
-  color: red;
-visibility: visible;
-
+color: red;
+ visibility: visible;
 }
+
+
+
+
+
 @media only screen and (max-width:900px) {
     header
     {
