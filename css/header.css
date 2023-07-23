@@ -55,6 +55,7 @@ header > :nth-child(2) > a,header > :nth-child(2) > img {
 
 
 .collapsemen{
+  heigth:min-content;
   display: grid;
   grid-row-start: 3;
   grid-row-end: -1;
