@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Personalizado con Archivos Locales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #player-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #progress-bar {
+            width: 80%;
+            margin: 10px auto;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        #playlist {
+            margin: 20px auto;
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 300px;
+        }
+        .audio-item {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reproductor de Audio Personalizado</h1>
+
+    <!-- Input para cargar archivos -->
+    <input type="file" id="fileInput" accept="audio/*" multiple>
+    <button onclick="addFiles()">Agregar Archivos</button>
+
+    <!-- Lista de reproducción -->
+    <ul id="playlist"></ul>
+
+    <!-- Audio -->
+    <audio id="audioPlayer"></audio>
+
+    <!-- Botones de control -->
+    <div id="player-controls">
+        <button onclick="prevAudio()">Anterior</button>
+        <button onclick="togglePlay()">Play/Pausa</button>
+        <button onclick="nextAudio()">Siguiente</button>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div id="progress-bar">
+        <input type="range" id="progress" value="0" step="1" onchange="seekAudio()">
+    </div>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const progressBar = document.getElementById('progress');
+        const playlistElement = document.getElementById('playlist');
+        const fileInput = document.getElementById('fileInput');
+
+        // Lista de reproducción (array de archivos locales)
+        const playlist = [];
+        let currentIndex = 0;
+
+        // Actualizar lista de reproducción visual
+        function updatePlaylist() {
+            playlistElement.innerHTML = "";
+            playlist.forEach((file, index) => {
+                const li = document.createElement("li");
+                li.className = "audio-item";
+                li.textContent = file.name;
+                const playButton = document.createElement("button");
+                playButton.textContent = "Reproducir";
+                playButton.onclick = () => playAudio(index);
+                li.appendChild(playButton);
+                playlistElement.appendChild(li);
+            });
+        }
+
+        // Cargar audio actual y reproducir
+        function loadAudio(index) {
+            currentIndex = index;
+            audioPlayer.src = URL.createObjectURL(playlist[currentIndex]);
+            audioPlayer.play();
+        }
+
+        function playAudio(index) {
+            loadAudio(index);
+        }
+
+        // Función para reproducir/pausar
+        function togglePlay() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        // Función para ir al siguiente audio
+        function nextAudio() {
+            currentIndex = (currentIndex + 1) % playlist.length;
+            loadAudio(currentIndex);
+        }
+
+        // Función para ir al audio anterior
+        function prevAudio() {
+            currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+            loadAudio(currentIndex);
+        }
+
+        // Función para agregar archivos locales a la lista
+        function addFiles() {
+            const files = Array.from(fileInput.files);
+            if (files.length > 0) {
+                files.forEach(file => {
+                    if (file.type.startsWith("audio/")) {
+                        playlist.push(file);
+                    } else {
+                        alert(`El archivo "${file.name}" no es un audio válido.`);
+                    }
+                });
+                updatePlaylist();
+            } else {
+                alert("Por favor selecciona al menos un archivo de audio.");
+            }
+        }
+
+        // Función para actualizar la barra de progreso
+        audioPlayer.addEventListener('timeupdate', () => {
+            progressBar.max = audioPlayer.duration || 0;
+            progressBar.value = audioPlayer.currentTime || 0;
+        });
+
+        // Función para buscar en la barra de progreso
+        function seekAudio() {
+            audioPlayer.currentTime = progressBar.value;
+        }
+    </script>
+</body>
+</html>
