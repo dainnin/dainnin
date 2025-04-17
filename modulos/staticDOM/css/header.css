@@ -16,7 +16,10 @@ header a.logo {
     align-items: center;
     justify-content: center;
 }
-
+header img.logo {
+    width: 90%;
+   
+}
 header a,
 header p {
     text-align: left;
