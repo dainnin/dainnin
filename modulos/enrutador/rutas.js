@@ -6,7 +6,7 @@ import { urls } from '/dainnin/modulos/env.js';
 export const rutas = {
     "/":{
         componente: 'index',
-        urlModulo: `${urls.online.app}/modulos/main/index.js`,
+        urlModulo: `/modulos/main/index.js`,
     },
 
     "productos": {
