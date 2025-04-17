@@ -95,7 +95,7 @@ export const index = () =>{
 </div>
 </section>
 <head>
-<link rel="stylesheet" href="/dainnin/css/section.css"></link> 
+<link rel="stylesheet" href="${url.online.app}/css/section.css"></link> 
 </head>
     `)}
 
