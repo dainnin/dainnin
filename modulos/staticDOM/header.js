@@ -19,7 +19,7 @@ const crearTagsHeader = () => {
 
     return HTMLatObj(`
    
-     <a className="logo href="/">
+     <a className="logo" href="/">
         <img className="logo" id="loghr" alt="" src="https://dainnin.github.io/dainnin/img/branding/logo_light_horizontal.svg"></img>
      </a>
         <div id="menuhr" className="menuMD">
