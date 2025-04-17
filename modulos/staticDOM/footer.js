@@ -6,8 +6,8 @@ export const footer = HTMLatObj(`
 <div>
             <div>
             <a href="">Shop</a>
-        <a href="">Registrase</a>
-        <a href="">Ingresar</a>
+        <a href="/registrar">Registrase</a>
+        <a href="/login">Ingresar</a>
     <a href="">Contacto</a>
     </div>
         <img src="https://dainnin.github.io/dainnin/img/branding/isotype.svg" alt=""></img>
