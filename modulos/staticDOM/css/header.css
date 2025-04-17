@@ -1,0 +1,103 @@
+/*Header###################
+###################################
+###################*/
+header {
+    display: flex;
+    height: 174px;
+    justify-content: space-around;
+    background-color: #30343f;
+    grid-area: a;
+}
+
+
+header img.logo {
+    padding: calc(174px / 3) 0 0 0;
+}
+
+header a,
+header p {
+    text-align: left;
+    padding-right: calc(5px + 0.75vw);
+    color: rgb(250, 245, 240);
+    text-decoration: none;
+
+}
+
+
+.menuMD {
+    font-size: calc(1rem + 1.1vw);
+    text-transform: uppercase;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+
+}
+
+.menuMD>img {
+    height: calc(1rem + 2vw);
+}
+
+.menuMD>p {
+    font-size: calc(1rem + 1.4vw);
+    text-align: right;
+
+}
+.menuMD a {
+    margin: 4px 0;
+
+}
+
+.collapsemen {
+    height: min-content;
+    display: flex;
+    visibility: collapse;
+    flex-direction: column;
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    padding: 15px 10px;
+    filter: drop-shadow(0px 10px 22px rgb(65, 250, 164));
+    background-image: linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
+    border-radius: 2vw;
+    z-index: 999;
+}
+
+.coa:focus~.collapsemen {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
+@media only screen and (max-width:900px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+
+
+
+
+}
+
+@media only screen and (max-width:460px) {
+
+
+
+    a {
+        padding-right: calc(0.25vw);
+    }
+}

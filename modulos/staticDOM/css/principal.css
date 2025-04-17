@@ -1,0 +1,410 @@
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+pre {
+    text-wrap: wrap;
+}
+
+* {
+
+    font-weight: 100;
+}
+
+label {
+    margin: 15px;
+}
+
+main * {
+    animation-duration: 2s;
+    animation-name: aparecer;
+}
+
+.menu {
+
+    background: linear-gradient(137deg, rgba(199, 151, 151, 0.295), rgba(98, 217, 233, 0.397)) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 7%;
+    text-align: center;
+    min-height: 15px;
+    z-index: 3;
+    -ms-overflow-style: none;
+    /* IE y Edge */
+    scrollbar-width: none;
+
+    overflow-y: scroll;
+}
+details.menu::-webkit-scrollbar{
+    display: none;
+}
+details.menu:not(:hover) {
+    height: 15px;
+
+}
+
+
+header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.buscar {
+    position: fixed;
+    right: 15px;
+}
+
+
+th,
+td,
+tr {
+    text-transform: capitalize;
+    padding: 10px;
+    border: 2px solid;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+strong {
+    color: red;
+}
+
+button.inicio {
+
+    position: fixed;
+    width: 3rem;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    background: rgba(0, 217, 255, 0.253);
+    backdrop-filter: blur(2px);
+}
+
+span * {
+    display: inline;
+    height: max-content;
+    width: max-content;
+}
+
+
+.imagen {
+    position: relative;
+    top: 0;
+    transition: opacity 3s ease;
+}
+
+.punto {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    justify-content: center;
+}
+
+.carrusel-puntos {
+    display: flex;
+    justify-content: center;
+
+}
+
+.punto-activo {
+    background-color: #717171;
+}
+
+
+
+
+
+
+.details {
+    position: absolute;
+    left: calc(70vw);
+    top: 60px;
+    min-width: 175px;
+    max-height: 70vh !important;
+}
+
+
+.details[open] {
+
+    animation-name: abrir2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+   
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.details[open]>div {
+
+    animation-name: aparecer;
+    animation-duration: 2s;
+
+
+}
+
+.summary {
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.headerP {
+    background: rgba(255, 102, 0, 0.336);
+}
+
+.styleP p,
+.styleP li {
+    font-weight: 800;
+    color: var(--GreySpecial2);
+}
+
+.styleP strong {
+    font-weight: 800;
+}
+
+.desplazar7 {
+    padding: 15px;
+    height: 70vh;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+main img {
+    max-width: 90%;
+}
+
+.chat {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* word-wrap: break-word; */
+    height: 40vh;
+    padding: 0 25px 0 25px;
+    background: teal;
+
+}
+
+.chat.Box {
+    width: 100%;
+    /* Ancho base */
+    min-width: 100px;
+    /* Ancho mínimo */
+    max-width: 90vw;
+    /* Ancho máximo */
+    background-color: rgba(2, 105, 105, 0.616);
+    height: 50vh;
+}
+
+form.menux {
+    position: relative;
+    height: 70vh;
+    padding: 0 5px 0 5px;
+}
+
+main {
+    padding: 15px;
+}
+
+.idUser {
+    /* position: absolute;
+       top: -7vh;
+       left: 150px; */
+    margin: 3%;
+
+}
+
+.chatContact {
+    display: flex;
+
+}
+
+.menu.contact {
+    min-width: 40px;
+    height: 40vh;
+    padding: 20px 0 20px 0;
+}
+
+.menu.contact>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1vw;
+    height: 100%;
+
+}
+
+.summMenu {
+
+    min-width: 120px;
+
+    max-width: 250px;
+}
+
+.menuDetails {
+
+    z-index: 999;
+    background: rgba(21, 147, 197, 0.723);
+    backdrop-filter: blur(5px);
+
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.menuDetails ul {
+    padding: 0;
+    margin: 5px 3px 5px 10px;
+}
+
+.menuDetails[open] {
+    min-height: 15px;
+    max-height: 35vh;
+}
+
+.test {
+    display: initial !important;
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: initial !important;
+}
+
+.test fieldset {
+    width: 100 px;
+    min-width: 50px;
+    max-width: 100%;
+}
+
+.test :not(fieldset) {
+    width: 80%;
+}
+
+.delList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 20vh;
+}
+
+fieldset.menu.contact input.collmen:checked~ul {
+    width: 40px;
+    font-size: 10px;
+}
+
+fieldset.menu.contact input.collmen:checked~.LegendMain {
+    width: 60px;
+    font-size: 0px;
+    background: url("/_next/image?url=%2Fimg%2Ficon%2Fkirby.jpg&w=64&q=75") no-repeat;
+    height: 60px;
+}
+
+.user {
+    font-weight: 1000;
+    text-transform: capitalize;
+    color: rgb(41, 0, 221);
+    background: rgba(222, 184, 135, 0.719);
+
+}
+
+.contact {
+    font-weight: 1000;
+    background: rgba(255, 192, 203, 0.568);
+    text-transform: capitalize;
+}
+
+li.user,
+li.contact {
+    border-radius: 5px;
+    list-style: none;
+}
+
+li.user {
+
+    background: pink;
+}
+
+li.user>.chatElement>strong {
+    display: block;
+    text-align: end;
+
+}
+
+li.contact>.chatElement>strong {
+    display: block;
+    text-align: start;
+
+}
+
+.chatElement {
+    padding: 5px;
+
+}
+
+.close {
+    width: 20px !important;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.close:hover {
+    background: rebeccapurple;
+    color: whitesmoke;
+}
+
+footer[name=_footer] ul a {
+    display: flex;
+    flex-direction: column;
+    background: rgb(190, 160, 160);
+    font-weight: 1000;
+    margin: 11px 4px;
+}
+
+footer[name=_footer] ul {
+    margin: 5px;
+    padding: 0;
+}
+
+main[name=_main]>section {
+    max-width: 70vw;
+    margin: auto;
+}
+
+main[name=_main]>h1 {
+    max-width: 90vw;
+    margin: auto;
+}
+
+span[name=_panel] {
+    position: sticky;
+    top: 20px;
+}
+
+nav {
+    overflow-y: visible;
+}
