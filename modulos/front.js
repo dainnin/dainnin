@@ -1,7 +1,7 @@
-import { createUpdate, HashEnabled } from "https://dainnin.github.io/dainnin/modulos/funciones/creacion.js";
-import { rutas } from "https://dainnin.github.io/dainnin/modulos/enrutador/rutas.js";
-import { footer } from "https://dainnin.github.io/dainnin/modulos/staticDOM/footer.js";
-import { header } from "https://dainnin.github.io/dainnin/modulos/staticDOM/header.js";
+import { createUpdate, HashEnabled } from "/dainnin/modulos/funciones/creacion.js";
+import { rutas } from "/dainnin/modulos/enrutador/rutas.js";
+import { footer } from "/dainnin/modulos/staticDOM/footer.js";
+import { header } from "/dainnin/modulos/staticDOM/header.js";
 alert()
 HashEnabled();
 
