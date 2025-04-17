@@ -1,6 +1,6 @@
-import { $ } from '/modulos/funciones/utilidades.js';
-import { HTMLatDOM, voidElement, HTMLatObj, classOnBody } from "/modulos/funciones/creacion.js"
-import { ab, setStateCheck, setStateArr } from "/modulos/req/checkToken.js"
+import { $ } from '/dainnin/modulos/funciones/utilidades.js';
+import { HTMLatDOM, voidElement, HTMLatObj, classOnBody } from "/dainnin/modulos/funciones/creacion.js"
+import { ab, setStateCheck, setStateArr } from "/dainnin/modulos/req/checkToken.js"
 document.head.appendChild(HTMLatDOM( 
     `    
     <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/nav.css"></link>
