@@ -10,8 +10,11 @@ header {
 }
 
 
-header img.logo {
-    padding: calc(174px / 3) 0 0 0;
+header a.logo {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 header a,
