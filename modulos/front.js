@@ -2,7 +2,7 @@ import { createUpdate, HashEnabled } from "/dainnin/modulos/funciones/creacion.j
 import { rutas } from "/dainnin/modulos/enrutador/rutas.js";
 import { footer } from "/dainnin/modulos/staticDOM/footer.js";
 import { header } from "/dainnin/modulos/staticDOM/header.js";
-alert()
+
 HashEnabled();
 
 await createUpdate(
