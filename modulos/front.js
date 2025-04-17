@@ -8,9 +8,9 @@ import { header } from '/dainnin/modulos/staticDOM/header.js';
 
 HashEnabled();
 
- await createUpdate(
+export function x(){return await createUpdate(
     rutas,
     {
        header,
        footer
-   })
+   })}
