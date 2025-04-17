@@ -6,12 +6,12 @@ import { urls } from '/dainnin/modulos/env.js';
 export const rutas = {
     "/":{
         componente: 'index',
-        urlModulo: `/modulos/main/index.js`,
+        urlModulo: `/dainnin/modulos/main/index.js`,
     },
 
     "productos": {
         componente: 'productos',
-        urlModulo: `${urls.online.app}/modulos/main/productos/productos.js`,
+        urlModulo: `/dainnin/modulos/main/productos/productos.js`,
     },
     
     "404": HTMLatObj(
@@ -33,6 +33,6 @@ export const rutas = {
 `),
     "login": {
         componente: 'LoginForm',
-        urlModulo: `${urls.online.app}/modulos/main/login.js`
+        urlModulo: `/dainnin/modulos/main/login.js`
     },
 }
