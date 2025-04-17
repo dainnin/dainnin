@@ -1,4 +1,4 @@
-alert()
+
 
 import { createUpdate, HashEnabled } from '/dainnin/modulos/funciones/creacion.js'
     import { rutas } from '/dainnin/modulos/enrutador/rutas.js' 
