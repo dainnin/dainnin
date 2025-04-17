@@ -6,7 +6,7 @@ document.head.appendChild(HTMLatDOM(
     <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/nav.css"></link>
     <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/main.css"></link>
     <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/footer.css"></link>
-    <link rel="stylesheet" href="/modulos/staticDOM/css/header.css"></link> 
+    <link rel="stylesheet" href="/dainnin/modulos/staticDOM/css/header.css"></link> 
     <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/principal.css"></link> 
     
      `   
