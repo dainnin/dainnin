@@ -1,4 +1,4 @@
-import { $, atest, parseHTML, voidThis} from '/https://dainnin.github.io/dainnin/modulos/funciones/utilidades.js';
+import { $, atest, parseHTML, voidThis} from '/dainnin/modulos/funciones/utilidades.js';
 
 export const elements = (a) => atest(a);
 export const HTMLatDOM = (a) => atest(parseHTML(a));
