@@ -1,17 +1,8 @@
-import { HTMLatDOM, voidElement, HTMLatObj } from "/dainnin/modulos/funciones/creacion.js"
-import { $ } from '/dainnin/modulos/funciones/utilidades.js';
-import { urls } from '/dainnin/modulos/env.js';
-$._header.insertAdjacentElement("afterend",HTMLatDOM(`<nav id="navx">
-    <div className="blurx"></div>
+const { $ } = await import(`${urls.online.app}/modulos/funciones/utilidades.js`)
+const { HTMLatDOM, voidElement, HTMLatObj } = await import(`${urls.online.app}/modulos/funciones/creacion.js`)
 
-<div className="noblur">
-    <p>Nuevos Ingresos</p>
-    <p>Descubrí el próximo Funko Pop de tu colección</p>
-    <div id="decoshopx">
-        <p id="decoshop"> SHOP</p>
-    </div></a>
-</div>
-    </nav>`).firstChild)
+
+
 
  async function crearTags ({ data, load, error, element })  {
    
@@ -64,7 +55,7 @@ $._header.insertAdjacentElement("afterend",HTMLatDOM(`<nav id="navx">
         })
         
        principal.forEach(a=>{
-            console.log(a)
+           
             document.getElementById('prsv').appendChild(HTMLatDOM(`
       <div>          
         <div>
@@ -114,6 +105,8 @@ $._header.insertAdjacentElement("afterend",HTMLatDOM(`<nav id="navx">
  })
 export const productos = () => {
     return  HTMLatObj(`
+        <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
+        <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/section.css"></link>
         <div id="prsv" fetchEvent="crearTags||F">
     
     </div>
@@ -129,7 +122,7 @@ export const productos = () => {
     
     </section>
     <head>
-<link rel="stylesheet" href="${urls.online.app}/css/section.css"></link> 
+<link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/section.css"></link> 
 </head>
         `)
    

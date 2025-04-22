@@ -1,4 +1,5 @@
-import { $, atest, parseHTML, voidThis} from '/dainnin/modulos/funciones/utilidades.js';
+
+const { $, atest, parseHTML, voidThis} =await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
 
 export const elements = (a) => atest(a);
 export const HTMLatDOM = (a) => atest(parseHTML(a));
@@ -94,7 +95,7 @@ async function importMod(element) {
     } else if (typeof element === 'object' && element.urlModulo) {
         // Si el elemento procesado es un objeto con `urlModulo`, manejarlo aquí también
         
-        const modulo = await import(location.origin+element.urlModulo);
+        const modulo = await import(urls.online.app+element.urlModulo);
         
         if (typeof modulo[element.componente] === 'function') {
             return await atest(modulo[element.componente]());

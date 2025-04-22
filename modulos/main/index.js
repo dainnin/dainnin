@@ -1,23 +1,23 @@
-import { $ } from '/dainnin/modulos/funciones/utilidades.js';
-import { HTMLatDOM, voidElement, HTMLatObj, classOnBody } from "/dainnin/modulos/funciones/creacion.js"
+const { $ } =await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
+const { HTMLatDOM, voidElement, HTMLatObj, classOnBody } =await import(`${urls.online.app}/modulos/funciones/creacion.js`)
+const { ab, setStateCheck, setStateArr } =await import(`${urls.online.app}/modulos/req/checkToken.js`)
 
-import { urls } from '/dainnin/modulos/env.js';
 
-
-$._header.insertAdjacentElement("afterend",HTMLatDOM(`<nav id="navx">
-    <div className="blurx"></div>
-
-<div className="noblur">
-    <p>Nuevos Ingresos</p>
-    <p>Descubrí el próximo Funko Pop de tu colección</p>
-    <div id="decoshopx">
-        <p id="decoshop"> SHOP</p>
-    </div></a>
-</div>
-    </nav>`).firstChild)
     
 export const index = () =>{
+   $._main.appendChild(HTMLatDOM(`
+      
+        <nav id="navx">
+        <div className="blurx"></div>
     
+    <div className="noblur">
+        <p>Nuevos Ingresos</p>
+        <p>Descubrí el próximo Funko Pop de tu colección</p>
+        <div id="decoshopx">
+            <p id="decoshop"> SHOP</p>
+        </div></a>
+    </div>
+        </nav>`).firstChild)
     fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
     .then(a=>a.json())
     .then(a=>{
@@ -84,6 +84,9 @@ export const index = () =>{
     
     
   return  HTMLatObj(`
+    <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/nav.css"></link>
+        <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
+        <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/section.css"></link>
 <div id="prsv">
 </div>
 <hr></hr>
@@ -94,8 +97,6 @@ export const index = () =>{
 </div>   
 </div>
 </section>
-<head>
-<link rel="stylesheet" href="${urls.online.app}/css/section.css"></link> 
-</head>
-    `)}
 
+    `)}
+    

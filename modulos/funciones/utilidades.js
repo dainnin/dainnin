@@ -38,13 +38,19 @@ export function proxyFlex(obj, p, renderFuncion) {
   // Método para agregar nuevas funciones al conjunto de suscriptores
   const suscribir = (callback) => {
 
-    if (typeof callback === 'function') {
+    if (typeof callback === 'function' ||callback instanceof Element) {
       suscriptores.add(callback);
     }
   };
 
   // Método para notificar a todos los suscriptores
-  const notificar = () => suscriptores.forEach((callback) => callback());
+  const notificar = () => suscriptores.forEach((callback) => 
+    callback instanceof Element?(Object.keys(callback).forEach(k=>{
+    k.indexOf('AUTO')!==-1?callback[k]():''
+  }))
+  :
+  callback());
+  
   const proxy = new Proxy(obj, {
     set(target, prop, value) {
       target[prop] = value;
@@ -52,11 +58,14 @@ export function proxyFlex(obj, p, renderFuncion) {
       notificar();
       // Notifica a todos los suscriptores 
       return true;
-    }, get(target, prop) {
+    }, get(target, prop,value) {
       if (prop === p) {
-
-        notificar();
+       
+       setTimeout(()=>notificar(),1000);
+      
       }
+     
+      
       return target[prop];
     }
   });
@@ -65,17 +74,19 @@ export function proxyFlex(obj, p, renderFuncion) {
   return { proxy, suscribir, suscriptores };
 }
 export function fetchResReq({ setGlobal }) {
+
   if (typeof setGlobal === 'boolean' && setGlobal === true) {
     this.setGlobals = { data: null, load: true, error: null, promise: null };
     this.static = { url: '', opciones: '' };
   }
-
+  
   // Cache temporal para reducir repetidos chequeos innecesarios
   const cacheTemp = new Map();
 
   this.setStatic = (url) => this.static = { url: url[0], opciones: url[1] };
 
   this.fetchE = async (url) => {
+    
     const cacheKey = typeof url === 'object' ? JSON.stringify(url) : url;
 
     // Verificar si ya existe en caché
@@ -89,6 +100,7 @@ export function fetchResReq({ setGlobal }) {
     let error = null;
 
     try {
+     
       const res = typeof url === 'object' ? fetch(url[0], url[1]) : fetch(url);
 
       const fetchPromise = res
@@ -129,7 +141,7 @@ export function fetchResReq({ setGlobal }) {
   Object.defineProperties(this, {
     'fetchR': {
       get: async () => {
-
+        
         const { url, opciones } = this.static;
 
         let data = null;
@@ -139,27 +151,31 @@ export function fetchResReq({ setGlobal }) {
         try {
           // Siempre forzar una nueva solicitud
           const res = await fetch(url, opciones);
-
+          Object.assign(this.setGlobals,{res:res.ok})
           if (!res.ok) throw new Error(`Error: ${res.status}`);
           data = await res.json();
-
+          
           // Actualizar el estado global
 
           if (setGlobal) {
+            
             Object.assign(this.setGlobals, { data, load: false, error: null, promise: null });
+            
           }
-
-          return { data, isLoading: false, error: null };
+          
+          return { data, load: isLoading=false, error: error=null };
         } catch (err) {
+          
           error = err;
           isLoading = false;
-
+          
           if (setGlobal) {
-            Object.assign(this.setGlobals, { data: null, load: false, error });
+            Object.assign(this.setGlobals, { data: null, load: false, error:err });
           }
-
-          return { data: null, isLoading, error };
+          
+          return { data: null, isLoading, error:err };
         }
+        
       }
     }
   });
@@ -383,6 +399,7 @@ const maped = (config) => {
 export const atest = (a, b = null) => {
 
 
+  
   if (!window) {
     const remap = Object.entries(a).map(([x, c]) => {
 
@@ -477,8 +494,8 @@ export const atest = (a, b = null) => {
         if (item !== undefined) {
           Object.entries(item).forEach(([tagName, attributes]) => {
 
-            const elementx = monitorIsConnected(document.createElement(tagName))
-            const element = elementx.target
+            const element = document.createElement(tagName)
+            
             const x = { ...attributes }
             Object.keys(x).forEach((i) => {
 
@@ -532,11 +549,12 @@ export const atest = (a, b = null) => {
                 })()
               }
             }
-
+            Object.keys(element).forEach(a => {
+                 
+              a.indexOf('AUTO') === -1 ? '' : element[a]()
+            })
             if (parent) {
-              Object.keys(element).forEach(a => {
-                a.indexOf('AUTO') === -1 ? '' : element[a]()
-              })
+             
 
               return parent.appendChild(element);
 

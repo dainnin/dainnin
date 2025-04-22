@@ -1,0 +1,60 @@
+
+
+  /*Main###################
+  ###################################
+  ###################*/
+
+  #prsv div {
+    width: 90vw;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  
+  #prsv div div {
+    width: 40vw; 
+    align-items: center;
+    overflow: visible;
+    flex-direction: column;
+    
+  }
+  
+  #prsv img{
+      
+      width: 55vw;
+      height: auto;
+   }
+  #prsv {
+      display: grid;
+      grid-template-rows: auto;
+      margin-top: 4.25em;
+      text-transform: uppercase;
+     
+  
+  }
+  #prsv div:nth-child(even) {
+  
+  flex-direction: row-reverse;
+     
+   }
+  
+   #prsv p {
+    
+    margin-top: 0.375em;
+    font-size: calc( 1rem + 1vw);
+    color: var(--gray1);
+  }
+  
+  #prsv  h2{
+    font-weight: var(--font-medium);
+    font-size: calc( 1rem + 2vw);
+    
+      
+    
+  }
+  #prsv hr {
+    width: 100%;
+    margin-top: 1.75em;
+    border: 3px solid var(--red1);
+  }

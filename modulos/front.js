@@ -1,14 +1,18 @@
-import { createUpdate, HashEnabled } from "/dainnin/modulos/funciones/creacion.js";
-import { rutas } from "/dainnin/modulos/enrutador/rutas.js";
-import { footer } from "/dainnin/modulos/staticDOM/footer.js";
-import { header } from "/dainnin/modulos/staticDOM/header.js";
-
+const { createUpdate, HashEnabled } =await import('/modulos/funciones/creacion.js')
 HashEnabled();
+const { ab } = await import('/modulos/req/checkToken.js')
+const { rutas } = await import('/modulos/enrutador/rutas.js')
+import { footer } from '/modulos/staticDOM/footer.js';
+const { header } = await import( '/modulos/staticDOM/header.js');
 
-await createUpdate(
+
+
+
+ await createUpdate(
     rutas,
     {
-        header: header,
-        footer: footer,
-    }
-);
+        header,
+        footer
+    })
+    
+ab.fetchR

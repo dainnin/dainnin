@@ -1,12 +1,13 @@
 export const urls = {
     online: {
-        api: 'https://dainnin.alwaysdata.net/api/',
-        app: 'https://dainnin.github.io/dainnin/',
+        api: /* 'https://dainnin.alwaysdata.net/api/' */'http://localhost:3069/api/',
+        app: /* 'https://dainnin.github.io/dainnin' */'http://localhost:4069',
         
     },
     local: {
         api: 'http://localhost:3069/api/',
-        app: 'http://dainnin.github.io/dainnin/',
+        app: 'http://dainnin.github.io/test/',
       
     }
-}
+};
+window.urls=urls;

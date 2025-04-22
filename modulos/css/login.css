@@ -1,0 +1,50 @@
+form{
+   display: flex;
+   flex-direction: column; 
+   justify-content: space-around;
+   margin: 0 auto;
+   width: min-content;
+   
+}
+form > label, form > button{
+    margin: 4vh 0;
+    
+}
+button,input,label{
+    font-size: xx-large;
+}
+#menR[type="checkbox"]:checked~label::before{
+content: "Iniciar";
+
+}
+#menR[type="checkbox"]~label::before{
+    display: block;
+    content: "Registrar";
+   
+    text-align: center;
+
+    }
+    #menR{
+        display: none;
+    }
+
+    #menR[type="checkbox"]:not(:checked)~label ~ .registrar{
+ visibility: collapse;
+    }
+    #menR[type="checkbox"]:checked~label ~ :not(.registrar){
+        visibility: collapse;
+           }
+
+           #menR[type="checkbox"]:checked~label::before {
+            background-color: rgb(40, 62, 53); 
+            
+            transition: background-color 1s ease-in-out; 
+          }
+          
+          /* Cambio de color al pasar el mouse */
+          #menR[type="checkbox"]~label::before {
+            background-image: linear-gradient(145deg,rgb(48, 52, 63,0.9),#050a2e59);
+             
+           
+          }
+          

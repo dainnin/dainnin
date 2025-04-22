@@ -1,19 +1,19 @@
-import { $,fetchResReq } from '/dainnin/modulos/funciones/utilidades.js';
+const { $,fetchResReq } =await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
 export const FETCH = new fetchResReq({})
-import { HTMLatObj } from "/dainnin/modulos/funciones/creacion.js"
-import { urls } from '/dainnin/modulos/env.js';
+const { HTMLatObj } =await import(`${urls.online.app}/modulos/funciones/creacion.js`)
+
 
 export const rutas = {
     "/":{
         componente: 'index',
-        urlModulo: `/dainnin/modulos/main/index.js`,
+        urlModulo: '/modulos/main/index.js',
     },
 
     "productos": {
         componente: 'productos',
-        urlModulo: `/dainnin/modulos/main/productos/productos.js`,
+        urlModulo: '/modulos/main/productos/productos.js',
     },
-    
+    "testText": HTMLatObj(await FETCH.text('/modulos/test.html')),
     "404": HTMLatObj(
         `<div>
        <h1 className="titulo"><a href="/" >Inicio </a></h1>
@@ -33,6 +33,6 @@ export const rutas = {
 `),
     "login": {
         componente: 'LoginForm',
-        urlModulo: `/dainnin/modulos/main/login.js`
+        urlModulo: '/modulos/main/login.js'
     },
 }
