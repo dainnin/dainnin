@@ -77,7 +77,7 @@ header p {
 .coa:focus~.collapsemen {
     opacity: 1;
     visibility: visible;
-    overflow-y: scroll;
+    
     max-height: 70vh;
     transform: translateY(0);
 }
@@ -103,6 +103,6 @@ header p {
         right: 5vw;     /* Margen hacia la derecha */
         max-width: 80vw; /* Ajusta el ancho máximo */
         font-size: calc(0.8rem + 1vw); /* Texto más pequeño */
-    
+    overflow-y: scroll;
 }
 }
