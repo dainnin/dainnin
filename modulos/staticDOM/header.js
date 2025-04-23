@@ -94,7 +94,7 @@ const crearTagsHeader = () => {
 
   <div>
     <p className="coa" tabIndex="0"><img id="carrito" src="https://dainnin.github.io/dainnin/img/icons/cart-icon.svg"></img></p>
-    <div className="collapsemen">
+    <div className="collapsemen carrito">
       <li>Producto A - $10<button>Eliminar</button></li>
       <li>Producto B - $15<button>Eliminar</button></li>
       <li>Producto B - $15<button>Eliminar</button></li>
