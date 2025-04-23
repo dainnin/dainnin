@@ -1,44 +1,108 @@
 <div>
-    <h1>hola</h1>
-    <p>adaaaaaaaaaaaaaaaaa</p>
+  <h1>hola</h1>
+  <p>adaaaaaaaaaaaaaaaaa</p>
 </div>
 <style>
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
 
-.toggle {
-  background-color: #008cba;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
+  .toggle {
+    background-color: #008cba;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
 
-.dropdown-content {
+  .dropdown-content {
     opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-  visibility: hidden;
-  
-  position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  
-}
+    transform: translateY(-10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    visibility: hidden;
 
-.toggle:focus ~ .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .toggle:focus~.dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 </style>
 <div class="dropdown">
-    <button class="toggle" tabindex="0">Menú</button>
-    <div class="dropdown-content">
-      <a href="#opcion1">Opción 1</a>
-      <a href="#opcion2">Opción 2</a>
-      <a href="#opcion3">Opción 3</a>
+  <button class="toggle" tabindex="0">Menú</button>
+  <div class="dropdown-content">
+    <a href="#opcion1">Opción 1</a>
+    <a href="#opcion2">Opción 2</a>
+    <a href="#opcion3">Opción 3</a>
+  </div>
+</div>
+
+
+<a className="logo" href="/">
+  <img className="logo" id="loghr" alt=""
+    src="https://dainnin.github.io/dainnin/img/branding/logo_light_horizontal.svg"></img>
+</a>
+<div id="menuhr" className="menuMD">
+  <div>
+    <p className="coa x1" tabIndex="0">shop</p>
+    <div className="collapsemen x1">
+      <a href="/">Novedades</a>
+      <hr>
+      </hr>
+      <a href="/sectores/shop">Categoria</a>
+      <hr>
+      </hr>
+      <a href="/ds">Mas Vendidos</a>
     </div>
   </div>
+  <div>
+    <p className="coa x1" tabIndex="0"> Contacto</p>
+    <div className="collapsemen x1">
+      <a href="/soporte">Soporte</a>
+      <hr>
+      </hr>
+      <a href="/help">Ayuda</a>
+      <hr>
+      </hr>
+      <a href="/helpmy">Atencion personalizada</a>
+    </div>
+  </div>
+  <div xAUTO="xAUTO||F">
+
+  </div>
+  <a xAUTO="xAUTO||F" className="coa"></a>
+
+
+  <div>
+    <p><img id="carrito" src="https://dainnin.github.io/dainnin/img/icons/cart-icon.svg"></img></p>
+    <div className="collapsemen">
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+    </div>
+  </div>
+
+
+</div>
+<link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/footer.css">
+</link>
+<link rel="stylesheet" href="/modulos/staticDOM/css/header.css">
+</link>
+<link rel="stylesheet" href="${urls.online.app}/modulos/css/principal.css">
+</link>

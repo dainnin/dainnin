@@ -77,6 +77,8 @@ header p {
 .coa:focus~.collapsemen {
     opacity: 1;
     visibility: visible;
+    overflow-y: scroll;
+    height: 70vh;
     transform: translateY(0);
 }
 

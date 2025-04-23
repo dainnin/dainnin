@@ -2,7 +2,7 @@ const { $,proxyFlex ,fetchResReq } =await import(`${urls.online.app}/modulos/fun
 
 
 const abc = new fetchResReq({ setGlobal: true });
-abc.setStatic([`${urls.online.api}checkToken`, {
+abc.setStatic([`${urls.local.api}checkToken`, {
   "method": 'GET',
   "credentials": 'include', // Asegura que las cookies se envíen
   "headers": {
