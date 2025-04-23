@@ -91,8 +91,8 @@ const crearTagsHeader = () => {
             
         
         </div>
-<link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/footer.css"></link>
-    <link rel="stylesheet" href="/modulos/staticDOM/css/header.css"></link> 
+<link rel="stylesheet" href="${urls.online.app}/css/footer.css"></link>
+    <link rel="stylesheet" href="${urls.online.app}/modulos/staticDOM/css/header.css"></link> 
     <link rel="stylesheet" href="${urls.online.app}/modulos/css/principal.css"></link> 
     
      
