@@ -98,10 +98,11 @@ header p {
     }
 
 
-.menuMD .collapsemen{
-color:red;
-    rigth:0;
+    .collapsemen.carrito {
+        left: auto;
+        right: 5vw;     /* Margen hacia la derecha */
+        max-width: 80vw; /* Ajusta el ancho máximo */
+        font-size: calc(0.8rem + 1vw); /* Texto más pequeño */
+    
 }
-
-
 }
