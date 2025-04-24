@@ -32,7 +32,7 @@ async function login(event) {
             "method": "POST",
 
         }]).then((a)=>{
-a.error===null?alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`):alert(a.error)
+a.error===null?alert(name==='login'?form.user.value+" has iniciado con exito":`has ${form.user.value} Registrado con exito`):alert('Error al registrar')
 a.error===null&&name==='register'?menR.checked=false:''
 ab.fetchR
 
