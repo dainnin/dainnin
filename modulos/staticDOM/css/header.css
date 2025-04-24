@@ -82,7 +82,9 @@ header p {
 .carrito{
 max-height: 50vh;
 overflow-y: scroll;
-        flex-shrink: 1;
+flex-shrink: 1;
+left: auto;
+right: 5vw;     /* Margen hacia la derecha */    
 }
 
 
@@ -98,10 +100,4 @@ overflow-y: scroll;
         align-items: center;
 
     }
-
-
-    .carrito {
-        left: auto;
-        right: 5vw;     /* Margen hacia la derecha */
-        }
 }
