@@ -98,11 +98,11 @@ header p {
     }
 
 
-    .collapsemen.carrito {
+    .carrito {
         left: auto;
         right: 5vw;     /* Margen hacia la derecha */
-        max-height: 50vh; /* Ajusta el ancho máximo */
-        font-size: calc(0.8rem + 1vw); /* Texto más pequeño */
-    overflow-y: scroll;
+        overflow-y: scroll;
+    max-height: 70vh;
+    flex-shrink: 1;
 }
 }
