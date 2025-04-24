@@ -76,12 +76,14 @@ header p {
 
 .coa:focus~.collapsemen {
     opacity: 1;
-    visibility: visible;
-    
-    max-height: 70vh;
+    visibility: visible;    
     transform: translateY(0);
 }
-
+.carrito{
+max-height: 40vh;
+overflow-y: scroll;
+        flex-shrink: 1;
+}
 
 
 
@@ -101,8 +103,5 @@ header p {
     .carrito {
         left: auto;
         right: 5vw;     /* Margen hacia la derecha */
-        overflow-y: scroll;
-    max-height: 60vh;
-    flex-shrink: 1;
-}
+        }
 }
