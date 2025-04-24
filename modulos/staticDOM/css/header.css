@@ -101,7 +101,7 @@ header p {
     .collapsemen.carrito {
         left: auto;
         right: 5vw;     /* Margen hacia la derecha */
-        max-height: 50hw; /* Ajusta el ancho máximo */
+        max-height: 50vh; /* Ajusta el ancho máximo */
         font-size: calc(0.8rem + 1vw); /* Texto más pequeño */
     overflow-y: scroll;
 }
