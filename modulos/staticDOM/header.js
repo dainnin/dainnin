@@ -108,6 +108,20 @@ const crearTagsHeader = () => {
       <li>Producto A - $10<button>Eliminar</button></li>
       <li>Producto B - $15<button>Eliminar</button></li>
       <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto A - $10<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+      <li>Producto B - $15<button>Eliminar</button></li>
+    
     </div>
   </div>
 
