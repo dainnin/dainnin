@@ -21,7 +21,9 @@ const crearTagsHeader = () => {
                 mode: 'cors',
                 credentials: "include",
             }
-        ).then(a => { ab.fetchR });
+        ).then(a => { 
+            alert("deslogueo")
+            ab.fetchR });
 
 
     }
