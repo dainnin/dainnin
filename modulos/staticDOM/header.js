@@ -22,7 +22,7 @@ const crearTagsHeader = () => {
                 credentials: "include",
             }
         ).then(a => { 
-            alert("deslogueo")
+            alert(ab.setGlobals.data.user+" esta desconectando")
             ab.fetchR });
 
 
