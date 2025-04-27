@@ -32,8 +32,7 @@ async function login(event) {
             "method": "POST",
 
         }]).then((a)=>{
-             
- if(a.error===null){
+   if(a.error===null){
                 alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
             }else{
                 alert(a.error)
@@ -41,11 +40,6 @@ async function login(event) {
 
 a.error===null&&name==='register'?menR.checked=false:''
 ab.fetchR
-}else{
-    alert('Error al registrar')
-}
-             
-
 
 
         })
