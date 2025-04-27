@@ -33,14 +33,14 @@ async function login(event) {
 
         }]).then((a)=>{
              
-if(a.error===null){
-alert(form.user.value+" has iniciado con exito")
-if(name==='register'){
-    alert(`has ${form.user.value} Registrado con exito`)
-menR.checked=false
+ if(a.error===null){
+                alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
+            }else{
+                alert(a.error)
+            }
 
-}
-    ab.fetchR
+a.error===null&&name==='register'?menR.checked=false:''
+ab.fetchR
 }else{
     alert('Error al registrar')
 }
