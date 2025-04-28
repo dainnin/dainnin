@@ -16,9 +16,9 @@ const { HTMLatDOM, voidElement, HTMLatObj } = await import(`${urls.online.app}/m
          data.forEach(a => {
              element.appendChild(HTMLatDOM(
                  `<div>
-                     <h3>${a.nombre}</h4>
+                     <h3>${a.nombre}</h3>
                      <h4>${a.id}</h4>
-                     <h5>${a.descripcion}</h4>
+                     <h5>${a.descripcion}</h5>
                  </div>
                  <div className="content">
                  </div>
@@ -57,15 +57,26 @@ const { HTMLatDOM, voidElement, HTMLatObj } = await import(`${urls.online.app}/m
        principal.forEach(a=>{
            
             document.getElementById('prsv').appendChild(HTMLatDOM(`
+                <style>
+                #prsv{
+                margin:0;
+                }
+                </style>
+                
       <div>          
         <div>
          <div>
-         <h2>${a["nompro"]}</h2>
-         
+            <h2>${a["nompro"]}</h2>
          </div>
          <hr></hr>
-         <p>${a["descrip"]}</p>
+            <p>${a["descrip"]}</p>
+         <div className="producto" precio="${a["precio"]}" nombre="${a["nompro"]}">
+            <button onclick="agregarAlCarrito||F">Añadir al carrito</button>
+            <div>
+            </div>
+            <p>Precio: ${a["precio"]}</p>
          </div>
+        </div>
          <img src="${a["imgz"]}"></img>
     </div> 
                 `))

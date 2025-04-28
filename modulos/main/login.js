@@ -32,7 +32,7 @@ async function login(event) {
             "method": "POST",
 
         }]).then((a)=>{
-   if(a.error===null){
+            if(a.error===null){
                 alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
             }else{
                 alert(a.error)
@@ -40,7 +40,6 @@ async function login(event) {
 
 a.error===null&&name==='register'?menR.checked=false:''
 ab.fetchR
-
 
         })
 
@@ -51,7 +50,7 @@ ab.fetchR
 $.referencias(login)
 export const LoginForm = () => {
    
-   return HTMLatObj(`
+    return HTMLatObj(`
     <link rel="stylesheet" href="${urls.online.app}/modulos/css/login.css"></link>
      <input id="menR" name="menR" type="checkbox"></input><label htmlFor="menR" ></label>
     <form onclick="login||F" className="registrar" name="register">

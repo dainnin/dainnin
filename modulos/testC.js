@@ -12,7 +12,10 @@ let total = 0;
     actualizarCarrito();
 
 
-function agregarAlCarrito(nombre, precio) {
+function agregarAlCarrito() {
+    const nombre='this.name';
+    const precio=11111
+
     carrito.push({ nombre, precio });
     total += precio;
 
