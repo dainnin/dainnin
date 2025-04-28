@@ -1,3 +1,4 @@
+const { $ } = await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
 const { HTMLatDOM, voidElement, HTMLatObj } = await import(`${urls.online.app}/modulos/funciones/creacion.js`)
 const { ab, setStateCheck, setStateArr} = await import(`${urls.online.app}/modulos/req/checkToken.js`)
 $._main.id = 'mainx'
