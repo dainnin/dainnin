@@ -13,7 +13,7 @@ export const rutas = {
         componente: 'productos',
         urlModulo: '/modulos/main/productos/productos.js',
     },
-    "testText": HTMLatObj(await FETCH.text('${urls.online.app}/modulos/test.html')),
+    "testText": HTMLatObj(await FETCH.text(urls.online.app+'/modulos/test.html')),
     "404": HTMLatObj(
         `<div>
        <h1 className="titulo"><a href="/" >Inicio </a></h1>
