@@ -1,125 +1,60 @@
 
-body{
-  display: grid;
-  grid-template-columns: 100vw;
-  grid-template-rows: 144px calc(22.5rem + 10vw) auto 200px;
-  /*grid-template-areas: "a" "b" "c" "d" "e";*/
-  grid-template-areas: "a" "n" "b" "c";
-}
-/*Main###################
-###################################
-###################*/
-main{
-  grid-area: b;
-}
 
-#prsv div {
-  width: 90vw;
-  margin: 0 auto;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
+  /*Main###################
+  ###################################
+  ###################*/
 
-#prsv div div {
-  width: 40vw; 
-  align-items: center;
-  overflow: visible;
-  flex-direction: column;
-  
-}
-
-#prsv img{
-    
-    width: 55vw;
-    height: auto;
- }
-#prsv {
-    display: grid;
-    grid-template-rows: auto;
-    margin-top: 4.25em;
-    text-transform: uppercase;
-   
-
-}
-#prsv div:nth-child(even) {
-
-flex-direction: row-reverse;
-   
- }
-
- #prsv p {
-  
-  margin-top: 0.375em;
-  font-size: calc( 1rem + 1vw);
-  color: var(--gray1);
-}
-
-#prsv  h2{
-  font-weight: var(--font-medium);
-  font-size: calc( 1rem + 2vw);
-  
-    
-  
-}
-#prsv hr {
-  width: 100%;
-  margin-top: 1.75em;
-  border: 3px solid var(--red1);
-}
-/*@media only screen and (max-width:770px){
-
-  #prsv p {
-   
-   width: 35vw;
-   font-size: calc( 1rem + 0.5vw);
-   
- }
- #prsv  h2{
-   width: 35vw;
-   font-size: calc( 1rem + 2vw);
-   
-     
-   
- }
- #prsv div div {
-   width: 35vw; 
-   
- }
- 
- #prsv img{
-     
-     width: 60vw;
-     
+  #prsv div {
+    width: 90vw;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
   }
- 
- }
- 
-/*@media only screen and (max-width:560px){
-
- #prsv p {
   
-  width: 35vw;
-  font-size: 1.1rem;
-  
-}
-#prsv  h2{
-  width: 35vw;
-  font-size: 1.7rem;
-  
+  #prsv div div {
+    width: 40vw; 
+    align-items: center;
+    overflow: visible;
+    flex-direction: column;
     
+  }
   
-}
-#prsv div div {
-  width: 35vw; 
+  #prsv img{
+      
+      width: 55vw;
+      height: auto;
+   }
+  #prsv {
+      display: grid;
+      grid-template-rows: auto;
+      margin-top: 4.25em;
+      text-transform: uppercase;
+     
   
-}
-
-#prsv img{
+  }
+  #prsv div:nth-child(even) {
+  
+  flex-direction: row-reverse;
+     
+   }
+  
+   #prsv p {
     
-    width: 60vw;
+    margin-top: 0.375em;
+    font-size: calc( 1rem + 1vw);
+    color: var(--gray1);
+  }
+  
+  #prsv  h2{
+    font-weight: var(--font-medium);
+    font-size: calc( 1rem + 2vw);
     
- }
-
-}
-
+      
+    
+  }
+  #prsv hr {
+    width: 100%;
+    margin-top: 1.75em;
+    border: 3px solid var(--red1);
+  }

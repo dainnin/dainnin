@@ -25,15 +25,16 @@ html{
     user-select: none;
 }
 body{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
     font-family: "Raleway", sans-serif;
+    height: 100vh;
     color: var(--black);
-    
-}
+    }
 
 *{
-    
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -42,8 +43,8 @@ body{
 .derc{
     font-size: 30px;
     color: aliceblue;
-    background-color: transparent;
+    background: transparent;
     border: none; 
-     
-        
 }
+
+   
