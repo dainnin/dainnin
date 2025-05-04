@@ -32,11 +32,15 @@
             margin: 20px auto;
             list-style: none;
             padding: 0;
-            text-align: left;
-            max-width: 300px;
+            max-height: 200px; /* Limita el tamaño de la lista */
+            overflow-y: auto; /* Añade scroll vertical */
+            border: 1px solid #ccc; /* Estilo para la lista */
+            padding: 10px;
         }
         .audio-item {
             margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -47,23 +51,24 @@
     <input type="file" id="fileInput" accept="audio/*" multiple>
     <button onclick="addFiles()">Agregar Archivos</button>
 
-    <!-- Lista de reproducción -->
-    <ul id="playlist"></ul>
-
     <!-- Audio -->
-    <audio id="audioPlayer"></audio>
+    <audio id="audioPlayer" controls style="display:none;"></audio>
 
     <!-- Botones de control -->
     <div id="player-controls">
         <button onclick="prevAudio()">Anterior</button>
         <button onclick="togglePlay()">Play/Pausa</button>
         <button onclick="nextAudio()">Siguiente</button>
+        <button onclick="playRandom()">Aleatorio</button>
     </div>
 
     <!-- Barra de progreso -->
     <div id="progress-bar">
         <input type="range" id="progress" value="0" step="1" onchange="seekAudio()">
     </div>
+
+    <!-- Lista de reproducción -->
+    <ul id="playlist"></ul>
 
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
@@ -82,10 +87,20 @@
                 const li = document.createElement("li");
                 li.className = "audio-item";
                 li.textContent = file.name;
+
+                // Botón para reproducir
                 const playButton = document.createElement("button");
-                playButton.textContent = "Reproducir";
+                playButton.textContent = "▶";
                 playButton.onclick = () => playAudio(index);
+
+                // Botón para eliminar
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "❌";
+                deleteButton.onclick = () => deleteAudio(index);
+
+                // Añadir botones al elemento de la lista
                 li.appendChild(playButton);
+                li.appendChild(deleteButton);
                 playlistElement.appendChild(li);
             });
         }
@@ -112,15 +127,26 @@
 
         // Función para ir al siguiente audio
         function nextAudio() {
-            currentIndex = (currentIndex + 1) % playlist.length;
-            loadAudio(currentIndex);
+            currentIndex = (currentIndex + 1) % playlist.length; // Avanzar en la lista
+            loadAudio(currentIndex); // Cargar y reproducir el siguiente audio
         }
 
         // Función para ir al audio anterior
         function prevAudio() {
-            currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+            currentIndex = (currentIndex - 1 + playlist.length) % playlist.length; // Retroceder en la lista
+            loadAudio(currentIndex); // Cargar y reproducir el audio anterior
+        }
+
+        // Función para reproducir aleatoriamente
+        function playRandom() {
+            currentIndex = Math.floor(Math.random() * playlist.length);
             loadAudio(currentIndex);
         }
+
+        // Escuchar cuando termine una canción para pasar automáticamente a la siguiente
+        audioPlayer.addEventListener('ended', () => {
+            nextAudio(); // Avanzar automáticamente al siguiente
+        });
 
         // Función para agregar archivos locales a la lista
         function addFiles() {
@@ -134,9 +160,16 @@
                     }
                 });
                 updatePlaylist();
+                fileInput.value = ""; // Limpiar input después de agregar
             } else {
                 alert("Por favor selecciona al menos un archivo de audio.");
             }
+        }
+
+        // Función para eliminar una canción de la lista
+        function deleteAudio(index) {
+            playlist.splice(index, 1); // Eliminar del array
+            updatePlaylist(); // Actualizar visualmente
         }
 
         // Función para actualizar la barra de progreso
