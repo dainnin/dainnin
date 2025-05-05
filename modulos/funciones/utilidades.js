@@ -32,7 +32,7 @@ function monitorIsConnected(element) {
   return y//get
 }
 
-export function proxyFlex(obj, p, renderFuncion) {
+export function proxyFlex(obj, p,sp, renderFuncion) {
   const suscriptores = new Set(); // Almacenar callbacks
 
   // Método para agregar nuevas funciones al conjunto de suscriptores
@@ -54,11 +54,16 @@ export function proxyFlex(obj, p, renderFuncion) {
   const proxy = new Proxy(obj, {
     set(target, prop, value) {
       target[prop] = value;
-      console.log(`Propiedad '${prop}' actualizada en setGlobals:`, value);
-      notificar();
+      
+      if (prop === sp) {
+       console.log(sp)
+        setTimeout(()=>notificar(),325);
+       
+       }
       // Notifica a todos los suscriptores 
-      return true;
-    }, get(target, prop,value) {
+      return target[prop] ;
+    }, get(target, prop) {
+      // console.log(target,prop)
       if (prop === p) {
        
        setTimeout(()=>notificar(),1000);
@@ -498,12 +503,12 @@ export const atest = (a, b = null) => {
             
             const x = { ...attributes }
             Object.keys(x).forEach((i) => {
-
+             
               if (typeof x[i] === 'string' && x[i].length - 3 === x[i].indexOf('||F')) {
 
                 $._referenciasInternas.forEach((p, m) => {
                   typeof x[i] === 'string' && p.name === x[i].replace('||F', '') ? x[i] = $._referenciasInternas[m] : ''
-
+                  
                 })
 
               }

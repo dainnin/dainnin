@@ -12,9 +12,9 @@ abc.setStatic([`${urls.online.api}checkToken`, {
 }])
  const abcPorxy = proxyFlex(abc,'fetchR');
 
- export const ab = abcPorxy.proxy
+ export const ab = abcPorxy.proxy;
 
- export const setStateCheck=abcPorxy.suscribir
+ export const setStateCheck=abcPorxy.suscribir;
  function loginFront(){
   
     if(ab.setGlobals.data!==null){
