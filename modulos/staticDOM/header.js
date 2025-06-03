@@ -79,7 +79,7 @@ const crearTagsHeader = () => {
   return HTMLatObj(`
    <a className="logo" href="/">
   <img className="logo" id="loghr" alt=""
-    src="https://dainnin.github.io/dainnin/img/branding/logo_light_horizontal.svg"></img>
+    src="${urls.online.app}/img/branding/logo_light_horizontal.svg"></img>
 </a>
 <div id="menuhr" className="menuMD">
   <div>
@@ -157,7 +157,7 @@ button {
 }
 </style>
     <p className="coa carritoTotal" tabIndex="0">
-      <img src="https://dainnin.github.io/dainnin/img/icons/cart-icon.svg"></img>
+      <img src="${urls.online.app}/img/icons/cart-icon.svg"></img>
       <b id="totalProd">${carritoGuardado.length || 0}</b> 
     </p>
     <div className="collapsemen carrito" id="carrito" carroAUTO="actualizarCarrito||F">
@@ -167,7 +167,7 @@ button {
 
 
 </div>
-<link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/footer.css">
+<link rel="stylesheet" href="${urls.online.app}/css/footer.css">
 </link>
 <link rel="stylesheet" href="${urls.online.app}/modulos/staticDOM/css/header.css">
 </link>
