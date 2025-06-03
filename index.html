@@ -1,44 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    
     <meta charset="UTF-8">
- 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-3946532391760902">
-<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://pagead2.googlesyndication.com;">
 
-    <title>Document</title>
+    <!-- SEO y Ads -->
+    <meta name="description" content="Página con contenido dinámico, diseño en Canvas y Google AdSense.">
+    <meta name="keywords" content="HTML, JavaScript, Canvas, Chatbot, IA, WebGPU, SEO, AdSense">
+    <meta name="author" content="Tu Nombre o Marca">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-3946532391760902">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://pagead2.googlesyndication.com;">
+
+    <title>Diseño Web en Canvas + IA | Monetización con Google AdSense</title>
+
+    <!-- Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3946532391760902"
      crossorigin="anonymous"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3946532391760902"
-     data-ad-client="ca-pub-3946532391760902" data-checked-head="true" ></script>
-    <script >
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  <script type="module" src="/modulos/env.js"> </script>
-    <script type="module" src="/modulos/front.js" > </script> 
-    
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Módulos externos -->
+    <script type="module" src="/modulos/env.js"></script>
+    <script type="module" src="/modulos/front.js"></script>
+
+    <style>
+        article {
+            position: absolute;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(100vw);
+        }
+
+        .visible {
+            transform: translateX(0);
+        }
+    </style>
 </head>
 
 <body>
-    <header name="_header">
-       
-    </header>
-   
-    
-    <main name="_main">
+    <header name="_header"></header>
 
-        <h1>Cargando datos .....</h1>
+    <!-- Artículo separado, antes del main -->
+    <article id="content">
+        <h1>Explora Diseño Web en Canvas y Monetización con AdSense</h1>
+        <h2>¿Cómo funciona?</h2>
+        <h2>Optimización SEO y Publicidad</h2>
+        <p>Cargando datos...</p>
+    </article>
 
-    </main>
+    <main name="_main"></main>
 
-
+    <!-- Espacio para anuncios -->
     <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-3946532391760902" data-ad-slot="8266906167"></ins>
 
+    <footer name="_footer"></footer>
 
-<footer name="_footer"></footer>    
+    <script>
+        // Función para mostrar el artículo
+        function mostrarContenido() {
+            document.getElementById("content").classList.add("visible");
+        }
+
+        // Simulación de carga inicial
+        setTimeout(mostrarContenido, 1000);
+    </script>
 </body>
 
 </html>
