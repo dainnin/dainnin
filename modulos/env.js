@@ -1,7 +1,7 @@
 export const urls = {
     online: {
         api: 'https://dainnin.alwaysdata.net/api/' ,
-        app: 'https://dainnin.github.io/dainnin' ,
+        app: 'https://dainnin.github.io/' ,
         
     },
     local: {
