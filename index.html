@@ -16,8 +16,7 @@
     <title>Diseño Web en Canvas + IA | Monetización con Google AdSense</title>
 
     <!-- Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3946532391760902"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3946532391760902" crossorigin="anonymous"></script>
 
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
@@ -28,16 +27,32 @@
     <script type="module" src="/modulos/front.js"></script>
 
     <style>
+        /* Contenedor para organizar el Article */
+        .article-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Article oculto a la derecha */
         .article {
             position: absolute;
             width: 100%;
+            height: auto;
             transition: transform 0.5s ease-in-out;
             transform: translateX(100vw);
-            z-index:999999;
+            z-index: 99999;
+            background: white;
+            padding: 20px;
         }
 
         .visible {
             transform: translateX(0);
+        }
+
+        /* Main sin interferencias */
+        main {
+            width: 100%;
         }
     </style>
 </head>
@@ -46,12 +61,14 @@
     <header name="_header"></header>
 
     <!-- Artículo separado, antes del main -->
-    <article class="article" id="content">
-        <h1>Explora Diseño Web en Canvas y Monetización con AdSense</h1>
-        <h2>¿Cómo funciona?</h2>
-        <h2>Optimización SEO y Publicidad</h2>
-        <p>Cargando datos...</p>
-    </article>
+    <div class="article-container">
+        <article class="article" id="content">
+            <h1>Explora Diseño Web en Canvas y Monetización con AdSense</h1>
+            <h2>¿Cómo funciona?</h2>
+            <h2>Optimización SEO y Publicidad</h2>
+            <p>Cargando datos...</p>
+        </article>
+    </div>
 
     <main name="_main"></main>
 
