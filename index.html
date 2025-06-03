@@ -11,8 +11,31 @@
     <meta name="author" content="Tu Nombre o Marca">
     <meta name="robots" content="index, follow">
     <meta name="google-adsense-account" content="ca-pub-3946532391760902">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://pagead2.googlesyndication.com;">
 
-    <title>Diseño Web en Canvas + IA | Monetización con Google AdSense</title>
+    <!-- Open Graph (SEO y redes sociales) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="Tu Sitio Web">
+    <meta property="og:title" content="Diseño Web con Canvas + IA | Monetización con AdSense">
+    <meta property="og:url" content="https://TU-DOMINIO.github.io/">
+    <meta property="og:description" content="Explora cómo diseñar interfaces con Canvas y optimizar ingresos con Google AdSense.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:site" content="@TuCuenta">
+    <meta name="twitter:title" content="Diseño Web con Canvas + IA">
+    <meta name="twitter:description" content="Optimización SEO y monetización en GitHub Pages">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Validaciones en Google y Bing -->
+    <meta name="google-site-verification" content="TU-CÓDIGO-DE-VERIFICACIÓN">
+    <meta name="msvalidate.01" content="TU-CÓDIGO-DE-VALIDACIÓN-MS">
+
+    <!-- Canonical y RSS -->
+    <link rel="canonical" href="https://TU-DOMINIO.github.io/">
+    <link href="https://TU-DOMINIO.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Feed del sitio">
+
+    <title>Diseño Web con Canvas + IA | Monetización con Google AdSense</title>
 
     <!-- Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3946532391760902" crossorigin="anonymous"></script>
@@ -25,15 +48,14 @@
     <script type="module" src="/modulos/env.js"></script>
     <script type="module" src="/modulos/front.js"></script>
 
+    <!-- Estilos -->
     <style>
-        /* Contenedor para organizar el Article */
         .article-container {
             position: relative;
             width: 100%;
             overflow: hidden;
         }
 
-        /* Article oculto a la derecha */
         .article {
             position: absolute;
             width: 100%;
@@ -47,17 +69,15 @@
         }
 
         .visible {
-            visibility:visibility;
             transform: translateX(0);
         }
 
-        /* Main sin interferencias */
         main {
             width: 100%;
         }
 
-        /* Botón de acceso */
-        .btn-acceder {
+        /* Botón flotante */
+        .btn-toggle {
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -71,7 +91,7 @@
             z-index: 99999;
         }
 
-        .btn-acceder:hover {
+        .btn-toggle:hover {
             background: #0056b3;
         }
     </style>
@@ -80,8 +100,8 @@
 <body>
     <header name="_header"></header>
 
-    <!-- Botón de acceso al artículo -->
-    <button class="btn-acceder" onclick="mostrarContenido()">Ver Información</button>
+    <!-- Botón para alternar la visibilidad del artículo -->
+    <button class="btn-toggle" onclick="toggleContenido()">Ver Información</button>
 
     <!-- Artículo separado, antes del main -->
     <div class="article-container">
@@ -101,11 +121,17 @@
     <footer name="_footer"></footer>
 
     <script>
-        alert()
-        // Función para mostrar el artículo al hacer clic en el botón
-        function mostrarContenido() {
-            alert("&&777")
-            document.getElementById("content").classList.add("visible");
+        function toggleContenido() {
+            const article = document.getElementById("content");
+            const button = document.querySelector(".btn-toggle");
+
+            if (article.classList.contains("visible")) {
+                article.classList.remove("visible");
+                button.innerText = "Ver Información";
+            } else {
+                article.classList.add("visible");
+                button.innerText = "Ocultar Información";
+            }
         }
     </script>
 </body>
