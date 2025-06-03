@@ -84,9 +84,9 @@ export const index = () =>{
     
     
   return  HTMLatObj(`
-    <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/nav.css"></link>
+    <link rel="stylesheet" href="${urls.online.app}/css/nav.css"></link>
         <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
-        <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/section.css"></link>
+        <link rel="stylesheet" href="${urls.online.app}/css/section.css"></link>
 <div id="prsv">
 </div>
 <hr></hr>
