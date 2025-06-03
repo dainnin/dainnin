@@ -23,8 +23,8 @@
     </script>
 
     <!-- Módulos externos -->
-  <!--  <script type="module" src="/modulos/env.js"></script>
-    <script type="module" src="/modulos/front.js"></script>-->
+    <script type="module" src="/modulos/env.js"></script>
+    <script type="module" src="/modulos/front.js"></script>
 
     <style>
         /* Contenedor para organizar el Article */
@@ -36,7 +36,6 @@
 
         /* Article oculto a la derecha */
         .article {
-            display:block;
             position: absolute;
             width: 100%;
             height: auto;
@@ -45,6 +44,7 @@
             z-index: 99999;
             background: white;
             padding: 20px;
+            display: block;
         }
 
         .visible {
@@ -55,11 +55,33 @@
         main {
             width: 100%;
         }
+
+        /* Botón de acceso */
+        .btn-acceder {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 99999;
+        }
+
+        .btn-acceder:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 
 <body>
     <header name="_header"></header>
+
+    <!-- Botón de acceso al artículo -->
+    <button class="btn-acceder" onclick="mostrarContenido()">Ver Información</button>
 
     <!-- Artículo separado, antes del main -->
     <div class="article-container">
@@ -79,13 +101,10 @@
     <footer name="_footer"></footer>
 
     <script>
-        // Función para mostrar el artículo
+        // Función para mostrar el artículo al hacer clic en el botón
         function mostrarContenido() {
             document.getElementById("content").classList.add("visible");
         }
-
-        // Simulación de carga inicial
-        setTimeout(mostrarContenido, 1000);
     </script>
 </body>
 
