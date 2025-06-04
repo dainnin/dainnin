@@ -117,7 +117,7 @@ const { HTMLatDOM, voidElement, HTMLatObj } = await import(`${urls.online.app}/m
 export const productos = () => {
     return  HTMLatObj(`
         <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
-        <link rel="stylesheet" href="https://dainnin.github.io/dainnin/css/section.css"></link>
+        <link rel="stylesheet" href="https://dainnin.github.io/css/section.css"></link>
         <div id="prsv" fetchEvent="crearTags||F">
     
     </div>
