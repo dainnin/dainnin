@@ -12,9 +12,8 @@ z-index:100;
 #navx 
 {
 display:flex;
-    backdrop-filter: blur(2px);
-    width: 100vw;
-    height: calc(22.5rem + 10vw);
+    
+    
     background-size: cover;   
 background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
@@ -24,7 +23,10 @@ overflow:hidden;
 
 
 .blurx{
+    backdrop-filter: blur(2px);
     display:flex;
+    width: 100vw;
+    height: calc(22.5rem + 10vw);
 }
 
 
