@@ -10,14 +10,11 @@
 z-index:100;
 }
 
-#navx{
+#navx, .blurx{
     width: 100vw;
     height: calc(22.5rem + 10vw);
 }
-.blurx{
-    width: 100vw;
-    height: calc(22.5rem + 10vw);
-}
+
 
 .noblur{
     color: white;
@@ -34,11 +31,10 @@ user-select: none;
    color: black;
    padding: 4rem 0 0 0; 
 }
-#navx div:nth-child(2)>p:nth-child(1){
+.bannerTittle{
 font-size: calc(2rem + 2.25vw);
 }
-
-#navx div:nth-child(2)>p:nth-child(2){
+.banerText{
     font-size: calc(1.5rem + 0.8vw);
     }
 
