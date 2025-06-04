@@ -59,8 +59,8 @@ header p {
 
 .collapsemen {
     height: min-content;
-    display: none;
-    visibility: collapse;
+    display: flex;
+    visibility: hidden;
     flex-direction: column;
     position: absolute;
     margin: 0;
@@ -76,7 +76,6 @@ header p {
 
 .coa:focus~.collapsemen {
     opacity: 1;
-    display:flex;    
     visibility: visible;
     transform: translateY(0);
 }
