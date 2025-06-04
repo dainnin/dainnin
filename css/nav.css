@@ -9,28 +9,19 @@
 .noblur a{
 z-index:100;
 }
-#navx 
-{
-background-repeat:no-repeat;
-background-size:cover;   
-
-background-position-y: bottom;
-width: 100vw;
-height: calc(22.5rem + 10vw);
-}
 
 
 .blurx{
-    backdrop-filter: blur(2px);
-    display:flex;
+
     width: 100vw;
     height: calc(22.5rem + 10vw);
 }
 
-
 .noblur{
     color: white;
     padding: calc(10vw - 2vw) 0 0 10vw;
+width: 100%;
+  height: 100%;
     
 }
 .noblur,nav p{
