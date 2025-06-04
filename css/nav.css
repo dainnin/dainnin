@@ -11,19 +11,7 @@ z-index:100;
 }
 #navx 
 {
- 
-display: flex;
-z-index: -1;
-
-
-overflow:hidden;
-width: 100vw;
-height: calc(22.5rem + 10vw);
-
-}
-
-
-.blurx{
+display:flex;
     filter: blur(2px);
     width: 100vw;
     height: calc(22.5rem + 10vw);
@@ -32,6 +20,11 @@ background-image: url('../img/funkos-banner.webp');
 background-position-y: 82%;
 overflow:hidden;
     z-index: 0;
+}
+
+
+.blurx{
+    display:flex;
 }
 
 
