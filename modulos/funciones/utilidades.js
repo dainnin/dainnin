@@ -57,7 +57,7 @@ export function proxyFlex(obj, p,sp, renderFuncion) {
       
       if (prop === sp) {
        console.log(sp)
-        setTimeout(()=>notificar(),175);
+        setTimeout(()=>notificar(),75);
        
        }
       // Notifica a todos los suscriptores 
@@ -66,7 +66,7 @@ export function proxyFlex(obj, p,sp, renderFuncion) {
       // console.log(target,prop)
       if (prop === p) {
        
-       setTimeout(()=>notificar(),600);
+       setTimeout(()=>notificar(),100);
       
       }
      
