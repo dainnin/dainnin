@@ -5,19 +5,7 @@ const { ab, setStateCheck, setStateArr } =await import(`${urls.online.app}/modul
 
     
 export const index = () =>{
-   $._main.appendChild(HTMLatDOM(`
-      
-        <nav id="navx">
-     <img src="${urls.online.app}/img/funkos-banner.webp" className="blurx"></img>
-    
-    <div className="noblur">
-        <p className="bannerTittle">Nuevos Ingresos</p>
-        <p className="bannerText">Descubrí el próximo Funko Pop de tu colección</p>
-        <div id="decoshopx">
-            <p id="decoshop"> SHOP</p>
-        </div></a>
-    </div>
-        </nav>`).firstChild)
+   
     fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
     .then(a=>a.json())
     .then(a=>{
@@ -84,7 +72,18 @@ export const index = () =>{
     
     
   return  HTMLatObj(`
-    <link rel="stylesheet" href="${urls.online.app}/css/nav.css"></link>
+
+  <nav id="navx">
+     <img alt="banner con diversos funkos Pop" src="${urls.local.app}/img/funkos-banner.webp" className="blurx"></img>
+    
+    <div className="noblur">
+        <p className="bannerTittle">Nuevos Ingresos</p>
+        <p className="bannerText">Descubrí el próximo Funko Pop de tu colección</p>
+        <div id="decoshopx">
+            <p id="decoshop"> SHOP</p>
+        </div></a>
+    </div>
+        </nav> <link rel="stylesheet" href="${urls.online.app}/css/nav.css"></link>
         <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
         <link rel="stylesheet" href="${urls.online.app}/css/section.css"></link>
 <div id="prsv">
