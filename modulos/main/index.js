@@ -11,8 +11,8 @@ export const index = () =>{
      <img src="${urls.online.app}/img/funkos-banner.webp" className="blurx"></img>
     
     <div className="noblur">
-        <p>Nuevos Ingresos</p>
-        <p>Descubrí el próximo Funko Pop de tu colección</p>
+        <p className="bannerTittle">Nuevos Ingresos</p>
+        <p className="bannerText">Descubrí el próximo Funko Pop de tu colección</p>
         <div id="decoshopx">
             <p id="decoshop"> SHOP</p>
         </div></a>
