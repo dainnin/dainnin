@@ -24,7 +24,7 @@ z-index:100;
     padding: calc(10vw - 2vw) 0 0 10vw;
 width: 100%;
   height: inherit;
-    backdrop-filter:blur(2px);
+ /*   backdrop-filter:blur(2px); */
 }
 .noblur,nav p{
 user-select: none;
