@@ -8,7 +8,7 @@ export const index = () =>{
    $._main.appendChild(HTMLatDOM(`
       
         <nav id="navx">
-        <div className="blurx"></div>
+     <img src="${urls.online.app}/img/funkos-banner.webp" className="blurx"></img>
     
     <div className="noblur">
         <p>Nuevos Ingresos</p>
