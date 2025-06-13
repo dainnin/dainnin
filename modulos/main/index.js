@@ -83,7 +83,7 @@ export const index = () =>{
             <p id="decoshop"> SHOP</p>
         </div></a>
     </div>
-        </nav> <link rel="stylesheet" href="${urls.online.app}/css/nav.css"></link>
+        </nav> <link rel="stylesheet" media="print" href="${urls.online.app}/css/nav.css"></link>
         <link rel="stylesheet" href="${urls.online.app}/modulos/css/main.css"></link>
         <link rel="stylesheet" href="${urls.online.app}/css/section.css"></link>
 <div id="prsv">
