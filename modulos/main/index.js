@@ -6,7 +6,7 @@ const { ab, setStateCheck, setStateArr } =await import(`${urls.online.app}/modul
     
 export const index = () =>{
    
-   /*  fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
+    fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
     .then(a=>a.json())
     .then(a=>{
        
@@ -68,62 +68,8 @@ export const index = () =>{
         })
        
         
-    }) */
-    fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
-    .then(a => a.json())
-    .then(a => {
-        const temp = {};
-        const recomendados = [];
-        const masVendidos = [];
-
-        Object.values(a).forEach(b => {
-            const tempKey = b[0]['frc'];
-            b.shift(); // Eliminar el primer elemento
-            b.forEach(c => {
-                c['frc'] = tempKey;
-            });
-
-            temp[tempKey] = b; // Se mantiene en orden original
-            recomendados.push(temp[tempKey][0]); // Primer elemento como recomendado
-            temp[tempKey].shift(); // Removerlo del listado
-            masVendidos.push(...temp[tempKey]); // Agregar el resto como más vendidos
-        });
-
-        // ✅ Generar recomendados en orden lineal
-        recomendados.forEach(a => {
-            document.getElementById('prsv').appendChild(HTMLatDOM(`
-                <div>          
-                    <div>
-                        <div>
-                            <h2>${a["frc"][0]}</h2>
-                            <p>${a["descrip"]}</p>
-                        </div>
-                        <hr>
-                        <a style="color:teal;font-size:calc(1vw + 1vh);margin:10px;" href="/productos?frc=${a["frc"][4]}" >
-                            ${a["linka"][0]}
-                        </a>
-                    </div>
-                    <img src="${a["imgz"]}">
-                </div>
-            `));
-        });
-
-        // ✅ Generar los más vendidos en orden lineal
-        masVendidos.forEach(a => {
-            document.getElementById('prsh').appendChild(HTMLatDOM(`
-                <article>          
-                    <a href="/productos?idu=${a["idu"]}&frc=${a["frc"][4]}">
-                        <img src="${a["imgz"]}">
-                        <h4>${a["frc"][1]}</h4>
-                        <h3>${a["nompro"]}</h3>
-                        <div>${a["precio"]}</div>
-                        <div>${a["cuotas"]}</div>
-                    </a>
-                </article>
-            `));
-        });
-    });
-
+    }) 
+   
     
   return  HTMLatObj(`
 
