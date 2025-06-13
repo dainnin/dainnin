@@ -13,6 +13,35 @@ const { header } = await import(urls.online.app+ '/modulos/staticDOM/header.js')
     {
         header,
         footer
+    }).then(x=>{
+  console.log(x)
+
+    function checkImages() {
+        const images = Object.values(document.querySelectorAll("img")).filter(x=>x.datasrc);
+        
+        images.forEach(img => {
+            
+            if(!!img.datasrc){
+                console.log(img["datasrc"])
+            const rect = img.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                img.src = img.datasrc;
+               delete img["datasrc"];
+            }
+           
+        }
+        console.log(images.length===0)
+        if(images.length===0){
+            window.removeEventListener("scroll", checkImages);
+            window.removeEventListener("resize", checkImages);
+         }
+        });
+         
+    }
+
+    window.addEventListener("scroll", checkImages);
+    window.addEventListener("resize", checkImages);
+    checkImages(); // Ejecutar al cargar la página
     })
     
 ab.fetchR
