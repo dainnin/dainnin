@@ -69,7 +69,10 @@ export const index = () =>{
        
         
     }) 
-   
+function asd(){
+this.media="all"
+}
+    $.referencias(asd);
     
   return  HTMLatObj(`
 
