@@ -580,58 +580,86 @@ export const atest = (a, b = null) => {
 };
 
 
+const autoClosedTags = new Set(["br", "hr", "img", "input", "meta", "link"]);
 export function parseHTML(htmlString) {
   const domTree = [];
-  const tagRegex = /<\/?([a-zA-Z0-9]+)([^>]*)>|([^<]+)/g;
   const stack = [];
+
+  const tagRegex = /<!--([\s\S]*?)-->|<\/?([a-zA-Z0-9]+)([^>]*)\s*(\/?)>|([^<]+)/g;
+htmlString = htmlString.replace(/<\/(br|hr|img|input|meta|link)>/gi, "");
+
   let match;
   while ((match = tagRegex.exec(htmlString)) !== null) {
-    const [fullMatch, tagName, attributes, textContent] = match;
+    const [fullMatch, commentContent, tagName, attributes, selfClosing, textContent] = match;
+    let tempR = /[\/a-zA-Z0-9_-]+/g
 
-    if (textContent && textContent.trim()) {
+    if (commentContent) {
+      const commentNode = { comment: { content: commentContent.trim(), children: [] } };
+      stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(commentNode) : domTree.push(commentNode);
+    } else if (textContent) {
 
-      const textNode = textContent.trim();
+      stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(textContent) : domTree.push(textContent);
+    } else if (fullMatch.startsWith("</")) {
 
+      // ✅ Verificar antes de hacer `stack.pop()` para evitar `undefined`
       if (stack.length > 0) {
+// ✅ Verificar si la etiqueta ya estaba marcada como auto-cerrada antes de intentar cerrarla
+      if (stack.length > 0) {
+        if(!!tagName&&tagName==="hr")console.log([...stack],tagName)
+        const closedNode = stack.pop();
+        const tagType = Object.keys(closedNode)[0];
 
-        stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(Object.keys(stack[stack.length - 1])[0] !== 'script' ? textContent : '');
-      } else {
-        domTree.push(textNode);
+        if (autoClosedTags.has(tagType.toLowerCase())) {
+          delete closedNode[tagType].children;
+          
+          closedNode[tagType].selfClosing = true;
+           // Las auto-cerradas no tienen hijos
+        } else {
+          // ✅ Procesar solo etiquetas que NO sean auto-cerradas
+          stack.length ?
+            stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(closedNode) :
+            domTree.push(closedNode);
+        }
       }
-    } else if (fullMatch.startsWith('</')) {
-
-      const closedNode = stack.pop();
-      if (stack.length > 0) {
-        stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(closedNode);
-      } else {
-        domTree.push(closedNode);
       }
     } else if (tagName) {
+
+      // ✅ Verificar que `tagName` no sea `undefined`
+      if (!tagName) continue;
+const isAutoClosed = autoClosedTags.has(tagName.toLowerCase()) || !!selfClosing;
       const node = {
         [tagName]: {
-
-          ...parseAttributes(attributes),
+          ...parseAttributes(attributes || ""),
           children: [],
-        }
-
+          selfClosing: isAutoClosed, // Detectar si es auto-cerrada
+        },
       };
 
-      stack.push(node);
+      if (isAutoClosed) {
+
+        stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(node) : domTree.push(node);
+        delete node[tagName].children;
+      } else {
+
+        stack.push(node);
+      }
 
     }
-  }
-  return domTree;
 
 
-  function parseAttributes(attributeString) {
-    const attributes = {};
-    const attrRegex = /([a-zA-Z]+)="([^"]*)"/g;
-    let attrMatch;
-    while ((attrMatch = attrRegex.exec(attributeString)) !== null) {
-      attributes[attrMatch[1]] = attrMatch[2];
-    }
-    return attributes;
   }
+
+  return domTree.filter(x => typeof x !== "string");
+}
+function parseAttributes(attributeString) {
+  const attributes = {};
+  const attrRegex = /([a-zA-Z0-9_-]+)="([^"]*)"/g;
+  let attrMatch;
+  while ((attrMatch = attrRegex.exec(attributeString)) !== null) {
+    attributes[attrMatch[1]] = attrMatch[2];
+  }
+  // console.log("🎯 Atributos extraídos:", attributes);
+  return attributes;
 }
 export const voidThis = (e, b = false) => {
   if (!b) {
