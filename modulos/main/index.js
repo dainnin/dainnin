@@ -77,7 +77,7 @@ this.media="all"
   return  HTMLatObj(`
 
   <nav id="navx">
-     <img alt="banner con diversos funkos Pop" src="${urls.online.app+"/img/funkos-banner.webp"}" className="blurx"></img>
+     <img alt="banner con diversos funkos Pop" datasrc="${urls.online.app+"/img/funkos-banner.webp"}" className="blurx"></img>
     
     <div className="noblur">
         <p className="bannerTittle">Nuevos Ingresos</p>
