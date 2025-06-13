@@ -169,9 +169,9 @@ button {
 </div>
 <link rel="stylesheet" href="${urls.online.app}/css/footer.css">
 </link>
-<link rel="stylesheet" media="print" href="${urls.online.app}/modulos/staticDOM/css/header.css">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="${urls.online.app}/modulos/staticDOM/css/header.css">
 </link>
-<link rel="stylesheet" media="print" href="${urls.online.app}/modulos/css/principal.css">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="${urls.online.app}/modulos/css/principal.css">
 </link>
      
   `)
