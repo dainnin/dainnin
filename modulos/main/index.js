@@ -46,7 +46,7 @@ export const index = () =>{
             ${a["linka"][0]}
             </a>
         </div>
-      <img src="${a["imgz"]}"></img>
+      <img datasrc="${a["imgz"]}"></img>
 
       </div>
     </div> 
@@ -57,7 +57,7 @@ export const index = () =>{
             document.getElementById('prsh').appendChild(HTMLatDOM(`
       <article>          
      <a href="/productos?idu=${a["idu"]}&frc=${a["frc"][4]}">
-<img src="${a["imgz"]}"></img>
+<img datasrc="${a["imgz"]}"></img>
 <h4>${a["frc"][1]}</h4>
 <h3>${a["nompro"]}</h3>
 <div>${a["precio"]}</div>
