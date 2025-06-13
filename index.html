@@ -51,7 +51,31 @@
     <!-- Módulos externos -->
     <script type="module" src="/modulos/env.js"></script>
     <script type="module" src="/modulos/front.js"></script>
+<script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+    
 
+    function checkImages() {
+        const images = document.querySelectorAll("img");
+        
+        images.forEach(img => {
+            
+            if(!!img.datasrc){
+               
+            const rect = img.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                img.src = img.datasrc;
+               delete img["datasrc"];
+            }}
+        });
+    }
+
+    window.addEventListener("scroll", checkImages);
+    window.addEventListener("resize", checkImages);
+    checkImages(); // Ejecutar al cargar la página
+});
+
+</script>
     <!-- Estilos -->
     <style>
         .article-container {
