@@ -1,10 +1,10 @@
-const { createUpdate, HashEnabled } =await import(urls.online.app+'/modulos/funciones/creacion.js')
+const { createUpdate, HashEnabled,checkImages } =await import(urls.online.app+'/modulos/funciones/creacion.js')
 HashEnabled();
-const { ab } = await import(urls.online.app+'/modulos/req/checkToken.js')
+/* const { ab } = await import(urls.online.app+'/modulos/req/checkToken.js') */
 const { rutas } = await import(urls.online.app+'/modulos/enrutador/rutas.js')
 const { footer } = await import (urls.online.app+'/modulos/staticDOM/footer.js');
 const { header } = await import(urls.online.app+ '/modulos/staticDOM/header.js');
-
+console.log('ok mmmm',checkImages)
 
 
 
@@ -14,34 +14,10 @@ const { header } = await import(urls.online.app+ '/modulos/staticDOM/header.js')
         header,
         footer
     }).then(()=>{
- 
-
-    function checkImages() {
-        const images = Object.values(document.querySelectorAll("img")).filter(x=>x.datasrc);
-        
-        images.forEach(img => {
-            
-            if(!!img.datasrc){
-               
-            const rect = img.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                img.src = img.datasrc;
-               delete img["datasrc"];
-            }
-           
-        }
-       
-        if(images.length===0){
-            window.removeEventListener("scroll", checkImages);
-            window.removeEventListener("resize", checkImages);
-         }
-        });
-         
-    }
-
+          
     window.addEventListener("scroll", checkImages);
     window.addEventListener("resize", checkImages);
-    checkImages(); // Ejecutar al cargar la página
+    
     })
     
 ab.fetchR
