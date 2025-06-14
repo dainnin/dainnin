@@ -7,44 +7,58 @@ export const HTMLatObj = parseHTML;
 export const voidElement = voidThis;
 export const HashEnabled = (() => $.HashEnabled);
 export const classOnBody = $.classInBody;
+export function checkImages() {
+        const images = Object.values(document.querySelectorAll("img")).filter(x=>x.datasrc);
+        
+        images.forEach(img => {
+            
+            if(!!img.datasrc){
+                
+            const rect = img.getBoundingClientRect();
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                img.src = img.datasrc;
+               delete img["datasrc"];
+            }
+           
+        }
+        
+        
+        });
+         
+    }
+    
 export const createUpdate = async (e, b) => {
 
-    
-    const createUpdateX = async (e) => {
-        
+    function createUpdateX(e) {
+    return new Promise((resolve, reject) => {
         try {
+            $.voidMain();
 
-
-           
+            let targetModule;
             if ($.hash !== '' && $.path.replace('/', '') === '') {
-
-                $.voidMain()
-                $._main.appendChild(await importMod(await e[$.hash.replace('#', '')]))
-
-            } else if ($.hash === "" && $.path.replace('/', '') !== '' && e[$.path.replace('/', '')] !== undefined) {
-
-                $.voidMain()
-                $._main.appendChild(await importMod(await e[$.path.replace('/', '')]))
-
-
+                targetModule = e[$.hash.replace('#', '')];
+            } else if ($.hash === "" && !!e[$.path.replace('/', '')]) {
+                targetModule = e[$.path.replace('/', '')];
             } else if ($.hash === "" && ($.path === '/' || $.path === '')) {
-
-                $.voidMain()
-                $._main.appendChild(await importMod(await e[$.path]))
-
+                targetModule = e[$.path];
             } else {
-
-                $.voidMain()
-                typeof e['404'] === 'function' ? await e['404']() : $._main.appendChild(await importMod(await e['404']))
+                targetModule = e['404'];
             }
-        } catch (ee) {
-            console.error('Jajaja no anda che', $._referenciasInternas, ee)
-            $.voidMain()
-            typeof e[404] === 'function' ? await e['404']() : $._main.appendChild(await importMod(await e[404]))
-        }
-    }
 
-    
+            importMod(targetModule)
+                .then(fff => {
+                    $._main.appendChild(fff);
+                    return checkImages();
+                })
+                .then(resolve)
+                .catch(reject);
+        } catch (error) {
+            console.error("Error en actualización:", error);
+            reject(error);
+        }
+    });
+}
    
    
     $._body.addEventListener("click", (event) => {
@@ -69,42 +83,49 @@ export const createUpdate = async (e, b) => {
            
         }
     })
-    window.addEventListener('hashchange',async(ty)=>{
+    window.addEventListener('hashchange',async()=>{
         
-        await createUpdateX(e)
+         createUpdateX(e).then(()=>checkImages())
      });
     if (b.header) {
-        (async () => $._header.appendChild(await importMod(b.header)))()
+       
+            importMod(b.header).then((fff)=>{
+                $._header.appendChild(fff)
+                
+            }).then(()=>checkImages())
+          
+      
     }
     if (b.footer) {
 
-        (async () => $._footer.appendChild(await importMod(b.footer)))()
+        importMod(b.footer).then((fff)=>{
+                $._footer.appendChild(fff)
+                
+            }).then(()=>checkImages())
     }
 
-    await createUpdateX(e)
+     createUpdateX(e).then(()=>checkImages())
 
 }
-// Nueva función para manejar la importación dinámica y el uso de atest
-async function importMod(element) {
-    
-   
+
+function importMod(element) {
     if (Array.isArray(element)) {
-        return atest(element);
-         // Tomamos el primer objeto del array
-       
+        return Promise.resolve(atest(element)); 
     } else if (typeof element === 'object' && element.urlModulo) {
-        // Si el elemento procesado es un objeto con `urlModulo`, manejarlo aquí también
-        
-        const modulo = await import(urls.online.app+element.urlModulo);
-        
-        if (typeof modulo[element.componente] === 'function') {
-            return await atest(modulo[element.componente]());
-        }
+        // Import dinámico con concatenación, pero usando Promesas en lugar de async/await
+        return import(urls.online.app + element.urlModulo)
+            .then(modulo => {
+                if (typeof modulo[element.componente] === 'function') {
+                    return atest(modulo[element.componente]());
+                }
+                return Promise.reject(new Error('El componente no es una función'));
+            });
     }
     
-    // Si no es ni array ni objeto con urlModulo, devolvemos el elemento procesado normalmente
-   
 }
+
+// Uso con .then():
+
 export function deepFreeze(obj) {
     // Congelar el objeto actual
     Object.freeze(obj);
