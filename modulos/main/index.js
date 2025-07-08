@@ -38,7 +38,7 @@ export const index = () =>{
       <div>          
         <div>
             <div>
-                <h2>${a["frc"][0]}</h2>
+                <p class="h2">${a["frc"][0]}</p>
                 <p>${a["descrip"]}</p>
             </div>
             <hr></hr>
@@ -58,8 +58,8 @@ export const index = () =>{
       <article>          
      <a href="/productos?idu=${a["idu"]}&frc=${a["frc"][4]}">
 <img datasrc="${a["imgz"]}"></img>
-<h4>${a["frc"][1]}</h4>
-<h3>${a["nompro"]}</h3>
+<p class="h4">${a["frc"][1]}</p>
+<p class="h3"${a["nompro"]}</p>
 <div>${a["precio"]}</div>
 <div>${a["cuotas"]}</div>
 </a>
@@ -94,11 +94,28 @@ this.media="all"
 <hr></hr>
 <section>
 <div id="dibx">
-<h1>Ultimos lanzamientos</h1>
+<p class="h1">Ultimos lanzamientos</p>
 <div id="prsh">
 </div>   
 </div>
 </section>
-
+<style>
+ .h1,.h2,.h4{  
+ font-weight: bold;
+ }
+ #dibx .h1{
+font-size: calc(2rem + 1.5vw);
+}
+#prsv .h2{
+font-size: calc(1rem + 2vw)
+}
+#prsh a .h3{
+font-weight: var(--font-bold);
+    font-size: calc(1.25rem + 0.6vw);
+}
+#prsh a .h4{
+font-size: calc(1.5rem + 0.8vw);
+}
+</style>
     `)}
     
