@@ -6,7 +6,7 @@ const { ab, setStateCheck, setStateArr } =await import(`${urls.online.app}/modul
     
 export const index = () =>{
    
-    fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
+     fetch('https://dainnin.github.io/proyectowebimg/inventario.json')
     .then(a=>a.json())
     .then(a=>{
        
@@ -38,7 +38,7 @@ export const index = () =>{
       <div>          
         <div>
             <div>
-                <p class="h2">${a["frc"][0]}</p>
+                <p className="h2">${a["frc"][0]}</p>
                 <p>${a["descrip"]}</p>
             </div>
             <hr></hr>
@@ -58,8 +58,8 @@ export const index = () =>{
       <article>          
      <a href="/productos?idu=${a["idu"]}&frc=${a["frc"][4]}">
 <img datasrc="${a["imgz"]}"></img>
-<p class="h4">${a["frc"][1]}</p>
-<p class="h3"${a["nompro"]}</p>
+<p className="h4">${a["frc"][1]}</p>
+<p className="h3">${a["nompro"]}</p>
 <div>${a["precio"]}</div>
 <div>${a["cuotas"]}</div>
 </a>
@@ -94,17 +94,19 @@ this.media="all"
 <hr></hr>
 <section>
 <div id="dibx">
-<p class="h1">Ultimos lanzamientos</p>
+<p className="h1">Ultimos lanzamientos</p>
 <div id="prsh">
 </div>   
 </div>
 </section>
 <style>
  .h1,.h2,.h4{  
- font-weight: bold;
+ font-weight: 1100 !importan;
  }
  #dibx .h1{
 font-size: calc(2rem + 1.5vw);
+grid-column-start: 2;
+   grid-column-end: 3;
 }
 #prsv .h2{
 font-size: calc(1rem + 2vw);
@@ -119,3 +121,4 @@ font-size: calc(1.5rem + 0.8vw);
 </style>
     `)}
     
+
