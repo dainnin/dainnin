@@ -107,7 +107,7 @@ this.media="all"
 font-size: calc(2rem + 1.5vw);
 }
 #prsv .h2{
-font-size: calc(1rem + 2vw)
+font-size: calc(1rem + 2vw);
 }
 #prsh a .h3{
 font-weight: var(--font-bold);
