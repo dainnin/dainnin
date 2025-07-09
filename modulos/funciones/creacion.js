@@ -7,7 +7,22 @@ export const HTMLatObj = parseHTML;
 export const voidElement = voidThis;
 export const HashEnabled = (() => $.HashEnabled);
 export const classOnBody = $.classInBody;
-export function checkImages() {
+const importMod = function (element) {
+    if (Array.isArray(element)) {
+        return Promise.resolve(atest(element)); 
+    } else if (typeof element === 'object' && element.urlModulo) {
+        // Import dinámico con concatenación, pero usando Promesas en lugar de async/await
+        return import(urls.online.app + element.urlModulo)
+            .then(modulo => {
+                if (typeof modulo[element.componente] === 'function') {
+                    return atest(modulo[element.componente]());
+                }
+                return Promise.reject(new Error('El componente no es una función'));
+            });
+    }
+    
+}
+export const checkImages = function () {
         const images = Object.values(document.querySelectorAll("img")).filter(x=>x.datasrc);
         
         images.forEach(img => {
@@ -108,21 +123,7 @@ export const createUpdate = async (e, b) => {
 
 }
 
-function importMod(element) {
-    if (Array.isArray(element)) {
-        return Promise.resolve(atest(element)); 
-    } else if (typeof element === 'object' && element.urlModulo) {
-        // Import dinámico con concatenación, pero usando Promesas en lugar de async/await
-        return import(urls.online.app + element.urlModulo)
-            .then(modulo => {
-                if (typeof modulo[element.componente] === 'function') {
-                    return atest(modulo[element.componente]());
-                }
-                return Promise.reject(new Error('El componente no es una función'));
-            });
-    }
-    
-}
+
 
 // Uso con .then():
 
