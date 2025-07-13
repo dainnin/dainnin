@@ -30,7 +30,7 @@ async function login(event) {
             "body": JSON.stringify(body),
             "method": "POST",
 
-        }).then(a=>a.json).then((a)=>{
+        }).then(a=>a.json()).then((a)=>{
             console.log(a)
                 alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
           
