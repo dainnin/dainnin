@@ -1,3 +1,282 @@
+function vdom() { { } }
+const dom = new vdom()
+const originalAppendChild = Node.prototype.appendChild;
+
+Node.prototype.appendChild = function (el) {
+    const parent = this; // 🔥 este es el nodo que ejecuta el append
+    //   console.log(this.tagName)
+    const esFragmento = el instanceof DocumentFragment;
+    const nodosInsertados = esFragmento ? Array.from(el.childNodes) : [el];
+
+    nodosInsertados.forEach(nodo => {
+
+        if (typeof nodo === 'object' && typeof nodo.onAppend === "function" && !(el instanceof DocumentFragment)) {
+           
+            nodo.onAppend({ parent, nodo }); // ✅ le pasás el nodo padre real
+        }
+    });
+
+    return originalAppendChild.call(this, el);
+};
+function nodo(tagName, attributes, isAutoClosed) {
+    this[tagName] = {
+        ...parseAttributes(attributes || ""),
+        children: [],
+        selfClosing: isAutoClosed, // Detectar si es auto-cerrada
+        aparent: true
+    };
+
+};
+function Promesa(executor) {
+      var estado = 'pendiente';
+      var valor;
+      var manejadores = [];
+      var errores = [];
+      var finales = [];
+      Promesa.prototype.extract = function () {
+        if (typeof this.getEstado === "function" && this.getEstado() === "cumplida") {
+          return this.getValor && typeof this.getValor === "function"
+            ? this.getValor()
+            : undefined;
+        }
+        return undefined;
+      };
+
+      Promesa.resolve = function (valor) {
+        return new Promesa(function (res) {
+          res(valor);
+        });
+      };
+
+      Promesa.reject = function (error) {
+        return new Promesa(function (_, rej) {
+          rej(error);
+        });
+      };
+
+      Promesa.all = function (lista) {
+        return new Promesa(function (res, rej) {
+          var resultados = [];
+          var completadas = 0;
+
+          for (var i = 0; i < lista.length; i++) {
+            (function (i) {
+              lista[i].then(function (dato) {
+                resultados[i] = dato;
+                completadas++;
+                if (completadas === lista.length) {
+                  res(resultados);
+                }
+              }).catch(function (err) {
+                rej(err);
+              });
+            })(i);
+          }
+        });
+      };
+      function resolver(res) {
+        if (estado !== 'pendiente') return;
+        estado = 'cumplida';
+        valor = res;
+        procesar();
+      }
+
+      function rechazar(err) {
+        if (estado !== 'pendiente') return;
+        estado = 'rechazada';
+        valor = err;
+        procesar();
+      }
+
+      function procesar() {
+        if (estado === 'cumplida') {
+          for (var i = 0; i < manejadores.length; i++) {
+            try {
+              valor = manejadores[i](valor);
+            } catch (e) {
+              estado = 'rechazada';
+              valor = e;
+              break;
+            }
+          }
+        } else if (estado === 'rechazada') {
+          for (var j = 0; j < errores.length; j++) {
+            errores[j](valor);
+          }
+        }
+
+        for (var k = 0; k < finales.length; k++) {
+          try {
+            finales[k]();
+          } catch (_) { }
+        }
+      }
+      this.getEstado = function () {
+        return estado;
+      };
+
+      this.getValor = function () {
+        return valor;
+      };
+
+      this.then = function (callback) {
+        return new Promesa(function (res, rej) {
+          if (estado === 'cumplida') {
+            try {
+              var resultado = callback(valor);
+              if (resultado && typeof resultado.then === 'function') {
+                resultado.then(res).catch(rej);
+              } else {
+                res(resultado);
+              }
+            } catch (e) {
+              rej(e);
+            }
+          } else if (estado === 'rechazada') {
+            rej(valor);
+          } else {
+            manejadores.push(function (val) {
+              try {
+                var resultado = callback(val);
+                if (resultado && typeof resultado.then === 'function') {
+                  resultado.then(res).catch(rej);
+                } else {
+                  res(resultado);
+                }
+              } catch (e) {
+                rej(e);
+              }
+            });
+            errores.push(rej);
+          }
+        });
+      };
+
+      this.catch = function (callback) {
+        if (estado === 'rechazada') {
+          callback(valor);
+        } else if (estado === 'pendiente') {
+          errores.push(callback);
+        }
+        return this;
+      };
+
+      this.finally = function (callback) {
+        if (typeof callback === 'function') {
+          finales.push(callback);
+          if (estado !== 'pendiente') {
+            try { callback(); } catch (_) { }
+          }
+        }
+        return this;
+      };
+
+      try {
+        executor(resolver, rechazar);
+      } catch (e) {
+        rechazar(e);
+      }
+    }
+
+  /*   function xhrFetch(url) {
+      return new Promesa(function (resolver, rechazar) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Accept", "application/json");
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              var responseObj = {
+                status: xhr.status,
+                headers: xhr.getAllResponseHeaders(),
+                text: function () {
+                  return Promesa.resolve(xhr.responseText);
+                },
+                json: function () {
+                  try {
+                    var json = JSON.parse(xhr.responseText);
+                    return Promesa.resolve(json);
+                  } catch (e) {
+                    return Promesa.reject(e);
+                  }
+                }
+              };
+              resolver(responseObj);
+            } else {
+              rechazar({
+                status: xhr.status,
+                error: xhr.statusText || "Error en XHR"
+              });
+            }
+          }
+        };
+
+        xhr.onerror = function () {
+          rechazar({
+            status: xhr.status,
+            error: "Error de red o CORS"
+          });
+        };
+
+        xhr.send();
+      });
+    } */
+function xhrFetch(url, options = {}) {
+  return new Promesa(function (resolver, rechazar) {
+    const xhr = new XMLHttpRequest();
+
+    const method = options.method || "GET";
+    const headers = options.headers || {};
+    const body = options.body || null;
+    const withCredentials = options.credentials === "include";
+
+    xhr.open(method, url, true);
+    xhr.withCredentials = withCredentials;
+
+    // Set headers
+    xhr.setRequestHeader("Accept", "application/json");
+    Object.entries(headers).forEach(([key, value]) => {
+      xhr.setRequestHeader(key, value);
+    });
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const responseObj = {
+            status: xhr.status,
+            headers: xhr.getAllResponseHeaders(),
+            text: () => Promesa.resolve(xhr.responseText),
+            json: () => {
+              try {
+                const json = JSON.parse(xhr.responseText);
+                return Promesa.resolve(json);
+              } catch (e) {
+                return Promesa.reject(e);
+              }
+            }
+          };
+          resolver(responseObj);
+        } else {
+          rechazar({
+            status: xhr.status,
+            error: xhr.statusText || "Error en XHR"
+          });
+        }
+      }
+    };
+
+    xhr.onerror = function () {
+      rechazar({
+        status: xhr.status,
+        error: "Error de red o CORS"
+      });
+    };
+
+    xhr.send(body);
+  });
+}
+
 
 const monitorIsConnected = function (element) {
 
@@ -36,7 +315,7 @@ const proxyFlex = function (obj, p, sp, renderFuncion) {
   const suscriptores = new Set(); // Almacenar callbacks
 
   // Método para agregar nuevas funciones al conjunto de suscriptores
-  const suscribir = function (callback)  {
+  const suscribir = function (callback) {
 
     if (typeof callback === 'function' || callback instanceof Element) {
       suscriptores.add(callback);
@@ -56,7 +335,7 @@ const proxyFlex = function (obj, p, sp, renderFuncion) {
       target[prop] = value;
 
       if (prop === sp) {
-        
+
         setTimeout(() => notificar(), 5);
 
       }
@@ -121,11 +400,14 @@ const fetchResReq = function ({ setGlobal }) {
 
   const safeFetch = (url, options) => {
     if (typeof fetch === 'function') {
-      return fetch(url, options).then(res => {
+      
+      return xhrFetch(url, options).then(res => {
+        
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         return res.json();
       });
     } else {
+      
       return fallbackFetch(url, options);
     }
   };
@@ -271,7 +553,7 @@ const $ = new function () {
 
         // Agregar funciones al array
 
-        temp.indexOf(funcion.name) === -1 ? this._referenciasInternas.push(funcion) : console.log('nope')
+        temp.indexOf(funcion.name) === -1 ? this._referenciasInternas.push(funcion) : ('nope')
       } else {
 
         console.error(`"${funcion}" no es una función válida.`, error);
@@ -389,8 +671,7 @@ const maped = (config) => {
 
 
 const atest = (a, b = null) => {
-
-
+  // console.log(dom)
 
   if (!window) {
     const remap = Object.entries(a).map(([x, c]) => {
@@ -463,107 +744,110 @@ const atest = (a, b = null) => {
   }
 
 
-  const fargment = $._doc.createDocumentFragment()
+  const fragment = $._doc.createDocumentFragment()
 
-  const createElementsFromConfig = (config, parent = null) => {
+    const createElementsFromConfig = (config, parent = null) => {
 
-    Array.isArray(config) ? config : config = [config]
-    config.forEach(item => {
-
-
-      if (typeof item === "string") {
-
-        const element = document.createTextNode(item)
+      Array.isArray(config) ? config : config = [config]
+      config.forEach(item => {
 
 
-        if (parent) {
+        if (typeof item === "string") {
 
-          return parent.appendChild(element);
+          const element = document.createTextNode(item)
 
-        }
-      } else {
 
-        if (item !== undefined) {
-          Object.entries(item).forEach(([tagName, attributes]) => {
+          if (parent) {
 
-            const element = document.createElement(tagName)
+            return parent.appendChild(element);
 
-            const x = { ...attributes }
-            Object.keys(x).forEach((i) => {
+          }
+        } else {
 
-              if (typeof x[i] === 'string' && x[i].length - 3 === x[i].indexOf('||F')) {
+          if (item !== undefined) {
+            Object.entries(item).forEach(([tagName, attributes]) => {
 
-                $._referenciasInternas.forEach((p, m) => {
-                  typeof x[i] === 'string' && p.name === x[i].replace('||F', '') ? x[i] = $._referenciasInternas[m] : ''
+              const element = document.createElement(tagName)
 
-                })
+              const x = { ...attributes }
+              Object.keys(x).forEach((i) => {
+
+                if (typeof x[i] === 'string' && x[i].length - 3 === x[i].indexOf('||F')) {
+
+                  $._referenciasInternas.forEach((p, m) => {
+                    typeof x[i] === 'string' && p.name === x[i].replace('||F', '') ? x[i] = $._referenciasInternas[m] : ''
+
+                  })
+
+                }
+              })
+              if (x.defineProperty) {
+                Object.defineProperties(element, x.defineProperty)
+              }
+
+              Object.assign(element, [x].filter(a => {
+                delete a.children;
+                element.setAttribute("uid", String(a.uid));
+                delete a.uid;
+                return a.dataset ? "" : a;
+              })[0]
+              );
+
+              Object.assign(element.dataset, x.dataset)
+
+              if (attributes.children) {
+
+                createElementsFromConfig(attributes.children, element);
 
               }
-            })
-            if (x.defineProperty) {
-              Object.defineProperties(element, x.defineProperty)
-            }
-            Object.assign(element, [x].filter(a => {
-              delete a.children;
-              return a.dataset ? "" : a
-            })[0]
-            );
-
-            Object.assign(element.dataset, x.dataset)
-
-            if (attributes.children) {
-
-              createElementsFromConfig(attributes.children, element);
-
-            }
 
 
-            if (x.fetchEvent !== undefined) {
-              if (Array.isArray(x.fetchEvent)) {
-                (async () => {
-                  if (typeof x.fetchEvent[0] === 'object' && x.fetchEvent[0].promise) {
-                    const { data, isLoading, error, promise } = x.fetchEvent[0]
+              if (x.fetchEvent !== undefined) {
+                if (Array.isArray(x.fetchEvent)) {
+                  (async () => {
+                    if (typeof x.fetchEvent[0] === 'object' && x.fetchEvent[0].promise) {
+                      const { data, isLoading, error, promise } = x.fetchEvent[0]
 
-                    x.fetchEvent[1]({ data: data, load: isLoading, error: error, element: element, promise: promise })
-                  } else {
+                      x.fetchEvent[1]({ data: data, load: isLoading, error: error, element: element, promise: promise })
+                    } else {
+                      const res = new fetchResReq({});
+                      const { data, isLoading, error } = await res.fetchE(x.fetchEvent[0])
+                      x.fetchEvent[1]({ data: data, load: isLoading, error: error, element: element })
+                    }
+
+                  })()
+                } else if (typeof x.fetchEvent === 'function') {
+                  (async () => {
+
                     const res = new fetchResReq({});
-                    const { data, isLoading, error } = await res.fetchE(x.fetchEvent[0])
-                    x.fetchEvent[1]({ data: data, load: isLoading, error: error, element: element })
-                  }
-
-                })()
-              } else if (typeof x.fetchEvent === 'function') {
-                (async () => {
-
-                  const res = new fetchResReq({});
-                  const { data, isLoading, error } = await res.fetchE(x.fetchEvent.url)
-                  x.fetchEvent({ data: data, load: isLoading, error: error, element: element })
-                })()
+                    const { data, isLoading, error } = await res.fetchE(x.fetchEvent.url)
+                    x.fetchEvent({ data: data, load: isLoading, error: error, element: element })
+                  })()
+                }
               }
-            }
-            Object.keys(element).forEach(a => {
+              Object.keys(element).forEach(a => {
 
-              a.indexOf('AUTO') === -1 ? '' : element[a]()
+                a.indexOf('AUTO') === -1 ? '' : element[a]()
+              })
+              if (parent) {
+
+
+                return parent.appendChild(element);
+
+              } else {
+
+                return fragment.appendChild(element);
+              }
             })
-            if (parent) {
+          }
+        };
+      });
+
+    };
+    createElementsFromConfig(a, b)
 
 
-              return parent.appendChild(element);
-
-            } else {
-
-              return fargment.appendChild(element);
-            }
-          })
-        }
-      };
-    });
-
-  };
-  createElementsFromConfig(a, b)
-
-
-  return fargment
+    return fragment
 };
 
 const parseAttributes = function (attributeString) {
@@ -577,76 +861,101 @@ const parseAttributes = function (attributeString) {
   return attributes;
 }
 const autoClosedTags = new Set(["br", "hr", "img", "input", "meta", "link"]);
-const parseHTML = function (htmlString) {
-  const domTree = [];
-  const stack = [];
+const parseHTML = function (htmlString, pp) {
 
-  const tagRegex = /<!--([\s\S]*?)-->|<\/?([a-zA-Z0-9]+)([^>]*)\s*(\/?)>|([^<]+)/g;
-  htmlString = htmlString.replace(/<\/(br|hr|img|input|meta|link)>/gi, "");
+    const domTree = [];
+    const stack = [];
+    let uidStatic;
+    const tagRegex = /<!--([\s\S]*?)-->|<\/?([a-zA-Z0-9]+)([^>]*)\s*(\/?)>|([^<]+)/g;
+    htmlString = htmlString.replace(/<\/(br|hr|img|input|meta|link)>/gi, "");
+    const pushNodeText = (content) => stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(content) : domTree.push;
+    let match;
 
-  let match;
-  while ((match = tagRegex.exec(htmlString)) !== null) {
-    const [fullMatch, commentContent, tagName, attributes, selfClosing, textContent] = match;
-    let tempR = /[\/a-zA-Z0-9_-]+/g
+    while ((match = tagRegex.exec(htmlString)) !== null) {
 
-    if (commentContent) {
-      const commentNode = { comment: { content: commentContent.trim(), children: [] } };
-      stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(commentNode) : domTree.push(commentNode);
-    } else if (textContent) {
+        const [fullMatch, commentContent, tagName, attributes, selfClosing, textContent] = match;
 
-      stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(textContent) : domTree.push(textContent);
-    } else if (fullMatch.startsWith("</")) {
+        if (commentContent) {
 
-      // ✅ Verificar antes de hacer `stack.pop()` para evitar `undefined`
-      if (stack.length > 0) {
-        // ✅ Verificar si la etiqueta ya estaba marcada como auto-cerrada antes de intentar cerrarla
-        if (stack.length > 0) {
-          if (!!tagName && tagName === "hr") console.log([...stack], tagName)
-          const closedNode = stack.pop();
-          const tagType = Object.keys(closedNode)[0];
+            const commentNode = { comment: { content: commentContent.trim(), children: [] } };
+            pushNodeText(commentNode);
 
-          if (autoClosedTags.has(tagType.toLowerCase())) {
-            delete closedNode[tagType].children;
+        } else if (textContent) {
 
-            closedNode[tagType].selfClosing = true;
-            // Las auto-cerradas no tienen hijos
-          } else {
-            // ✅ Procesar solo etiquetas que NO sean auto-cerradas
-            stack.length ?
-              stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(closedNode) :
-              domTree.push(closedNode);
-          }
+            pushNodeText(textContent);
+
+        } else if (fullMatch.startsWith("</")) {
+
+            // ✅ Verificar antes de hacer `stack.pop()` para evitar `undefined`
+            if (stack.length > 0) {
+                // ✅ Verificar si la etiqueta ya estaba marcada como auto-cerrada antes de intentar cerrarla
+                if (stack.length > 0) {
+
+                    const closedNode = stack.pop();
+                    const tagType = Object.keys(closedNode)[0];
+
+                    if (autoClosedTags.has(tagType.toLowerCase())) {
+
+                        delete closedNode[tagType].children;
+                        closedNode[tagType].selfClosing = true;
+                        // Las auto-cerradas no tienen hijos
+                    } else {
+                        // ✅ Procesar solo etiquetas que NO sean auto-cerradas
+                        stack.length ?
+                            stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(closedNode) :
+                            domTree.push(closedNode);
+                    }
+                }
+            }
+        } else if (tagName) {
+
+            // ✅ Verificar que `tagName` no sea `undefined`
+            if (!tagName) continue;
+
+            const isAutoClosed = autoClosedTags.has(tagName.toLowerCase()) || !!selfClosing;
+
+            if (tagName === "refererIs") {
+
+                uidStatic = { ...parseAttributes(attributes || "") }.type
+
+            } else {
+
+                const node = new nodo(tagName, attributes, isAutoClosed);
+                if (node[tagName].onAppend && node[tagName].onAppend.indexOf("||F") > -1) {
+                    
+                    const temp = pp[node[tagName].onAppend.replace("||F", "")]
+                   
+                    node[tagName].onAppend = temp;
+
+                }
+                if (isAutoClosed) {
+
+                    stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(node) : domTree.push(node);
+                    delete node[tagName].children;
+
+                } else {
+
+                    const parentNode = stack.length ? stack[stack.length - 1] : null;
+                    const parentUID = parentNode ? parentNode[Object.keys(parentNode)[0]].uid : null;
+
+                    // Asignar eparent
+                    node[tagName].eparent = parentUID || null;
+                    stack.push(node);
+                }
+
+            }
+
         }
-      }
-    } else if (tagName) {
-
-      // ✅ Verificar que `tagName` no sea `undefined`
-      if (!tagName) continue;
-      const isAutoClosed = autoClosedTags.has(tagName.toLowerCase()) || !!selfClosing;
-      const node = {
-        [tagName]: {
-          ...parseAttributes(attributes || ""),
-          children: [],
-          selfClosing: isAutoClosed, // Detectar si es auto-cerrada
-        },
-      };
-
-      if (isAutoClosed) {
-
-        stack.length ? stack[stack.length - 1][Object.keys(stack[stack.length - 1])].children.push(node) : domTree.push(node);
-        delete node[tagName].children;
-      } else {
-
-        stack.push(node);
-      }
 
     }
 
+    const retorno = domTree.filter(x => typeof x !== "string");
 
-  }
 
-  return domTree.filter(x => typeof x !== "string");
+    return retorno;
+
 }
+
 
 const voidThis = (e, b = false) => {
   if (!b) {
@@ -658,11 +967,10 @@ const voidThis = (e, b = false) => {
   }
 }
 
-
-const API = { voidThis, parseHTML, atest, $, fetchResReq, proxyFlex };
-
-
-export { voidThis, parseHTML, atest, $, fetchResReq, proxyFlex }
+/* window.create = { atest, parseHTML, dom };
+window.header = $._header;
+window.xhrFetch=xhrFetch; */
+export { voidThis, parseHTML, atest, $, fetchResReq, proxyFlex, dom, xhrFetch }
 
 
 
