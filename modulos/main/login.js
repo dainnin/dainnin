@@ -31,7 +31,7 @@ async function login(event) {
             "method": "POST",
 
         }).then((a)=>{
-            
+            console.log(a)
                 alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
           
 
