@@ -32,7 +32,7 @@ async function login(event) {
 
         }).then(a=>a.json()).then((a)=>{
             console.log(a)
-                alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
+                alert(name==='login'?a.user+" has iniciado con exito":`has ${form.user.value} ${a.data} con exito`)
           
 
 a.error===null&&name==='register'?menR.checked=false:''
