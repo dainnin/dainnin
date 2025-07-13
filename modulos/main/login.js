@@ -1,6 +1,5 @@
-
 const { HTMLatObj } =await import( `${urls.online.app}/modulos/funciones/creacion.js`)
-const { $ } = await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
+const { $,xhrFetch } = await import(`${urls.online.app}/modulos/funciones/utilidades.js`);
 const { ab } =await import (`${urls.online.app}/modulos/req/checkToken.js`)
 
 
@@ -19,7 +18,7 @@ async function login(event) {
     if (event.target.tagName === "BUTTON" && Object.values(body).indexOf("") === -1) {
         const req = new $.test({});
 
-         req.fetchE([`${urls.online.api+name}`, {
+         xhrFetch(`${urls.online.api+name}`, {
             "credentials": "include",
             "headers": {
 
@@ -31,17 +30,15 @@ async function login(event) {
             "body": JSON.stringify(body),
             "method": "POST",
 
-        }]).then((a)=>{
-            if(a.error===null){
+        }).then((a)=>{
+            
                 alert(name==='login'?a.data.user+" has iniciado con exito":`has ${form.user.value} ${a.data.data} con exito`)
-            }else{
-                alert(a.error)
-            }
+          
 
 a.error===null&&name==='register'?menR.checked=false:''
 ab.fetchR
 
-        })
+        }).catch(a=>alert(a.error))
 
     }
 
