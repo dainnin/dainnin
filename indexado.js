@@ -97,18 +97,28 @@ let estadoFinal = Object.getOwnPropertyNames(window);
 const estadoGlobal = {
   datos: {},
   listeners: [],
+
   set(clave, valor) {
     this.datos[clave] = valor;
     this.listeners.forEach(fn => fn(clave, valor));
   },
+
   get(clave) {
     return this.datos[clave];
   },
+
   observar(fn) {
     this.listeners.push(fn);
   }
 };
-async function checkToken(urlBase) {
+
+function actualizarEstadoSesion(usuario = null, msj = "") {
+  const conectado = !!usuario;
+  estadoGlobal.set("conectado", conectado ? true : { estado: false, msj });
+  estadoGlobal.set("usuario", usuario);
+}
+
+async function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
   estadoGlobal.set("cargandoToken", true); // ⏳ empieza
 
   try {
@@ -120,25 +130,40 @@ async function checkToken(urlBase) {
     });
 
     if (!res.ok) {
-      estadoGlobal.set("conectado", false);
-      estadoGlobal.set("usuario", null);
-      console.log("!res.ok")
+      actualizarEstadoSesion(null, "!res.ok");
       return;
     }
 
     const data = await res.json();
-    estadoGlobal.set("conectado", true);
-    estadoGlobal.set("usuario", data);
+    actualizarEstadoSesion(data.usuario || null);
 
   } catch (e) {
-    
-    estadoGlobal.set("conectado", {estado:false,msj:"servicio denegado"});
-    estadoGlobal.set("usuario", null);
-    
+    actualizarEstadoSesion(null, "servicio denegado");
   } finally {
     estadoGlobal.set("cargandoToken", false); // ✅ termina
   }
 }
+
+estadoGlobal.observar((clave, valor) => {
+  const panel = document.getElementById("estadoSesion");
+  if (!panel) return;
+
+  if (clave === "cargandoToken") {
+    panel.textContent = valor ? "Verificando sesión..." : "";
+  }
+
+  if (clave === "conectado") {
+    if (typeof valor === "object" && valor.msj) {
+      panel.textContent = valor.msj;
+    } else {
+      panel.textContent = valor ? "Sesión activa" : "Sesión cerrada";
+    }
+  }
+
+  if (clave === "usuario" && valor) {
+    console.log("Usuario conectado:", valor);
+  }
+});
 
 
 const createUpdate = async (vistas = {}, componentes = {}) => {
@@ -253,5 +278,4 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
-
 window.addEventListener("resize", checkImages);
