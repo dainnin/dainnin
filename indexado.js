@@ -118,30 +118,44 @@ function actualizarEstadoSesion(usuario = null, msj = "") {
   estadoGlobal.set("usuario", usuario);
 }
 
-async function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
-  estadoGlobal.set("cargandoToken", true); // ⏳ empieza
+function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
+  estadoGlobal.set("cargandoToken", true);
 
-  try {
-    const res = await fetch(`${urlBase}checkToken`, {
-      method: 'GET',
-      credentials: 'include',
-      
-    });
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `${urlBase}checkToken`, true);
+  xhr.withCredentials = true; // 🔐 Esto permite enviar cookies
 
-    if (!res.ok) {
-      actualizarEstadoSesion(null, res.json());
-      return;
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      estadoGlobal.set("cargandoToken", false);
+
+      if (xhr.status === 200) {
+        try {
+          const data = JSON.parse(xhr.responseText);
+          estadoGlobal.set("conectado", true);
+          estadoGlobal.set("usuario", data.usuario || null);
+        } catch (e) {
+          estadoGlobal.set("conectado", { estado: false, msj: "Error de formato" });
+          estadoGlobal.set("usuario", null);
+        }
+      } else {
+        estadoGlobal.set("conectado", { estado: false, msj: `Error ${xhr.status}` });
+        estadoGlobal.set("usuario", null);
+      }
     }
+  };
 
-    const data = await res.json();
-    actualizarEstadoSesion(data.usuario || null);
+  xhr.onerror = function () {
+    estadoGlobal.set("cargandoToken", false);
+    estadoGlobal.set("conectado", { estado: false, msj: "Error de red" });
+    estadoGlobal.set("usuario", null);
+  };
 
-  } catch (e) {
-    actualizarEstadoSesion(null, "servicio denegado");
-  } finally {
-    estadoGlobal.set("cargandoToken", false); // ✅ termina
-  }
+  xhr.send();
 }
+
 
 estadoGlobal.observar((clave, valor) => {
   const panel = document.getElementById("estadoSesion");
@@ -277,9 +291,4 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
-
 window.addEventListener("resize", checkImages);
-
-
-
-
