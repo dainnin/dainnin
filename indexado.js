@@ -128,7 +128,7 @@ async function checkToken(urlBase) {
 
     const data = await res.json();
     estadoGlobal.set("conectado", true);
-    estadoGlobal.set("usuario", data.usuario);
+    estadoGlobal.set("usuario", data);
 
   } catch (e) {
     
@@ -253,4 +253,5 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
+
 window.addEventListener("resize", checkImages);
