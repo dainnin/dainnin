@@ -123,7 +123,7 @@ async function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
 
   try {
     const res = await fetch(`${urlBase}checkToken`, {
-      method: 'GET',
+      method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors'
@@ -278,4 +278,5 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
+
 window.addEventListener("resize", checkImages);
