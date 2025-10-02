@@ -63,11 +63,15 @@ const $ = new function () {
 };
 
 const checkImages = () => {
-  const images = Array.from(document.querySelectorAll("img")).filter(x => x.datasrc);
+
+  const images = [...document.querySelectorAll("img")].filter(x => x.attributes.datasrc
+  );
+
   images.forEach(img => {
+
     const rect = img.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      img.src = img.datasrc;
+      img.src = img.attributes.datasrc.value;
       delete img.datasrc;
     }
   });
@@ -90,10 +94,56 @@ function activarScripts(nodo) {
 }
 const estadoInicial = new Set(Object.getOwnPropertyNames(window));
 let estadoFinal = Object.getOwnPropertyNames(window);
+const estadoGlobal = {
+  datos: {},
+  listeners: [],
+  set(clave, valor) {
+    this.datos[clave] = valor;
+    this.listeners.forEach(fn => fn(clave, valor));
+  },
+  get(clave) {
+    return this.datos[clave];
+  },
+  observar(fn) {
+    this.listeners.push(fn);
+  }
+};
+async function checkToken(urlBase) {
+  estadoGlobal.set("cargandoToken", true); // ⏳ empieza
+
+  try {
+    const res = await fetch(`${urlBase}checkToken`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    });
+
+    if (!res.ok) {
+      estadoGlobal.set("conectado", false);
+      estadoGlobal.set("usuario", null);
+      console.log("!res.ok")
+      return;
+    }
+
+    const data = await res.json();
+    estadoGlobal.set("conectado", true);
+    estadoGlobal.set("usuario", data.usuario);
+
+  } catch (e) {
+    
+    estadoGlobal.set("conectado", {estado:false,msj:"servicio denegado"});
+    estadoGlobal.set("usuario", null);
+    
+  } finally {
+    estadoGlobal.set("cargandoToken", false); // ✅ termina
+  }
+}
+
 
 const createUpdate = async (vistas = {}, componentes = {}) => {
 
-
+  
 
   function renderVista() {
     const _scripts = $._doc.getElementById("scripts-dinamicos");
@@ -113,13 +163,13 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
             delete window[a]
 
           }
-         
+
         }
         $.voidMain();
         const path = $.path || '/';
         const idVista = vistas[path] || "vista-404";
         const vista = document.getElementById(idVista);
-        
+
 
 
 
@@ -128,26 +178,26 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
         const parser = new DOMParser();
         const vistaDoc = parser.parseFromString(vista.innerHTML, "text/html");
-        
+
         _scripts.innerHTML = "";
-       
-        
+
+
         $.classInBody({ main: vista.getAttribute("data-class") || "" });
-        
+
         $._main.innerHTML = atob(vistaDoc.body.innerHTML)
-        /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>","").replace("&lt;_&gt;","").replace(/<!--_-->/gi,"");
-        
+        /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
+
         [...$._main.getElementsByTagName("script")]
-.forEach(a=>{
-  const nuevo =$._doc.createElement("script")
-  nuevo.textContent=a.textContent
-  $._doc.getElementById("scripts-dinamicos").appendChild(nuevo)
-  a.innerHTML=""
-})        
-       
+          .forEach(a => {
+            const nuevo = $._doc.createElement("script")
+            nuevo.textContent = a.textContent
+            $._doc.getElementById("scripts-dinamicos").appendChild(nuevo)
+            a.innerHTML = ""
+          })
+
 
         estadoFinal = Object.getOwnPropertyNames(window);
-
+        checkToken("https://dainnin.alwaysdata.net/api/checkToken")
         checkImages();
         resolve();
       } catch (error) {
@@ -164,37 +214,43 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
     const eHref = Target.href;
 
     if (eTag === 'A' || Father.tagName === 'A') {
-      
-     if(!(Target.getAttribute("r")==="true"||Father.getAttribute("r")==="true"))event.preventDefault();
-     
+
+      if (!(Target.getAttribute("r") === "true" || Father.getAttribute("r") === "true")) event.preventDefault();
+
       const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
       if (destino !== location.href && destino !== $.QPPath(location, true).url) {
+        checkToken("https://dainnin.alwaysdata.net/api/checkToken")
+        if (location.hash.replace("#") !== destino) window.scrollTo(0, 0);
         location.hash = destino;
       }
     }
   });
 
   window.addEventListener('hashchange', () => {
+
     renderVista().then(() => checkImages());
+
   });
 
   if (componentes.header && $._doc.getElementById("_header").innerHTML.trim() === "") {
     const r = await fetch(componentes.header);
     const html = await r.text();
-    $._doc.getElementById("_header").innerHTML = atob(html).replace("&lt;_&gt;","").replace(/<!--_-->/gi,"");
+    $._doc.getElementById("_header").innerHTML = atob(html).replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
   }
 
   if (componentes.footer && $._doc.getElementById("_footer").innerHTML.trim() === "") {
     const r = await fetch(componentes.footer);
     const html = await r.text();
-    $._doc.getElementById("_footer").innerHTML = atob(html).replace("&lt;_&gt;","").replace(/<!--_-->/gi,"");
+    $._doc.getElementById("_footer").innerHTML = atob(html).replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
   }
 
   renderVista().then(() => checkImages());
 };
 
-$._header.innerHTML=atob($._header.innerHTML).replace("<_>","").replace("&lt;_&gt;","").replace(/<!--_-->/gi,"")
-$._footer.innerHTML=atob($._footer.innerHTML).replace("<_>","").replace("&lt;_&gt;","").replace(/<!--_-->/gi,"")
+$._header.innerHTML = atob($._header.innerHTML).replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "")
+$._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "")
 
 activarScripts($._header);
 activarScripts($._footer);
+window.addEventListener("scroll", checkImages);
+window.addEventListener("resize", checkImages);
