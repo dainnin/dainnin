@@ -125,8 +125,7 @@ async function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
     const res = await fetch(`${urlBase}checkToken`, {
       method: 'GET',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'cors'
+      
     });
 
     if (!res.ok) {
@@ -280,5 +279,6 @@ activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
 
 window.addEventListener("resize", checkImages);
+
 
 
