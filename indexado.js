@@ -130,7 +130,7 @@ async function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
     });
 
     if (!res.ok) {
-      actualizarEstadoSesion(null, "!res.ok");
+      actualizarEstadoSesion(null, res.json());
       return;
     }
 
@@ -280,3 +280,4 @@ activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
 
 window.addEventListener("resize", checkImages);
+
