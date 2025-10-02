@@ -119,7 +119,6 @@ function actualizarEstadoSesion(usuario = null, msj = "") {
 }
 
 function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
-  
   estadoGlobal.set("cargandoToken", true);
 
   const xhr = new XMLHttpRequest();
@@ -170,9 +169,7 @@ estadoGlobal.observar((clave, valor) => {
     if (typeof valor === "object" && valor.msj) {
       panel.textContent = valor.msj;
     } else {
-      
       panel.textContent = valor ? "Sesión activa" : "Sesión cerrada";
-      if(valor&&$.path==="/login")location.hash="#/"
     }
   }
 
@@ -294,6 +291,4 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
-
 window.addEventListener("resize", checkImages);
-
