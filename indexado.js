@@ -221,7 +221,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
 
         estadoFinal = Object.getOwnPropertyNames(window);
-        checkToken("https://dainnin.alwaysdata.net/api/checkToken")
+        checkToken()
         checkImages();
         resolve();
       } catch (error) {
@@ -243,7 +243,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
       const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
       if (destino !== location.href && destino !== $.QPPath(location, true).url) {
-        checkToken("https://dainnin.alwaysdata.net/api/checkToken")
+        checkToken()
         if (location.hash.replace("#") !== destino) window.scrollTo(0, 0);
         location.hash = destino;
       }
@@ -279,6 +279,7 @@ activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
 
 window.addEventListener("resize", checkImages);
+
 
 
 
