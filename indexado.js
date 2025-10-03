@@ -283,8 +283,8 @@ estadoGlobal.observar((clave, valor) => {
       textContent : valor.estado ? "Cerrar Sesion" : "Sesion",
       href:valor.estado ?"/":"/login",
      })
-    if(valor.estado)sessionButton.onclick = function logout(){
-      fetch("https://dainnin.alwaysdata.net/api/logout",{
+    if(valor.estado)sessionButton.onclick =async function logout(){
+     const r= fetch("https://dainnin.alwaysdata.net/api/logout",{
         "headers": {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
@@ -292,10 +292,12 @@ estadoGlobal.observar((clave, valor) => {
         },
         mode: 'cors',
         credentials: "include",
-      }).then(a=>{
+      })
+      const f = await r.json()
+      if(!r.ok){
+
+      } 
         
-        if(!valor.estado)location.href="/";
-        
-})}
+}
   }
 });
