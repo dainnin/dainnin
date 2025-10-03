@@ -114,7 +114,7 @@ const estadoGlobal = {
 
 function actualizarEstadoSesion(usuario = null, msj = "") {
   const conectado = !!usuario;
-  estadoGlobal.set("conectado", conectado ? true : { estado: false, msj });
+  estadoGlobal.set("conectado", conectado ? true : false);
   estadoGlobal.set("usuario", usuario);
 }
 
@@ -134,22 +134,22 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
       if (xhr.status === 200) {
         try {
           const data = JSON.parse(xhr.responseText);
-          estadoGlobal.set("conectado", true);
+          estadoGlobal.set("conectado", {estado:true});
           estadoGlobal.set("usuario", data.usuario || null);
         } catch (e) {
           estadoGlobal.set("conectado", { estado: false, msj: "Error de formato" });
           estadoGlobal.set("usuario", null);
         }
       } else {
-        estadoGlobal.set("conectado", false);
         estadoGlobal.set("usuario", null);
       }
     }
   };
 
   xhr.onerror = function () {
+    const tipo = xhr.status === 0 ? "CORS o red" : "Error HTTP";
     estadoGlobal.set("cargandoToken", false);
-    estadoGlobal.set("conectado", { estado: false, msj: "Error de red" });
+    estadoGlobal.set("conectado", { estado: false, msj: tipo});
     estadoGlobal.set("usuario", null);
   };
 
@@ -157,31 +157,12 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
 }
 
 
-estadoGlobal.observar((clave, valor) => {
-  const panel = document.getElementById("estadoSesion");
-  if (!panel) return;
 
-  if (clave === "cargandoToken") {
-    panel.textContent = valor ? "Verificando sesión..." : "";
-  }
-
-  if (clave === "conectado") {
-    if (typeof valor === "object" && valor.msj) {
-      panel.textContent = valor.msj;
-    } else {
-      panel.textContent = valor ? "Sesión activa" : "Sesión cerrada";
-    }
-  }
-
-  if (clave === "usuario" && valor) {
-    console.log("Usuario conectado:", valor);
-  }
-});
 
 
 const createUpdate = async (vistas = {}, componentes = {}) => {
 
-  
+
 
   function renderVista() {
     const _scripts = $._doc.getElementById("scripts-dinamicos");
@@ -213,16 +194,15 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
 
         if (!vista) throw new Error("Vista no encontrada: " + idVista);
-
-        const parser = new DOMParser();
-        const vistaDoc = parser.parseFromString(vista.innerHTML, "text/html");
+        const vistaDoc = $._doc.createDocumentFragment()
+        vistaDoc.innerHTML = vista.innerHTML
 
         _scripts.innerHTML = "";
 
 
         $.classInBody({ main: vista.getAttribute("data-class") || "" });
 
-        $._main.innerHTML = atob(vistaDoc.body.innerHTML)
+        $._main.innerHTML = atob(vistaDoc.innerHTML)
         /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
 
         [...$._main.getElementsByTagName("script")]
@@ -291,5 +271,31 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
-
 window.addEventListener("resize", checkImages);
+
+
+const sessionButton=$._doc.getElementById("sessionButton")
+estadoGlobal.observar((clave, valor) => {
+  
+  if (clave === "conectado") {
+    
+    Object.assign(sessionButton,{
+      textContent : valor.estado ? "Cerrar Sesion" : "Sesion",
+      href:valor.estado ?"/":"/login",
+     })
+    if(valor.estado)sessionButton.onclick = function logout(){
+      fetch("https://dainnin.alwaysdata.net/api/logout",{
+        "headers": {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+
+        },
+        mode: 'cors',
+        credentials: "include",
+      }).then(a=>{
+        
+        if(!valor.estado)location.href="/";
+        
+})}
+  }
+});
