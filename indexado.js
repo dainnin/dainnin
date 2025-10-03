@@ -283,25 +283,29 @@ estadoGlobal.observar((clave, valor) => {
       textContent: valor.estado ? "Cerrar Sesion" : "Sesion",
       href: valor.estado ? "/" : "/login",
     })
-    if (valor.estado) sessionButton.onclick = async function logout() {
-      try {
-        const r = await fetch("https://dainnin.alwaysdata.net/api/logout", {
-          "headers": {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
+    if (valor.estado) {
+      sessionButton.onclick = async function logout() {
+        try {
+          const r = await fetch("https://dainnin.alwaysdata.net/api/logout", {
+            "headers": {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
 
-          },
-          mode: 'cors',
-          credentials: "include",
-        })
-        const f = await r.json()
-        if (!f.ok) {
+            },
+            mode: 'cors',
+            credentials: "include",
+          })
+          const f = await r.json()
+          if (!f.ok) {
+            estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
+          }
+          estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
+        } catch (e) {
           estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
         }
-        estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
-      } catch (e) {
-        estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
       }
+
+      if($.path=="/login")location.hash="#/"
     }
   }
 });
