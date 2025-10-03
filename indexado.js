@@ -295,9 +295,9 @@ estadoGlobal.observar((clave, valor) => {
       })
       const f = await r.json()
       if(!r.ok){
-
+console.log(f,r)
       } 
-        
+        console.log(f,r)
 }
   }
 });
