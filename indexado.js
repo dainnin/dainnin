@@ -141,7 +141,7 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
           estadoGlobal.set("usuario", null);
         }
       } else {
-        estadoGlobal.set("conectado", { estado: false, msj: `Error ${xhr.status}` });
+        estadoGlobal.set("conectado", false);
         estadoGlobal.set("usuario", null);
       }
     }
@@ -291,4 +291,5 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
+
 window.addEventListener("resize", checkImages);
