@@ -134,7 +134,7 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
       if (xhr.status === 200) {
         try {
           const data = JSON.parse(xhr.responseText);
-          estadoGlobal.set("conectado", {estado:true});
+          estadoGlobal.set("conectado", { estado: true });
           estadoGlobal.set("usuario", data.usuario || null);
         } catch (e) {
           estadoGlobal.set("conectado", { estado: false, msj: "Error de formato" });
@@ -149,7 +149,7 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
   xhr.onerror = function () {
     const tipo = xhr.status === 0 ? "CORS o red" : "Error HTTP";
     estadoGlobal.set("cargandoToken", false);
-    estadoGlobal.set("conectado", { estado: false, msj: tipo});
+    estadoGlobal.set("conectado", { estado: false, msj: tipo });
     estadoGlobal.set("usuario", null);
   };
 
@@ -274,33 +274,34 @@ window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
 
 
-const sessionButton=$._doc.getElementById("sessionButton")
+const sessionButton = $._doc.getElementById("sessionButton")
 estadoGlobal.observar((clave, valor) => {
-  
-  if (clave === "conectado") {
-    
-    Object.assign(sessionButton,{
-      textContent : valor.estado ? "Cerrar Sesion" : "Sesion",
-      href:valor.estado ?"/":"/login",
-     })
-    if(valor.estado)sessionButton.onclick =async function logout(){
-     try{
-      const r=await fetch("https://dainnin.alwaysdata.net/api/logout",{
-        "headers": {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
 
-        },
-        mode: 'cors',
-        credentials: "include",
-      })
-      const f = await r.json()
-      if(!f.ok){
-console.log(f)
-      } 
-        console.log(f)}catch(e){
-          console.log(e)
+  if (clave === "conectado") {
+
+    Object.assign(sessionButton, {
+      textContent: valor.estado ? "Cerrar Sesion" : "Sesion",
+      href: valor.estado ? "/" : "/login",
+    })
+    if (valor.estado) sessionButton.onclick = async function logout() {
+      try {
+        const r = await fetch("https://dainnin.alwaysdata.net/api/logout", {
+          "headers": {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+
+          },
+          mode: 'cors',
+          credentials: "include",
+        })
+        const f = await r.json()
+        if (!f.ok) {
+          estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
         }
-}
+        estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
+      } catch (e) {
+        estadoGlobal.set("conectado", { estado: false, msj: "Cerrar Session" });
+      }
+    }
   }
 });
