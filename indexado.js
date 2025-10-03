@@ -284,7 +284,8 @@ estadoGlobal.observar((clave, valor) => {
       href:valor.estado ?"/":"/login",
      })
     if(valor.estado)sessionButton.onclick =async function logout(){
-     const r= fetch("https://dainnin.alwaysdata.net/api/logout",{
+     try{
+      const r= fetch("https://dainnin.alwaysdata.net/api/logout",{
         "headers": {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
@@ -294,10 +295,12 @@ estadoGlobal.observar((clave, valor) => {
         credentials: "include",
       })
       const f = await r.json()
-      if(!r.ok){
+      if(!f.ok){
 console.log(f,r)
       } 
-        console.log(f,r)
+        console.log(f,r)}catch(e){
+          console.log(e)
+        }
 }
   }
 });
