@@ -18,7 +18,7 @@ const estadoGlobal = {
 
 function actualizarEstadoSesion(usuario = null, msj = "") {
   const conectado = !!usuario;
-  estadoGlobal.set("conectado", conectado ? true : false);
+  estadoGlobal.set("conectado", {estado:conectado ? true : false,msj:msj});
   estadoGlobal.set("usuario", usuario);
 }
 
@@ -94,3 +94,4 @@ estadoGlobal.observar((clave, valor) => {
     }
   }
 });
+
