@@ -1,3 +1,35 @@
+//Listener.....    
+const originalAddEventListener = Element.prototype.addEventListener;
+
+const listenerRegistry = new WeakMap();
+
+Element.prototype.addEventListener = function (type, listener, options) {
+  const isOnce = options && options.once === true;
+
+  // Si es once:true, no envolvemos ni registramos
+  if (isOnce) {
+    return originalAddEventListener.call(this, type, listener, options);
+  }
+
+  const nombre = listener.name || `anon_${type}_${Date.now()}`;
+
+  const envuelto = function (event) {
+    if (listener.name === "") listener.name = nombre;
+    Object.assign(event, {
+      nameEvent: type,
+      nameFunc: listener
+    });
+    return listener.call(this, event);
+  };
+
+  // Guardar en WeakMap solo si no es once:true
+  const registro = listenerRegistry.get(this) || [];
+  registro.push({ type, handler: envuelto });
+  listenerRegistry.set(this, registro);
+
+  return originalAddEventListener.call(this, type, envuelto, options);
+};
+
 const QPPath = (req, enabled = false) => {
   const inital = { search: {}, path: '', hash: '' };
   if (!req) return '';
@@ -216,6 +248,7 @@ activarScripts($._header);
 activarScripts($._footer);
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
+
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
