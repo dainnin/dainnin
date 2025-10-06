@@ -93,30 +93,42 @@ const $ = new function () {
     }
   });
 };
-
+function getAtt(el, attr) {
+  return el.getAttribute(attr)
+}
 const checkImages = () => {
-  const images = [...document.querySelectorAll("img")].filter(img => img.getAttribute("datasrc"));
- 
+  const images = [...document.querySelectorAll("img")].filter(img => getAtt(img,"datasrc"));
+
   images.forEach(img => {
-    const rect = img.getBoundingClientRect();
+    const rect =()=> img.getBoundingClientRect();
+    const rectB=()=> window.innerHeight;
+    const isVisible = () => {
+   const r = rect();
+   return (
+    r.top < window.innerHeight &&
+    r.bottom > 0 &&
+    r.left < window.innerWidth &&
+    r.right > 0
+  );
+};
+
     
-    const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
- 
-    if (isVisible) {
-      img.src = img.getAttribute("datasrc");
+     
+    if (isVisible()) {
+      img.src = getAtt(img,"datasrc");
       img.removeAttribute("datasrc");
     }
   });
 };
 
-function activarScripts(nodo,nodoDestino=false) {
+function activarScripts(nodo, nodoDestino = false) {
   const scripts = nodo.querySelectorAll("script");
   scripts.forEach(script => {
     const nuevoScript = document.createElement("script");
     nuevoScript.textContent = script.textContent;
     // Copiar atributos si es necesario
-      
-    
+
+
     Array.from(script.attributes).forEach(attr => {
       nuevoScript.setAttribute(attr.name, attr.value);
     });
@@ -124,22 +136,19 @@ function activarScripts(nodo,nodoDestino=false) {
       $._doc.getElementById(nodoDestino).appendChild(nuevoScript)
       script.remove()
     } else {
-      
+
       script.replaceWith(nuevoScript);
     }
-  
-         
-            
-    
+
+
+
+
   });
-  
+
 }
 
 
 
-function getAtt(el,attr){
-  return el.attributes[attr].value
-}
 const estadoInicial = new Set(Object.getOwnPropertyNames(window));
 let estadoFinal = Object.getOwnPropertyNames(window);
 
@@ -185,23 +194,23 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
         _scripts.innerHTML = "";
 
 
-        $.classInBody({ main: vista.getAttribute("data-class") || "" });
+        $.classInBody({ main: getAtt(vista,"data-class") || "" });
 
         $._main.innerHTML = atob(vistaDoc.innerHTML)
         /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
 
-        activarScripts($._main,"scripts-dinamicos")
-          
+        activarScripts($._main, "scripts-dinamicos")
+
 
         estadoFinal = Object.getOwnPropertyNames(window);
         checkToken()
-       
+
         resolve();
       } catch (error) {
         console.error("Error en renderizado:", error);
         reject(error);
       }
-    })).then(()=> checkImages());
+    })).then(() => checkImages());
   }
 
   $._body.addEventListener("click", (event) => {
@@ -212,11 +221,11 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
     if (eTag === 'A' || Father.tagName === 'A') {
 
-      if (!(Target.getAttribute("r") === "true" || Father.getAttribute("r") === "true")) event.preventDefault();
+      if (!(getAtt(Target,"r") === "true" || getAtt(Father,"r") === "true")) event.preventDefault();
 
       const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
       if (destino !== location.href && destino !== $.QPPath(location, true).url) {
-       
+
         if (location.hash.replace("#") !== destino) window.scrollTo(0, 0);
         location.hash = destino;
       }
@@ -233,7 +242,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
     const r = await fetch(componentes.header);
     const html = await r.text();
     $._doc.getElementById("_header").innerHTML = atob(html).replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
-    
+
   }
 
   if (componentes.footer && $._doc.getElementById("_footer").innerHTML.trim() === "") {
@@ -250,10 +259,9 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 
 activarScripts($._header);
 activarScripts($._footer);
-setTimeout(checkImages,135)
+setTimeout(checkImages, 35)
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
-
