@@ -250,9 +250,10 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 
 activarScripts($._header);
 activarScripts($._footer);
-setTimeout(checkImages,35)
+setTimeout(checkImages,135)
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
+
