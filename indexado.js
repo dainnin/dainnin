@@ -95,34 +95,44 @@ const $ = new function () {
 };
 
 const checkImages = () => {
-
-  const images = [...document.querySelectorAll("img")].filter(x => x.attributes.datasrc
-  );
-
+  const images = [...document.querySelectorAll("img")].filter(img => img.getAttribute("datasrc"));
+ 
   images.forEach(img => {
-
     const rect = img.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      img.src = img.attributes.datasrc.value;
-      delete img.datasrc;
+    
+    const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
+ 
+    if (isVisible) {
+      img.src = img.getAttribute("datasrc");
+      img.removeAttribute("datasrc");
     }
   });
 };
-function activarScripts(nodo) {
+
+function activarScripts(nodo,nodoDestino=false) {
   const scripts = nodo.querySelectorAll("script");
   scripts.forEach(script => {
     const nuevoScript = document.createElement("script");
-    if (script.src) {
-      nuevoScript.src = script.src;
-    } else {
-      nuevoScript.textContent = script.textContent;
-    }
+    nuevoScript.textContent = script.textContent;
     // Copiar atributos si es necesario
+      
+    
     Array.from(script.attributes).forEach(attr => {
       nuevoScript.setAttribute(attr.name, attr.value);
     });
-    script.replaceWith(nuevoScript);
+    if (nodoDestino) {
+      $._doc.getElementById(nodoDestino).appendChild(nuevoScript)
+      script.remove()
+    } else {
+      
+      script.replaceWith(nuevoScript);
+    }
+  
+         
+            
+    
   });
+  
 }
 
 
@@ -147,7 +157,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
       return !estadoInicial.has(k)
     });
 
-    return new Promise((resolve, reject) => {
+    return (new Promise((resolve, reject) => {
       try {
         if (estadoFinal.length > estadoInicial.size) {
 
@@ -180,24 +190,18 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
         $._main.innerHTML = atob(vistaDoc.innerHTML)
         /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
 
-        [...$._main.getElementsByTagName("script")]
-          .forEach(a => {
-            const nuevo = $._doc.createElement("script")
-            nuevo.textContent = a.textContent
-            $._doc.getElementById("scripts-dinamicos").appendChild(nuevo)
-            a.innerHTML = ""
-          })
-
+        activarScripts($._main,"scripts-dinamicos")
+          
 
         estadoFinal = Object.getOwnPropertyNames(window);
         checkToken()
-        checkImages();
+       
         resolve();
       } catch (error) {
         console.error("Error en renderizado:", error);
         reject(error);
       }
-    });
+    })).then(()=> checkImages());
   }
 
   $._body.addEventListener("click", (event) => {
@@ -212,7 +216,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
       const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
       if (destino !== location.href && destino !== $.QPPath(location, true).url) {
-        checkToken()
+       
         if (location.hash.replace("#") !== destino) window.scrollTo(0, 0);
         location.hash = destino;
       }
@@ -221,7 +225,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
   window.addEventListener('hashchange', () => {
 
-    renderVista().then(() => checkImages());
+    renderVista()
 
   });
 
@@ -238,7 +242,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
     $._doc.getElementById("_footer").innerHTML = atob(html).replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
   }
 
-  renderVista().then(() => checkImages());
+  renderVista();
 };
 
 $._header.innerHTML = atob($._header.innerHTML).replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "")
@@ -246,9 +250,9 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 
 activarScripts($._header);
 activarScripts($._footer);
+setTimeout(checkImages,35)
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
-
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
