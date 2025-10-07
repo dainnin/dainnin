@@ -1,0 +1,2386 @@
+:root {
+    --primary-color: #30343f;
+    --white: #ffffff;
+    --black: #111111;
+    --gray0: #857b7b;
+    --gray1: #4f4f4f;
+    --gray2: #30343f;
+    --red1: #ff3333;
+    --blue1: #1d84b5;
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-bold: 700;
+    --font-extraBold: 800;
+}
+
+
+/* -----App */
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: calc(75px + 2vw + 2vh);
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.App-footer {
+    display: grid;
+    grid-template-columns: 7fr 75fr 7fr;
+    background-color: #30343F;
+    font-size: calc(1.35rem + 0.75vw);
+    width: 100vw;
+}
+
+/* ----FooterGrid REVISAR  */
+.footerGrid {
+    display: grid;
+    grid-template-columns: 7fr 75fr 7fr;
+    background-color: #30343F;
+    font-size: calc(1.35rem + 0.75vw);
+    width: 100vw;
+}
+.footerGrid div {
+    display: grid;
+    grid-template-columns: 20fr 60fr 20fr;
+    grid-template-rows: 40px auto auto;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    background-color: #30343F;
+   
+}
+
+.footerGrid div img {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: calc(70px + 5vw);
+    position: relative;
+    padding: 20px 0 0 0;
+}
+
+.footerGrid div p {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    font-size: calc(1.15rem + 0.75vw);
+    overflow: visible;
+    position: relative;
+    justify-items: center;
+    text-align: center;
+}
+
+.footerGrid div div {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+@media only screen and (max-width:460px) {
+
+    .footerGrid div p {
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+    }
+}
+
+/*Header###################
+###################################
+###################*/
+/* header1 menu roto no escalable sacar efectos utiles */
+.header1 {
+    display: flex;
+    height: 174px;
+    justify-content: space-around;
+
+    background-color: #30343f;
+    grid-area: a;
+
+}
+
+
+.header1> :nth-child(1) img {
+
+    padding: calc(174px / 3) 0 0 0;
+}
+
+.header1 a {
+    text-align: left;
+    padding-right: calc(5px + 0.75vw);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+
+}
+
+
+.header1> :nth-child(2) {
+    font-size: calc(1rem + 1.1vw);
+
+    text-transform: uppercase;
+    user-select: none;
+    display: grid;
+    padding: 33px 0 0 0;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: calc(174px / 4.5) auto auto;
+    position: relative;
+    z-index: 0;
+
+
+}
+
+.header1> :nth-child(2) img {
+    height: calc(1rem + 2vw);
+
+
+}
+
+.header1> :nth-child(2)>a,
+header> :nth-child(2)>img {
+    display: inline-flex;
+    font-size: calc(1rem + 1.4vw);
+    text-align: right;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+.collapsemen {
+    height: min-content;
+    display: grid;
+    grid-row-start: 3;
+    grid-row-end: auto;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    visibility: collapse;
+    padding: 10px 0 10px 0;
+    grid-template-columns: 1fr 7fr 3fr;
+    grid-auto-rows: calc(1rem + 1.1vw);
+    filter: drop-shadow(0px 10px 22px rgb(65, 250, 164));
+    background-image: linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
+    border-radius: 15%;
+}
+
+.collapsemen>a {
+    position: relative;
+    grid-column-start: 2;
+}
+
+a:focus.coa.x1+*+*+*+.collapsemen.x1,
+.collapsemen.x1 a:hover:any-link,
+a:focus.coa.x2+*+*+*+.collapsemen.x2,
+.collapsemen.x2 a:hover,
+a:focus.coa.x3+*+*+*+.collapsemen.x3,
+.collapsemen.x3 a:hover:any-link,
+a:focus.coa.x4+*+*+*+.collapsemen.x4,
+.collapsemen.x4 a:hover:any-link,
+a:focus.coa.x5+*+*+*+.collapsemen.x5,
+.collapsemen.x5 a:hover:any-link {
+    color: red;
+    visibility: visible;
+}
+
+
+
+
+
+@media only screen and (max-width:900px) {
+    header {
+        display: grid;
+        grid-template-columns: 2fr 5fr 2fr;
+        padding: 5dvh 0 5dvh 0;
+
+    }
+
+    header>:nth-child(1) {
+        display: grid;
+
+
+
+    }
+
+    header>:nth-child(1) img,
+    header>:nth-child(1) {
+        grid-column-start: 2;
+
+        padding: calc(174px / 13) 0 0dvh 0;
+
+    }
+
+    header>:nth-child(2) {
+
+
+        grid-template-rows: calc(174px / 7) auto auto;
+        grid-column-start: 2;
+        grid-row-start: 2;
+        padding: 0;
+
+    }
+
+}
+
+@media only screen and (max-width:460px) {
+
+    header {
+        grid-template-columns: 3fr 5fr 3fr;
+    }
+
+    header :nth-child(1) img {
+        width: 90dvw;
+
+
+    }
+
+    a {
+        padding-right: calc(0.25vw);
+    }
+}
+
+/*Header Mas piola(el de funko logo espacio menu)###################
+###################################
+###################*/
+.headerLM {
+    display: flex;
+    height: 174px;
+    flex-shrink: 0;
+    justify-content: space-around;
+    background-color: #30343f;
+}
+
+
+.headerLM a.logo {
+    display: flex;
+    margin: auto 0;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.headerLM img.logo {
+    width: calc(100/7 * 2vw);
+    /* 335px original */
+
+}
+
+.headerLM a,
+.headerLM p {
+    text-align: left;
+    padding-right: calc(5px + 0.75vw);
+    color: rgb(250, 245, 240);
+    text-decoration: none;
+
+}
+
+/* Creo que es menu escalable y reutilizable */
+.menuMD {
+    font-size: calc(1rem + 1.1vw);
+    text-transform: uppercase;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+}
+
+.menuMD>img {
+    height: calc(1rem + 2vw);
+}
+
+.menuMD>p {
+    font-size: calc(1rem + 1.4vw);
+    text-align: right;
+
+}
+
+.menuMD a {
+    margin: 4px 0;
+
+}
+
+.collapsemen {
+    height: min-content;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    padding: 15px 10px;
+    filter: drop-shadow(0px 10px 22px rgb(65, 250, 164));
+    background-image: linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
+    border-radius: 2vw;
+    z-index: 10;
+}
+
+.coa:focus~.collapsemen {
+
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.carrito {
+    max-height: 60vh;
+    overflow-y: scroll;
+    flex-shrink: 1;
+    left: auto;
+    right: 5vw;
+    border: 1.5px solid #ccc;
+}
+
+
+
+
+
+@media only screen and (max-width:900px) {
+    .headerLM {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+
+
+
+
+}
+
+/* Generico revisar (use para pagina de diapositivas
+)*/
+
+body {
+    /* body webKit y moz-osx Font */
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.funeteX_revisar {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+}
+
+/* Code estilo n°1 */
+.n1code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+/* header estilo n°2 */
+.headerN2 {
+    padding: 25px 0;
+    align-items: center;
+}
+
+.headerN2 img {
+    height: 75px;
+}
+
+.n1h1 a {
+    font-size: 40px;
+}
+
+.titulo {
+    text-align: center;
+    text-justify: auto;
+}
+
+.ThreeForThree {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    padding: 15px 10vw;
+}
+
+/* Estilo n°1 footer */
+.n1footer {
+    height: 125px;
+    align-items: center;
+}
+
+.n1footer img {
+    height: 100%;
+}
+
+.n1footer input,
+.flexForm input {
+    height: 35px;
+}
+
+.flexColDir {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexForm,
+.flexForm>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexForm div * {
+    margin: 5px !important;
+}
+
+.flexForm button {
+    width: min-content;
+    margin: 20px;
+}
+
+/* Login model1 */
+.Login_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: min-content;
+
+}
+
+.Login_form>label,
+.Login_form>button {
+    margin: 3vh 0;
+
+}
+
+.Login_form>button,
+.Login_form input,
+.Login_form>label {
+    display: block;
+
+    font-size: calc(2.25vw + 10px);
+}
+
+.menR[type="checkbox"]:checked~label::before {
+    content: "Iniciar";
+
+}
+
+.menR[type="checkbox"]~label::before {
+    display: block;
+    content: "Registrar";
+
+    text-align: center;
+
+}
+
+.menR {
+    display: none;
+}
+
+.menR~ ::before {
+    font-size: xx-large;
+}
+
+.menR[type="checkbox"]:not(:checked)~label~.registrar {
+    display: none;
+}
+
+.menR[type="checkbox"]:checked~label~ :not(.registrar) {
+    display: none;
+}
+
+.menR[type="checkbox"]:checked~label::before {
+    background-color: rgb(40, 62, 53);
+
+    transition: background-color 1s ease-in-out;
+}
+
+.menR[type="checkbox"]~label::before {
+    background-image: linear-gradient(145deg, rgb(48, 52, 63, 0.9), #050a2e59);
+
+
+}
+
+/* modelo 
+
+    <input id="menR" name="menR" type="checkbox"></input><label for="menR"></label>
+    <div id="estadoSesion">Verificando</div>
+    <form class="registrar" name="register" method="post">
+        <label>
+            Usuario:
+            <input type="text" name="user" required></input>
+        </label>
+        <label>
+            Nombre:
+            <input type="text" name="nombre" required></input>
+        </label>
+        <label>
+            Correo:
+            <input type="email" name="email" required></input>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" required></input>
+        </label>
+
+        <button>Registrar</button>
+    </form>
+    <form name="login" method="post">
+        <label>
+            Usuario:
+            <input type="text" name="user" required></input>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" required></input>
+        </label>
+        <button>Iniciar sesión</button>
+    </form>
+
+*/
+/* Presentacion Vertical intercalada y Horizontal scroll */
+/* .prsv {
+      display: grid;
+      grid-template-rows: auto;
+      margin-top: 4.25em;
+      text-transform: uppercase;
+     
+  
+  } */
+.prsv div {
+    width: 90vw;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.prsv div div {
+    width: 40vw;
+    align-items: center;
+    overflow: visible;
+    flex-direction: column;
+
+}
+
+.prsv img,
+.contImg {
+
+    width: 55vw;
+    height: 55vw;
+}
+
+.prsv div:nth-child(even) {
+
+    flex-direction: row-reverse;
+
+}
+
+.prsv p {
+
+    margin-top: 0.375em;
+    font-size: calc(1rem + 1vw);
+    color: var(--gray1);
+}
+
+.prsv h2 {
+    font-weight: var(--font-medium);
+    font-size: calc(1rem + 2vw);
+
+
+
+}
+
+.prsv hr {
+    width: 100%;
+    margin-top: 1.75em;
+    border: 3px solid var(--red1);
+}
+
+
+
+.prsh img:hover {
+    height: calc(230px + 7.75vw);
+    filter: drop-shadow(0px 10px 22px rgb(16, 131, 160));
+}
+
+.dibx {
+
+    display: block;
+    text-align: center;
+    align-items: center;
+
+
+}
+
+
+
+.dibx h1 {
+    padding-top: 3rem;
+    font-size: calc(2rem + 1.5vw);
+   
+}
+
+.prsh img {
+    height: calc(200px + 7.75vw);
+    width: auto;
+
+
+}
+
+.prsh {
+    display: flex;
+    width: 85vw;
+    overflow: hidden;
+    overflow-x: scroll;
+    box-sizing: content-box;
+    height: 485px;
+    margin: 0 auto;
+}
+
+.prsh a h3 {
+    font-weight: var(--font-bold);
+    font-size: calc(1.25rem + 0.6vw);
+
+}
+
+.prsh a h4 {
+
+    font-size: calc(1.5rem + 0.8vw);
+
+}
+
+
+.prsh a {
+    width: calc(235px + 7.75vw);
+    text-decoration: none;
+    color: black;
+}
+
+.prsh>div {
+    display: grid;
+    grid-column: auto;
+
+
+}
+
+.prsh a div:nth-child(4) {
+    font-weight: var(--font-regular);
+    font-size: calc(1.5em + 0.5vw);
+    color: var(--gray1);
+
+}
+
+.prsh a div:nth-child(5) {
+    font-weight: var(--font-bold);
+    font-size: calc(1.5rem + 0.5vw);
+    color: var(--blue1);
+
+}
+
+@media only screen and (max-width:650px) {
+    .prsh img {
+        height: 250px;
+        width: auto;
+    }
+
+    .prsh img:hover {
+        height: 280px;
+
+    }
+
+    .prsh {
+
+        height: 400px;
+    }
+
+}
+
+/*BANNERF usado en funko###################
+###################################
+###################*/
+
+.blurx,
+.noblur {
+    position: absolute;
+}
+
+.noblur a {
+    z-index: 100;
+}
+
+.BannerF,
+.blurx {
+    width: 100vw;
+    height: calc(22.5rem + 10vw);
+}
+
+
+.noblur {
+    color: white;
+    padding: calc(10vw - 2vw) 0 0 10vw;
+    backdrop-filter: blur(2px);
+}
+
+.noblur,
+.BannerF p {
+    user-select: none;
+}
+
+.decoshopx {
+
+    color: black;
+    padding: 4rem 0 0 0;
+}
+
+.bannerTittle {
+    font-size: calc(2rem + 2.25vw);
+}
+
+.banerText {
+    font-size: calc(1.5rem + 0.8vw);
+}
+
+.decoshop {
+    font-size: calc(2rem + 1vw);
+    border-radius: 50px;
+    padding: 3px 0 0 0;
+    text-align: center;
+    text-justify: center;
+    font-family: sans-serif;
+    background-color: white;
+    width: 200px;
+    height: 40px;
+}
+
+/* Modelo de funko sin scroll X body*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-size: 62.5%;
+    /* 100% = 16px */
+    width: 100vw;
+}
+
+.bodyF2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 100vh;
+    color: var(--black);
+}
+
+.noselec {
+
+    user-select: none;
+}
+
+
+
+.derc {
+    font-size: 30px;
+    color: aliceblue;
+    background: transparent;
+    border: none;
+}
+
+/* Menu desplegable estilo n°1 */
+.menuMD {
+    font-size: calc(1rem + 1.1vw);
+    text-transform: uppercase;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+}
+
+.menuMD>img {
+    height: calc(1rem + 2vw);
+}
+
+.menuMD>p {
+    font-size: calc(1rem + 1.4vw);
+    text-align: right;
+
+}
+
+.menuMD a {
+    margin: 4px 0;
+
+}
+
+.collapsemen {
+    height: min-content;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    padding: 15px 10px;
+    filter: drop-shadow(0px 10px 22px rgb(65, 250, 164));
+    background-image: linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
+    border-radius: 2vw;
+    z-index: 10;
+}
+
+.coa:focus~.collapsemen {
+
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Estilo n°1 carrito */
+.carrito {
+    max-height: 60vh;
+    overflow-y: scroll;
+    flex-shrink: 1;
+    left: auto;
+    right: 5vw;
+    border: 1.5px solid #ccc;
+}
+
+/* Code estilo n°1 */
+.n1code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+/* header estilo n°2 */
+.headerN2 {
+    padding: 25px 0;
+    align-items: center;
+}
+
+.headerN2 img {
+    height: 75px;
+}
+
+.n1h1 a {
+    font-size: 40px;
+}
+
+.titulo {
+    text-align: center;
+    text-justify: auto;
+}
+
+.ThreeForThree {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    padding: 15px 10vw;
+}
+
+/* Estilo n°1 footer */
+.n1footer {
+    height: 125px;
+    align-items: center;
+}
+
+.n1footer img {
+    height: 100%;
+}
+
+.n1footer input {
+    height: 35px;
+}
+
+.flexColDir {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* mas cssss lpm */
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.Programacionpre {
+    text-wrap: wrap;
+}
+
+.Programa * {
+
+    font-weight: 100;
+}
+
+.Programa label {
+    margin: 15px;
+}
+
+.Programa main * {
+    animation-duration: 2s;
+    animation-name: aparecer;
+}
+
+.Programa .menu {
+
+    background: linear-gradient(137deg, rgba(199, 151, 151, 0.295), rgba(98, 217, 233, 0.397)) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 7%;
+    text-align: center;
+    min-height: 15px;
+    z-index: 3;
+    -ms-overflow-style: none;
+    /* IE y Edge */
+    scrollbar-width: none;
+
+    overflow-y: scroll;
+}
+
+.Programa details.menu::-webkit-scrollbar {
+    display: none;
+}
+
+.Programa details.menu:not(:hover) {
+    height: 15px;
+
+}
+
+
+.Programa header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.Programa .buscar {
+    position: fixed;
+    right: 15px;
+}
+
+
+.Programa th,
+.Programa td,
+.Programa tr {
+    text-transform: capitalize;
+    padding: 10px;
+    border: 2px solid;
+    margin: 0;
+}
+
+.Programa table {
+    border-collapse: collapse;
+}
+
+.Programa strong {
+    color: red;
+}
+
+.Programa button.inicio {
+
+    position: fixed;
+    width: 3rem;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    background: rgba(0, 217, 255, 0.253);
+    backdrop-filter: blur(2px);
+}
+
+.Programa span * {
+    display: inline;
+    height: max-content;
+    width: max-content;
+}
+
+
+.Programa .imagen {
+    position: relative;
+    top: 0;
+    transition: opacity 3s ease;
+}
+
+.Programa .punto {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    justify-content: center;
+}
+
+.Programa .carrusel-puntos {
+    display: flex;
+    justify-content: center;
+
+}
+
+.Programa .punto-activo {
+    background-color: #717171;
+}
+
+
+
+
+
+
+.Programa .details {
+    position: absolute;
+    left: calc(70vw);
+    top: 60px;
+    min-width: 175px;
+    max-height: 70vh !important;
+}
+
+
+.Programa .details[open] {
+
+    animation-name: abrir2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.Programa .details[open]>div {
+
+    animation-name: aparecer;
+    animation-duration: 2s;
+
+
+}
+
+.Programa .summary {
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.Programa .headerP {
+    background: rgba(255, 102, 0, 0.336);
+}
+
+.Programa .styleP p,
+.Programa .styleP li {
+    font-weight: 800;
+    color: var(--GreySpecial2);
+}
+
+.Programa .styleP strong {
+    font-weight: 800;
+}
+
+.Programa .desplazar7 {
+    padding: 15px;
+    height: 70vh;
+}
+
+.Programa body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.Programa main img {
+    max-width: 90%;
+}
+
+.chat {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* word-wrap: break-word; */
+    height: 40vh;
+    padding: 0 25px 0 25px;
+    background: teal;
+
+}
+
+.chat.Box {
+    width: 100%;
+    /* Ancho base */
+    min-width: 100px;
+    /* Ancho mínimo */
+    max-width: 90vw;
+    /* Ancho máximo */
+    background-color: rgba(2, 105, 105, 0.616);
+    height: 50vh;
+}
+
+.revisar1 form.menux {
+    position: relative;
+    height: 70vh;
+    padding: 0 5px 0 5px;
+}
+
+.revisar1 main {
+    padding: 15px;
+}
+
+.revisar1 .idUser {
+    /* position: absolute;
+       top: -7vh;
+       left: 150px; */
+    margin: 3%;
+
+}
+
+.revisar1 .chatContact {
+    display: flex;
+
+}
+
+.revisar1 .menu.contact {
+    min-width: 40px;
+    height: 40vh;
+    padding: 20px 0 20px 0;
+}
+
+.revisar1 .menu.contact>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1vw;
+    height: 100%;
+
+}
+
+.revisar1 .summMenu {
+
+    min-width: 120px;
+
+    max-width: 250px;
+}
+
+.revisar1 .menuDetails {
+
+    z-index: 999;
+    background: rgba(21, 147, 197, 0.723);
+    backdrop-filter: blur(5px);
+
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.revisar1 .menuDetails ul {
+    padding: 0;
+    margin: 5px 3px 5px 10px;
+}
+
+.revisar1 .menuDetails[open] {
+    min-height: 15px;
+    max-height: 35vh;
+}
+
+.revisar1 .test {
+    display: initial !important;
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: initial !important;
+}
+
+.revisar1 .test fieldset {
+    width: 100 px;
+    min-width: 50px;
+    max-width: 100%;
+}
+
+.revisar1 .test :not(fieldset) {
+    width: 80%;
+}
+
+.revisar1 .delList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 20vh;
+}
+
+.revisar1 fieldset.menu.contact input.collmen:checked~ul {
+    width: 40px;
+    font-size: 10px;
+}
+
+.revisar1 fieldset.menu.contact input.collmen:checked~.LegendMain {
+    width: 60px;
+    font-size: 0px;
+    background: url("/_next/image?url=%2Fimg%2Ficon%2Fkirby.jpg&w=64&q=75") no-repeat;
+    height: 60px;
+}
+
+.revisar1 .user {
+    font-weight: 1000;
+    text-transform: capitalize;
+    color: rgb(41, 0, 221);
+    background: rgba(222, 184, 135, 0.719);
+
+}
+
+.revisar1 .contact {
+    font-weight: 1000;
+    background: rgba(255, 192, 203, 0.568);
+    text-transform: capitalize;
+}
+
+.revisar1 li.user,
+.revisar1 li.contact {
+    border-radius: 5px;
+    list-style: none;
+}
+
+.revisar1 li.user {
+
+    background: pink;
+}
+
+.revisar1 li.user>.chatElement>strong {
+    display: block;
+    text-align: end;
+
+}
+
+.revisar1 li.contact>.chatElement>strong {
+    display: block;
+    text-align: start;
+
+}
+
+.revisar1 .chatElement {
+    padding: 5px;
+
+}
+
+.revisar1 .close {
+    width: 20px !important;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.revisar1 .close:hover {
+    background: rebeccapurple;
+    color: whitesmoke;
+}
+
+.revisar1 footer[name=_footer] ul a {
+    display: flex;
+    flex-direction: column;
+    background: rgb(190, 160, 160);
+    font-weight: 1000;
+    margin: 11px 4px;
+}
+
+.revisar1 footer[name=_footer] ul {
+    margin: 5px;
+    padding: 0;
+}
+
+.revisar1 main[name=_main]>section {
+    max-width: 70vw;
+    margin: auto;
+}
+
+.revisar1 main[name=_main]>h1 {
+    max-width: 90vw;
+    margin: auto;
+}
+
+.revisar1 span[name=_panel] {
+    position: sticky;
+    top: 20px;
+}
+
+.revisar1 nav {
+    overflow-y: visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Revisar */
+
+/* @keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+pre {
+    text-wrap: wrap;
+}
+
+* {
+
+    font-weight: 100;
+}
+
+label {
+    margin: 15px;
+}
+
+main * {
+    animation-duration: 2s;
+    animation-name: aparecer;
+}
+
+.menu {
+
+    background: linear-gradient(137deg, rgba(199, 151, 151, 0.295), rgba(98, 217, 233, 0.397)) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 7%;
+    text-align: center;
+    min-height: 15px;
+    z-index: 3;
+    -ms-overflow-style: none;
+    
+    scrollbar-width: none;
+
+    overflow-y: scroll;
+}
+details.menu::-webkit-scrollbar{
+    display: none;
+}
+details.menu:not(:hover) {
+    height: 15px;
+
+}
+
+
+header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.buscar {
+    position: fixed;
+    right: 15px;
+}
+
+
+th,
+td,
+tr {
+    text-transform: capitalize;
+    padding: 10px;
+    border: 2px solid;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+strong {
+    color: red;
+}
+
+button.inicio {
+
+    position: fixed;
+    width: 3rem;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    background: rgba(0, 217, 255, 0.253);
+    backdrop-filter: blur(2px);
+}
+
+span * {
+    display: inline;
+    height: max-content;
+    width: max-content;
+}
+
+
+.imagen {
+    position: relative;
+    top: 0;
+    transition: opacity 3s ease;
+}
+
+.punto {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    justify-content: center;
+}
+
+.carrusel-puntos {
+    display: flex;
+    justify-content: center;
+
+}
+
+.punto-activo {
+    background-color: #717171;
+}
+
+
+
+
+
+
+.details {
+    position: absolute;
+    left: calc(70vw);
+    top: 60px;
+    min-width: 175px;
+    max-height: 70vh !important;
+}
+
+
+.details[open] {
+
+    animation-name: abrir2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+   
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.details[open]>div {
+
+    animation-name: aparecer;
+    animation-duration: 2s;
+
+
+}
+
+.summary {
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.headerP {
+    background: rgba(255, 102, 0, 0.336);
+}
+
+.styleP p,
+.styleP li {
+    font-weight: 800;
+    color: var(--GreySpecial2);
+}
+
+.styleP strong {
+    font-weight: 800;
+}
+
+.desplazar7 {
+    padding: 15px;
+    height: 70vh;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+main img {
+    max-width: 90%;
+}
+
+.chat {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+    height: 40vh;
+    padding: 0 25px 0 25px;
+    background: teal;
+
+}
+
+.chat.Box {
+    width: 100%;
+   
+    min-width: 100px;
+   
+    max-width: 90vw;
+   
+    background-color: rgba(2, 105, 105, 0.616);
+    height: 50vh;
+}
+
+form.menux {
+    position: relative;
+    height: 70vh;
+    padding: 0 5px 0 5px;
+}
+
+main {
+    padding: 15px;
+}
+
+.idUser {
+     position: absolute;
+       top: -7vh;
+       left: 150px; 
+    margin: 3%;
+
+}
+
+.chatContact {
+    display: flex;
+
+}
+
+.menu.contact {
+    min-width: 40px;
+    height: 40vh;
+    padding: 20px 0 20px 0;
+}
+
+.menu.contact>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1vw;
+    height: 100%;
+
+}
+
+.summMenu {
+
+    min-width: 120px;
+
+    max-width: 250px;
+}
+
+.menuDetails {
+
+    z-index: 999;
+    background: rgba(21, 147, 197, 0.723);
+    backdrop-filter: blur(5px);
+
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.menuDetails ul {
+    padding: 0;
+    margin: 5px 3px 5px 10px;
+}
+
+.menuDetails[open] {
+    min-height: 15px;
+    max-height: 35vh;
+}
+
+.test {
+    display: initial !important;
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: initial !important;
+}
+
+.test fieldset {
+    width: 100 px;
+    min-width: 50px;
+    max-width: 100%;
+}
+
+.test :not(fieldset) {
+    width: 80%;
+}
+
+.delList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 20vh;
+}
+
+fieldset.menu.contact input.collmen:checked~ul {
+    width: 40px;
+    font-size: 10px;
+}
+
+fieldset.menu.contact input.collmen:checked~.LegendMain {
+    width: 60px;
+    font-size: 0px;
+    background: url("/_next/image?url=%2Fimg%2Ficon%2Fkirby.jpg&w=64&q=75") no-repeat;
+    height: 60px;
+}
+
+.user {
+    font-weight: 1000;
+    text-transform: capitalize;
+    color: rgb(41, 0, 221);
+    background: rgba(222, 184, 135, 0.719);
+
+}
+
+.contact {
+    font-weight: 1000;
+    background: rgba(255, 192, 203, 0.568);
+    text-transform: capitalize;
+}
+
+li.user,
+li.contact {
+    border-radius: 5px;
+    list-style: none;
+}
+
+li.user {
+
+    background: pink;
+}
+
+li.user>.chatElement>strong {
+    display: block;
+    text-align: end;
+
+}
+
+li.contact>.chatElement>strong {
+    display: block;
+    text-align: start;
+
+}
+
+.chatElement {
+    padding: 5px;
+
+}
+
+.close {
+    width: 20px !important;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.close:hover {
+    background: rebeccapurple;
+    color: whitesmoke;
+}
+
+footer[name=_footer] ul a {
+    display: flex;
+    flex-direction: column;
+    background: rgb(190, 160, 160);
+    font-weight: 1000;
+    margin: 11px 4px;
+}
+
+footer[name=_footer] ul {
+    margin: 5px;
+    padding: 0;
+}
+
+main[name=_main]>section {
+    max-width: 70vw;
+    margin: auto;
+}
+
+main[name=_main]>h1 {
+    max-width: 90vw;
+    margin: auto;
+}
+
+span[name=_panel] {
+    position: sticky;
+    top: 20px;
+}
+
+nav {
+    overflow-y: visible;
+} */
+
+
+/* Menu desplegable estilo n°1 */
+.menuMD {
+    font-size: calc(1rem + 1.1vw);
+    text-transform: uppercase;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+}
+
+.menuMD>img {
+    height: calc(1rem + 2vw);
+}
+
+.menuMD>p {
+    font-size: calc(1rem + 1.4vw);
+    text-align: right;
+
+}
+
+.menuMD a {
+    margin: 4px 0;
+
+}
+
+.collapsemen {
+    height: min-content;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    padding: 15px 10px;
+    filter: drop-shadow(0px 10px 22px rgb(65, 250, 164));
+    background-image: linear-gradient(rgba(48, 52, 87, 0.5), rgba(48, 52, 87, 0.5));
+    border-radius: 2vw;
+    z-index: 10;
+}
+
+.coa:focus~.collapsemen {
+
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Estilo n°1 carrito */
+.carrito {
+    max-height: 60vh;
+    overflow-y: scroll;
+    flex-shrink: 1;
+    left: auto;
+    right: 5vw;
+    border: 1.5px solid #ccc;
+}
+
+/* Code estilo n°1 */
+.n1code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+/* header estilo n°2 */
+.headerN2 {
+    padding: 25px 0;
+    align-items: center;
+}
+
+.headerN2 img {
+    height: 75px;
+}
+
+.n1h1 a {
+    font-size: 40px;
+}
+
+.titulo {
+    text-align: center;
+    text-justify: auto;
+}
+
+.ThreeForThree {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    padding: 15px 10vw;
+}
+
+/* Estilo n°1 footer */
+.n1footer {
+    height: 125px;
+    align-items: center;
+}
+
+.n1footer img {
+    height: 100%;
+}
+
+.n1footer input {
+    height: 35px;
+}
+
+.flexColDir {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Revisar */
+
+/* @keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+pre {
+    text-wrap: wrap;
+}
+
+* {
+
+    font-weight: 100;
+}
+
+label {
+    margin: 15px;
+}
+
+main * {
+    animation-duration: 2s;
+    animation-name: aparecer;
+}
+
+.menu {
+
+    background: linear-gradient(137deg, rgba(199, 151, 151, 0.295), rgba(98, 217, 233, 0.397)) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 7%;
+    text-align: center;
+    min-height: 15px;
+    z-index: 3;
+    -ms-overflow-style: none;
+    
+    scrollbar-width: none;
+
+    overflow-y: scroll;
+}
+details.menu::-webkit-scrollbar{
+    display: none;
+}
+details.menu:not(:hover) {
+    height: 15px;
+
+}
+
+
+header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.buscar {
+    position: fixed;
+    right: 15px;
+}
+
+
+th,
+td,
+tr {
+    text-transform: capitalize;
+    padding: 10px;
+    border: 2px solid;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+strong {
+    color: red;
+}
+
+button.inicio {
+
+    position: fixed;
+    width: 3rem;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    background: rgba(0, 217, 255, 0.253);
+    backdrop-filter: blur(2px);
+}
+
+span * {
+    display: inline;
+    height: max-content;
+    width: max-content;
+}
+
+
+.imagen {
+    position: relative;
+    top: 0;
+    transition: opacity 3s ease;
+}
+
+.punto {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    justify-content: center;
+}
+
+.carrusel-puntos {
+    display: flex;
+    justify-content: center;
+
+}
+
+.punto-activo {
+    background-color: #717171;
+}
+
+
+
+
+
+
+.details {
+    position: absolute;
+    left: calc(70vw);
+    top: 60px;
+    min-width: 175px;
+    max-height: 70vh !important;
+}
+
+
+.details[open] {
+
+    animation-name: abrir2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+   
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.details[open]>div {
+
+    animation-name: aparecer;
+    animation-duration: 2s;
+
+
+}
+
+.summary {
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.headerP {
+    background: rgba(255, 102, 0, 0.336);
+}
+
+.styleP p,
+.styleP li {
+    font-weight: 800;
+    color: var(--GreySpecial2);
+}
+
+.styleP strong {
+    font-weight: 800;
+}
+
+.desplazar7 {
+    padding: 15px;
+    height: 70vh;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+main img {
+    max-width: 90%;
+}
+
+.chat {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+    height: 40vh;
+    padding: 0 25px 0 25px;
+    background: teal;
+
+}
+
+.chat.Box {
+    width: 100%;
+   
+    min-width: 100px;
+   
+    max-width: 90vw;
+   
+    background-color: rgba(2, 105, 105, 0.616);
+    height: 50vh;
+}
+
+form.menux {
+    position: relative;
+    height: 70vh;
+    padding: 0 5px 0 5px;
+}
+
+main {
+    padding: 15px;
+}
+
+.idUser {
+     position: absolute;
+       top: -7vh;
+       left: 150px; 
+    margin: 3%;
+
+}
+
+.chatContact {
+    display: flex;
+
+}
+
+.menu.contact {
+    min-width: 40px;
+    height: 40vh;
+    padding: 20px 0 20px 0;
+}
+
+.menu.contact>ul {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1vw;
+    height: 100%;
+
+}
+
+.summMenu {
+
+    min-width: 120px;
+
+    max-width: 250px;
+}
+
+.menuDetails {
+
+    z-index: 999;
+    background: rgba(21, 147, 197, 0.723);
+    backdrop-filter: blur(5px);
+
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.menuDetails ul {
+    padding: 0;
+    margin: 5px 3px 5px 10px;
+}
+
+.menuDetails[open] {
+    min-height: 15px;
+    max-height: 35vh;
+}
+
+.test {
+    display: initial !important;
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: initial !important;
+}
+
+.test fieldset {
+    width: 100 px;
+    min-width: 50px;
+    max-width: 100%;
+}
+
+.test :not(fieldset) {
+    width: 80%;
+}
+
+.delList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 20vh;
+}
+
+fieldset.menu.contact input.collmen:checked~ul {
+    width: 40px;
+    font-size: 10px;
+}
+
+fieldset.menu.contact input.collmen:checked~.LegendMain {
+    width: 60px;
+    font-size: 0px;
+    background: url("/_next/image?url=%2Fimg%2Ficon%2Fkirby.jpg&w=64&q=75") no-repeat;
+    height: 60px;
+}
+
+.user {
+    font-weight: 1000;
+    text-transform: capitalize;
+    color: rgb(41, 0, 221);
+    background: rgba(222, 184, 135, 0.719);
+
+}
+
+.contact {
+    font-weight: 1000;
+    background: rgba(255, 192, 203, 0.568);
+    text-transform: capitalize;
+}
+
+li.user,
+li.contact {
+    border-radius: 5px;
+    list-style: none;
+}
+
+li.user {
+
+    background: pink;
+}
+
+li.user>.chatElement>strong {
+    display: block;
+    text-align: end;
+
+}
+
+li.contact>.chatElement>strong {
+    display: block;
+    text-align: start;
+
+}
+
+.chatElement {
+    padding: 5px;
+
+}
+
+.close {
+    width: 20px !important;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.close:hover {
+    background: rebeccapurple;
+    color: whitesmoke;
+}
+
+footer[name=_footer] ul a {
+    display: flex;
+    flex-direction: column;
+    background: rgb(190, 160, 160);
+    font-weight: 1000;
+    margin: 11px 4px;
+}
+
+footer[name=_footer] ul {
+    margin: 5px;
+    padding: 0;
+}
+
+main[name=_main]>section {
+    max-width: 70vw;
+    margin: auto;
+}
+
+main[name=_main]>h1 {
+    max-width: 90vw;
+    margin: auto;
+}
+
+span[name=_panel] {
+    position: sticky;
+    top: 20px;
+}
+
+nav {
+    overflow-y: visible;
+} */
