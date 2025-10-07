@@ -121,7 +121,7 @@ setTimeout(()=>{
       img.removeAttribute("datasrc");
     }
   });
-},75)
+},335)
 };
 
 function activarScripts(nodo, nodoDestino = false) {
@@ -265,6 +265,7 @@ activarScripts($._footer);
 
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
+
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
