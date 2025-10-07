@@ -857,6 +857,7 @@ html {
 
 }
 
+
 .collapsemen {
     height: min-content;
     display: flex;
@@ -880,7 +881,21 @@ html {
     visibility: visible;
     transform: translateY(0);
 }
+/* WebKit (Edge, Chrome, Safari) Scroll*/
+*::-webkit-scrollbar {
+  height: 7px;  
+  width: 7px;
+  
+}
 
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 /* Estilo n°1 carrito */
 .carrito {
     max-height: 60vh;
@@ -1887,7 +1902,7 @@ nav {
 
 }
 
-.collapsemen {
+/* .collapsemen {
     height: min-content;
     display: flex;
     visibility: hidden;
@@ -1912,6 +1927,7 @@ nav {
 }
 
 /* Estilo n°1 carrito */
+/*
 .carrito {
     max-height: 60vh;
     overflow-y: scroll;
@@ -1919,7 +1935,7 @@ nav {
     left: auto;
     right: 5vw;
     border: 1.5px solid #ccc;
-}
+} */
 
 /* Code estilo n°1 */
 .n1code {
