@@ -121,7 +121,7 @@ setTimeout(()=>{
       img.removeAttribute("datasrc");
     }
   });
-},335)
+},175)
 };
 
 function activarScripts(nodo, nodoDestino = false) {
@@ -269,3 +269,4 @@ window.addEventListener("resize", checkImages);
 
 
 const sessionButton = $._doc.getElementById("sessionButton")
+
