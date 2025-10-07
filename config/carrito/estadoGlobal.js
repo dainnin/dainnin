@@ -29,7 +29,7 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
   xhr.open("GET", `${urlBase}checkToken`, true);
   xhr.withCredentials = true; // 🔐 Esto permite enviar cookies
 
- /*  xhr.setRequestHeader("Content-Type", "application/json"); */
+  xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -69,6 +69,7 @@ estadoGlobal.observar((clave, valor) => {
       href: valor.estado ? "/" : "/login",
     })
     if (valor.estado) {
+      
       sessionButton.onclick = async function logout() {
         try {
           const r = await fetch("https://dainnin.alwaysdata.net/api/logout", {
@@ -91,7 +92,9 @@ estadoGlobal.observar((clave, valor) => {
       }
 
       if($.path=="/login")location.hash="#/"
-    }
+    
+  
   }
+  }
+  
 });
-

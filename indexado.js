@@ -106,9 +106,9 @@ const checkImages = () => {
    const r = rect();
    return (
     r.top < window.innerHeight &&
-    r.bottom > 0 &&
+    r.bottom > 0 /* &&
     r.left < window.innerWidth &&
-    r.right > 0
+    r.right > 0 */
   );
 };
 
