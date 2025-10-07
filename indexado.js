@@ -97,28 +97,31 @@ function getAtt(el, attr) {
   return el.getAttribute(attr)
 }
 const checkImages = () => {
-  const images = [...document.querySelectorAll("img")].filter(img => getAtt(img,"datasrc"));
+setTimeout(()=>{
+  const images = [...document.querySelectorAll("img")].filter(img => getAtt(img, "datasrc"));
 
   images.forEach(img => {
-    const rect =()=> img.getBoundingClientRect();
-    const rectB=()=> window.innerHeight;
+    const rect = () => img.getBoundingClientRect();
+    const rectB = () => window.innerHeight;
     const isVisible = () => {
-   const r = rect();
-   return (
-    r.top < window.innerHeight &&
-    r.bottom > 0 /* &&
+      const r = rect();
+      return (
+        r.top < window.innerHeight &&
+        r.bottom > 0 /* &&
     r.left < window.innerWidth &&
     r.right > 0 */
-  );
-};
+      );
 
-    
-     
+    };
+
+
+
     if (isVisible()) {
-      img.src = getAtt(img,"datasrc");
+      img.src = getAtt(img, "datasrc");
       img.removeAttribute("datasrc");
     }
   });
+},75)
 };
 
 function activarScripts(nodo, nodoDestino = false) {
@@ -194,7 +197,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
         _scripts.innerHTML = "";
 
 
-        $.classInBody({ main: getAtt(vista,"data-class") || "" });
+        $.classInBody({ main: getAtt(vista, "data-class") || "" });
 
         $._main.innerHTML = atob(vistaDoc.innerHTML)
         /* .replaceAll(/<script_\b[^>]*>[\s\S]*?<\/script_>/gi, "") */.replace("<_>", "").replace("&lt;_&gt;", "").replace(/<!--_-->/gi, "");
@@ -221,7 +224,7 @@ const createUpdate = async (vistas = {}, componentes = {}) => {
 
     if (eTag === 'A' || Father.tagName === 'A') {
 
-      if (!(getAtt(Target,"r") === "true" || getAtt(Father,"r") === "true")) event.preventDefault();
+      if (!(getAtt(Target, "r") === "true" || getAtt(Father, "r") === "true")) event.preventDefault();
 
       const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
       if (destino !== location.href && destino !== $.QPPath(location, true).url) {
@@ -259,7 +262,7 @@ $._footer.innerHTML = atob($._footer.innerHTML).replace("<_>", "").replace("&lt;
 
 activarScripts($._header);
 activarScripts($._footer);
-setTimeout(checkImages, 35)
+
 window.addEventListener("scroll", checkImages);
 window.addEventListener("resize", checkImages);
 
