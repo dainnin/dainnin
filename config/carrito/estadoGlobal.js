@@ -38,8 +38,9 @@ function checkToken(urlBase = "https://dainnin.alwaysdata.net/api/") {
       if (xhr.status === 200) {
         try {
           const data = JSON.parse(xhr.responseText);
+          
           estadoGlobal.set("conectado", { estado: true });
-          estadoGlobal.set("usuario", data.usuario || null);
+          estadoGlobal.set("usuario", data.user || null);
         } catch (e) {
           estadoGlobal.set("conectado", { estado: false, msj: "Error de formato" });
           estadoGlobal.set("usuario", null);
@@ -68,7 +69,9 @@ estadoGlobal.observar((clave, valor) => {
       textContent: valor.estado ? "Cerrar Sesion" : "Sesion",
       href: valor.estado ? "/" : "/login",
     })
+    
     if (valor.estado) {
+      
       
       sessionButton.onclick = async function logout() {
         try {
@@ -91,10 +94,15 @@ estadoGlobal.observar((clave, valor) => {
         }
       }
 
-      if($.path=="/login")location.hash="#/"
+      if(_69$.path=="/login")location.hash="#/" 
     
-  
+   if(estadoGlobal.get("usuario")){
+    document.getElementById("user").innerHTML="<p style='color:bluesky;'>"+estadoGlobal.get("usuario")+"</p>"
   }
+  }else{
+    document.getElementById("user").innerHTML=""
+  }
+ 
   }
   
 });

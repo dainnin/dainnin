@@ -1,10 +1,12 @@
+
+
 // ✅ Estado inicial
 const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
 const totalGuardado = Number(localStorage.getItem("total")) || 0;
 
 estadoGlobal.set("carrito", carritoGuardado);
 estadoGlobal.set("total", totalGuardado.toFixed(2));
-estadoGlobal.set("cant", carritoGuardado.length || -1);
+estadoGlobal.set("cant", carritoGuardado.length || 0);
 
 // ✅ Agregar producto
 function agregarAlCarrito(ele) {
@@ -25,6 +27,7 @@ function agregarAlCarrito(ele) {
 
 // ✅ Eliminar producto
 function eliminarDelCarrito(ele) {
+  
   const indexE = ele.parentElement;
   const masterI = Object.values(indexE.parentElement.children).indexOf(indexE);
 
@@ -39,40 +42,43 @@ function eliminarDelCarrito(ele) {
 
   estadoGlobal.set("carrito", carrito);
   estadoGlobal.set("total", total.toFixed(2));
-  estadoGlobal.set("cant", carrito.length || -1);
+  estadoGlobal.set("cant", carrito.length || 0);
 }
 
 // ✅ Renderizar carrito
 function actualizarCarrito() {
   
   const listaCarrito = document.getElementById("carrito");
+  const precioT=document.createElement("div")
   
   if (!listaCarrito) return setTimeout(actualizarCarrito,250);
-
+  
   listaCarrito.innerHTML = "";
   let total = 0;
 
   const carrito = estadoGlobal.get("carrito");
   
-  carrito.forEach((item, index) => {
+  carrito.forEach((item) => {
     total += Number(item.precio);
 
     const span = document.createElement("span");
     span.innerHTML = `
       ${item.nombre} $${item.precio}
       <br>
-      <button>Eliminar</button>
+      <button class="carDel">Eliminar</button>
       <hr>
     `;
-    span.querySelector("button").addEventListener("click", function () {
-      eliminarDelCarrito(this);
-    });
 
     listaCarrito.appendChild(span);
+   
   });
-
+ if(carrito && carrito.length>0 && 
+  !document.getElementById("precioT")) listaCarrito.insertBefore(precioT, listaCarrito.firstChild);
+  precioT.innerHTML=`<h3 style="color:red;">Total a pagar $${total.toFixed(2)}</h3><hr>` 
+  precioT.id="precioT"
   const carp = document.getElementById("totalProd");
-  if (carp) carp.textContent = carrito.length;
+ 
+  if (carp) carp.textContent =carrito.length;
 
   localStorage.setItem("total", total.toFixed(2));
   estadoGlobal.set("total", total.toFixed(2));
@@ -89,5 +95,15 @@ estadoGlobal.observar((clave, valor) => {
     actualizarCarrito();
   }
 });
+(function(){
+ setTimeout(()=>document.getElementById("carrito").addEventListener("click", function (event) {
+  
+    if(event.target.closest(".carDel")){
+      
+  eliminarDelCarrito(event.target);
+     }
+    }),55)
+  ;}
+)()
 
 actualizarCarrito()
