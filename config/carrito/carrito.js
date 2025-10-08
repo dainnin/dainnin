@@ -29,9 +29,10 @@ function agregarAlCarrito(ele) {
 function eliminarDelCarrito(ele) {
   
   const indexE = ele.parentElement;
-  const masterI = Object.values(indexE.parentElement.children).indexOf(indexE);
-
   const carrito = estadoGlobal.get("carrito");
+  const masterI = Object.values(indexE.parentElement.children).indexOf(indexE)-1;
+
+  
   let total = Number(estadoGlobal.get("total"));
 
   carrito[masterI].precio ? total -= Number(carrito[masterI].precio) : total = 0;
@@ -72,9 +73,8 @@ function actualizarCarrito() {
     listaCarrito.appendChild(span);
    
   });
- if(carrito && carrito.length>0 && 
-  !document.getElementById("precioT")) listaCarrito.insertBefore(precioT, listaCarrito.firstChild);
-  precioT.innerHTML=`<h3 style="color:red;">Total a pagar $${total.toFixed(2)}</h3><hr>` 
+ if(!document.getElementById("precioT")) listaCarrito.insertBefore(precioT, listaCarrito.firstChild);
+  precioT.innerHTML=`<h3 style="color:red;">${carrito && carrito.length>0?("Total a pagar $"+total.toFixed(2)):"Carro vacio"}</h3><hr>` 
   precioT.id="precioT"
   const carp = document.getElementById("totalProd");
  
