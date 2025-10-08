@@ -96,13 +96,14 @@ estadoGlobal.observar((clave, valor) => {
 
       if(_69$.path=="/login")location.hash="#/" 
     
-   if(estadoGlobal.get("usuario")){
+   
+  }else{
+   document.getElementById("user").innerHTML=""
+  }
+  }else
+  if(clave === "usuario"){
+    if(estadoGlobal.get("usuario")){
     document.getElementById("user").innerHTML="<p style='color:bluesky;'>"+estadoGlobal.get("usuario")+"</p>"
   }
-  }else{
-    document.getElementById("user").innerHTML=""
   }
- 
-  }
-  
 });
