@@ -1,0 +1,2680 @@
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPA</title>
+</head>
+
+<body>
+
+  <header id="_header">PGRpdj48L2Rpdj4=</header>
+  <div id="CreatePlayer">
+   
+</div>
+<div class="_main">
+<canvas id="gameCanvas" width="640" height="480"></canvas>
+
+<!--datos -->
+
+
+<!-- 1. Mapa y obstáculos -->
+
+
+
+<!-- 2. Estilos visuales del terreno -->
+
+
+<!-- 3. Entidades que dependen del mapa -->
+
+
+
+<!-- 4. Entrada y cámara -->
+
+
+
+<!-- 5. Motor principal -->
+ <!-- tu main -->
+
+<style>
+    body{
+        overflow: hidden;
+    }
+    canvas {
+        background: #222;
+        display: flex;
+        /* margin: auto; */
+        border: 2px solid teal;
+    }
+
+    #CreatePlayer {
+        width: min-content;
+        margin: 30px;
+    }
+
+    ._main {
+        display: flex;
+
+    }
+
+    #actionControls button,#mobileControls button {
+        margin: 10px;
+        min-width: 10vh;
+
+    }
+    div>button,div>select {
+        background: rgb(21, 161, 255);
+        border: #222 solid 2px;
+        border-radius: 7px;
+        font-size: larger;
+    }
+    div>button:hover{
+        background: rgb(21, 191, 115,0.7);
+    }
+    .BTNcollapse:checked ~ input[id=playerNameInput] ~ *{
+        color: blue;
+        display: none;
+        visibility: collapse;
+    }
+    .BTNcollapse:checked ~ input[id=playerNameInput]{
+        color: teal;
+        font-size: larger;        
+    }
+</style>
+<script>
+const rpgClasses_ = {
+  mana: {
+    elementales: [
+      "magoFuego",
+      "hechiceroHielo",
+      "invocadorTormenta",
+      "geomante"
+    ],
+    naturaleza: [
+      "druida",
+      "chaman",
+      "invocadorBestias",
+      "guardianBosque"
+    ],
+    espirituales: [
+      "nigromante",
+      "clerigoVida",
+      "invocadorEspiritus",
+      "oraculo"
+    ],
+    arcanos: [
+      "hechicero",
+      "ilusionista",
+      "cronomante",
+      "encantador"
+    ]
+  },
+  energia: {
+    agiles: [
+      "arquero",
+      "asesino",
+      "ladron",
+      "explorador"
+    ],
+    tecnicos: [
+      "ninja",
+      "duelista",
+      "espadachinAgil",
+      "cazadorSombras"
+    ]
+  },
+  furia: {
+    guerreros: [
+      "berserker",
+      "paladin",
+      "gladiador",
+      "caballeroOscuro"
+    ]
+  },
+  fe: {
+    sagrados: [
+      "clerigoSolar",
+      "templario",
+      "monjeEspiritual"
+    ]
+  },
+  sangre: {
+    oscuros: [
+      "vampiroMistico",
+      "brujoCorrupto",
+      "heraldoVacio"
+    ]
+  },
+  corrupcion: {
+    alquimicos: [
+      "alquimista",
+      "transmutador",
+      "biohechicero"
+    ]
+  }
+};
+/* 
+ fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+       */
+const classStats_ = {
+  //  MANA - Elementales
+  magoFuego: {
+    nombre: "Mago de Fuego", tipo: "elemental", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FF4500", image: "https://dainnin.github.io/proyectowebimg/assets/img/mage.png"
+  },
+  hechiceroHielo: {
+    nombre: "Hechicero de Hielo", tipo: "elemental", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#00BFFF", image: "hechiceroHielo.png"
+  },
+  invocadorTormenta: {
+    nombre: "Invocador de Tormenta", tipo: "elemental", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#9370DB", image: "invocadorTormenta.png"
+  },
+  geomante: {
+    nombre: "Geomante", tipo: "elemental", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#8B4513", image: "geomante.png"
+  },
+
+  //  MANA - Naturaleza
+  druida: {
+    nombre: "Druida", tipo: "naturaleza", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#228B22", image: "druida.png"
+  },
+  chaman: {
+    nombre: "Chamán", tipo: "naturaleza", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#6B8E23", image: "chaman.png"
+  },
+  invocadorBestias: {
+    nombre: "Invocador de Bestias", tipo: "naturaleza", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#A0522D", image: "invocadorBestias.png"
+  },
+  guardianBosque: {
+    nombre: "Guardián del Bosque", tipo: "naturaleza", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#2E8B57", image: "guardianBosque.png"
+  },
+
+  //  MANA - Espirituales
+  nigromante: {
+    nombre: "Nigromante", tipo: "espiritual", recurso: { mana: 100, sangre: 50 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#4B0082", image: "nigromante.png"
+  },
+  clerigoVida: {
+    nombre: "Clérigo de la Vida", tipo: "espiritual", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#DA70D6", image: "clerigoVida.png"
+  },
+  invocadorEspiritus: {
+    nombre: "Invocador de Espíritus", tipo: "espiritual", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#D8BFD8", image: "invocadorEspiritus.png"
+  },
+  oraculo: {
+    nombre: "Oráculo", tipo: "espiritual", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#BA55D3", image: "oraculo.png"
+  },
+
+  //  MANA - Arcanos
+  hechicero: {
+    nombre: "Hechicero", tipo: "arcano", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#9932CC", image: "hechicero.png"
+  },
+  ilusionista: {
+    nombre: "Ilusionista", tipo: "arcano", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FF69B4", image: "ilusionista.png"
+  },
+  cronomante: {
+    nombre: "Cronomante", tipo: "arcano", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FFD700", image: "cronomante.png"
+  },
+  encantador: {
+    nombre: "Encantador", tipo: "arcano", recurso: { mana: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FFB6C1", image: "encantador.png"
+  },
+
+  //  ENERGIA - Ágiles
+  arquero: {
+    nombre: "Arquero", tipo: "agil", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#32CD32", image: "https://dainnin.github.io/proyectowebimg/assets/img/arquero.png"
+  },
+  asesino: {
+    nombre: "Asesino", tipo: "agil", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#696969", image: "asesino.png"
+  },
+  ladron: {
+    nombre: "Ladrón", tipo: "agil", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#708090", image: "ladron.png"
+  },
+  explorador: {
+    nombre: "Explorador", tipo: "agil", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#3CB371", image: "explorador.png"
+  },
+
+  //  ENERGIA - Técnicos
+  ninja: {
+    nombre: "Ninja", tipo: "tecnico", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#2F4F4F", image: "ninja.png"
+  },
+  duelista: {
+    nombre: "Duelista", tipo: "tecnico", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#B22222", image: "duelista.png"
+  },
+  espadachinAgil: {
+    nombre: "Espadachín Ágil", tipo: "tecnico", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#CD5C5C", image: "espadachinAgil.png"
+  },
+  cazadorSombras: {
+    nombre: "Cazador de Sombras", tipo: "tecnico", recurso: { energia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#8B0000", image: "cazadorSombras.png"
+  },
+
+  //  FURIA - Guerreros
+  berserker: {
+    nombre: "Berserker", tipo: "guerrero", recurso: { furia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#DC143C", image: "https://dainnin.github.io/proyectowebimg/assets/img/berserker.png"
+  },
+  paladin: {
+    nombre: "Paladín", tipo: "guerrero", recurso: { furia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#F0E68C", image: "paladin.png"
+  },
+  gladiador: {
+    nombre: "Gladiador", tipo: "guerrero", recurso: { furia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FFA500", image: "gladiador.png"
+  },
+  caballeroOscuro: {
+    nombre: "Caballero Oscuro", tipo: "guerrero", recurso: { furia: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#191970", image: "caballeroOscuro.png"
+  },
+
+  //  FE - Sagrados
+  clerigoSolar: {
+    nombre: "Clérigo Solar", tipo: "sagrado", recurso: { fe: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FFFF00", image: "clerigoSolar.png"
+  },
+  templario: {
+    nombre: "Templario", tipo: "sagrado", recurso: { fe: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#FFFACD", image: "templario.png"
+  },
+  monjeEspiritual: {
+    nombre: "Monje Espiritual", tipo: "sagrado", recurso: { fe: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#F5DEB3", image: "monjeEspiritual.png"
+  },
+
+  //  SANGRE - Oscuros
+  vampiroMistico: {
+    nombre: "Vampiro Místico", tipo: "oscuro", recurso: { sangre: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#8B0000", image: "vampiroMistico.png"
+  },
+  brujoCorrupto: {
+    nombre: "Brujo Corrupto", tipo: "oscuro", recurso: { sangre: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#800000", image: "brujoCorrupto.png"
+  },
+  heraldoVacio: {
+    nombre: "Heraldo del Vacío", tipo: "oscuro", recurso: { sangre: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#4B0082", image: "heraldoVacio.png"
+  },
+
+  //  CORRUPCIÓN - Alquímicos
+  alquimista: {
+    nombre: "Alquimista", tipo: "alquimico", recurso: { corrupcion: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#DAA520", image: "alquimista.png"
+  },
+  transmutador: {
+    nombre: "Transmutador", tipo: "alquimico", recurso: { corrupcion: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#B8860B", image: "transmutador.png"
+  },
+  biohechicero: {
+    nombre: "Biohechicero", tipo: "alquimico", recurso: { corrupcion: 100 }, atributos: {
+      fuerza: 0,
+      agilidad: 0,
+      musculatura: 0,
+
+      //  Vitales
+      vitalidad: 0,
+      resistencia: 0,
+
+      //  Mentales / Espirituales
+      inteligencia: 0,
+      voluntad: 0,
+      sabiduría: 0,
+
+      //  Narrativos / Destino
+      carisma: 0,
+      suerte: 0
+    },
+    color: "#556B2F", image: "biohechicero.png"
+  }
+}
+
+
+
+const modificadoresPorAtributo = {
+  fuerza: {
+    pro: {
+      dañoFisico: 0.5,
+      empuje: 0.4,
+      cargaMaxima: 0.3,
+      penetracionArmadura: 0.2
+    },
+    contra: {
+      agilidad: -0.2,
+      velocidadMovimiento: -0.15
+    }
+  },
+  agilidad: {
+    pro: {
+      velocidadMovimiento: 0.5,
+      evasión: 0.4,
+      precisiónFisica: 0.3,
+      velocidadAtaque: 0.2
+    },
+    contra: {
+      fuerza: -0.1,
+      defensaPasiva: -0.1
+    }
+  },
+  musculatura: {
+    pro: {
+      defensaPasiva: 0.5,
+      resistenciaEmpuje: 0.4,
+      estabilidadFisica: 0.3
+    },
+    contra: {
+      velocidadMovimiento: -0.2,
+      evasión: -0.15
+    }
+  },
+  vitalidad: {
+    pro: {
+      vidaMaxima: 0.5,
+      regeneracionVida: 0.3,
+      resistenciaFisica: 0.2
+    },
+    contra: {
+      velocidadAtaque: -0.1
+    }
+  },
+  resistencia: {
+    pro: {
+      toleranciaVeneno: 0.4,
+      defensaEstados: 0.3,
+      aguanteProlongado: 0.2
+    },
+    contra: {
+      dañoMagico: -0.1
+    }
+  },
+  inteligencia: {
+    pro: {
+      dañoMagico: 0.5,
+      ahorroMana: 0.3,
+      precisionMagica: 0.2,
+      velocidadCanalizacion: 0.2
+    },
+    contra: {
+      vitalidad: -0.1,
+      musculatura: -0.1
+    }
+  },
+  voluntad: {
+    pro: {
+      resistenciaInterrupciones: 0.4,
+      duracionBuffs: 0.3,
+      defensaMental: 0.3
+    },
+    contra: {
+      evasión: -0.1
+    }
+  },
+  sabiduría: {
+    pro: {
+      deteccionOcultos: 0.4,
+      efectividadVisionMagica: 0.3,
+      sinergiaEspiritual: 0.2
+    },
+    contra: {
+      velocidadAtaque: -0.1
+    }
+  },
+  carisma: {
+    pro: {
+      influenciaSocial: 0.5,
+      controlAliados: 0.3,
+      bonificacionNarrativa: 0.2
+    },
+    contra: {
+      defensaFisica: -0.1
+    }
+  },
+  suerte: {
+    pro: {
+      probabilidadCritica: 0.4,
+      evasiónPasiva: 0.3,
+      calidadLoot: 0.3,
+      eventosAleatorios: 0.2
+    },
+    contra: {
+      nada: 0 // suerte no penaliza directamente
+    }
+  }
+};
+
+
+
+/* 
+ {
+  magoFuego: {
+    nombre: "Mago de Fuego",
+    tipo: "elemental",
+    recurso: {
+      mana: 100
+    },
+    atributos: {
+      fuerza: 10,
+      agilidad: 15,
+      inteligencia: 90,
+      vitalidad: 40,
+      musculatura: 5
+    }
+  },
+  berserker: {
+    nombre: "Berserker",
+    tipo: "guerrero",
+    recurso: {
+      furia: 100,
+      mana: 20
+    },
+    atributos: {
+      fuerza: 90,
+      agilidad: 40,
+      inteligencia: 20,
+      vitalidad: 80,
+      musculatura: 85
+    }
+  },
+  arquero: {
+    nombre: "Arquero",
+    tipo: "agil",
+    recurso: {
+      energia: 100,
+      mana: 30
+    },
+    atributos: {
+      fuerza: 40,
+      agilidad: 85,
+      inteligencia: 50,
+      vitalidad: 60,
+      musculatura: 35
+    }
+  },
+  nigromante: {
+    nombre: "Nigromante",
+    tipo: "espiritual",
+    recurso: {
+      mana: 100,
+      sangre: 50
+    },
+    atributos: {
+      fuerza: 20,
+      agilidad: 25,
+      inteligencia: 95,
+      vitalidad: 50,
+      musculatura: 10
+    }
+  },
+  templario: {
+    nombre: "Templario",
+    tipo: "sagrado",
+    recurso: {
+      fe: 100,
+      mana: 40
+    },
+    atributos: {
+      fuerza: 70,
+      agilidad: 30,
+      inteligencia: 60,
+      vitalidad: 80,
+      musculatura: 65
+    }
+  },
+  biohechicero: {
+    nombre: "Biohechicero",
+    tipo: "alquimico",
+    recurso: {
+      corrupcion: 100,
+      mana: 60
+    },
+    atributos: {
+      fuerza: 30,
+      agilidad: 40,
+      inteligencia: 85,
+      vitalidad: 55,
+      musculatura: 25
+    }
+  }
+};
+
+*/
+const mapeo = new function () {
+  const _this = this;
+  this.map = [];
+  this.obstacles = [];
+  const data = {
+    tileSize: 48,
+    mapWidth: 50,
+    mapHeight: 30,
+  }
+  Object.defineProperties(this, {
+    _map: {
+      get: function () {
+        return data
+      },
+      set: function (config) {
+        Object.assign(data, config)
+
+      }
+    },
+    tileSize: { get: function () { return data.tileSize } },
+    mapWidth: { get: function () { return data.mapWidth } },
+    mapHeight: { get: function () { return data.mapHeight } },
+
+  })
+  for (let y = 0; y < data.mapHeight; y++) {
+    const row = [];
+    for (let x = 0; x < data.mapWidth; x++) {
+      const isBorder = x === 0 || y === 0 || x === data.mapWidth - 1 || y === data.mapHeight - 1;
+      const type = isBorder ? "wall" : Math.random() < 0.1 ? "rock" :
+        Math.random() < 0.1 ? "water" : "grass";
+      const solid = isBorder || type === "rock";
+      row.push({ type, solid });
+    }
+    _this.map.push(row);
+  }
+
+
+
+
+  function actualizarObstaculosDesdeMapa() {
+    _this.obstacles.length = 0;
+    for (let y = 0; y < data.mapHeight; y++) {
+      for (let x = 0; x < data.mapWidth; x++) {
+        const tile = _this.map[y][x];
+        if (tile.solid) {
+          _this.obstacles.push({
+            x: x * data.tileSize,
+            y: y * data.tileSize,
+            w: data.tileSize,
+            h: data.tileSize,
+            solid: true
+          });
+        }
+      }
+    }
+  }
+  actualizarObstaculosDesdeMapa();
+
+  this.isSolidTile = function (x, y) {
+    const tileX = Math.floor(x / data.tileSize);
+    const tileY = Math.floor(y / data.tileSize);
+    return _this.map[tileY]?.[tileX]?.solid === true;
+  }
+
+  this.isInsideMap = function (x, y) {
+    return (
+      x >= 0 &&
+      y >= 0 &&
+      x < data.mapWidth * data.tileSize &&
+      y < data.mapHeight * data.tileSize
+    );
+  }
+  this.isValidNpcPosition=function(x, y) {
+    const tileX = Math.floor(x / mapeo.tileSize);
+    const tileY = Math.floor(y / mapeo.tileSize);
+    const tile = mapeo.map[tileY]?.[tileX];
+    if (!tile || tile.solid) return false;
+
+    const neighbors = [
+        mapeo.map[tileY - 1]?.[tileX],
+        mapeo.map[tileY + 1]?.[tileX],
+        mapeo.map[tileY]?.[tileX - 1],
+        mapeo.map[tileY]?.[tileX + 1]
+    ];
+    return neighbors.some(n => n && !n.solid);
+}
+}
+
+
+function isValidNpcPosition(x,y){}
+function isSolidTile(x, y) {
+  return mapeo.isSolidTile(x, y)
+}
+
+function isInsideMap(x, y) {
+  return mapeo.isInsideMap(x, y)
+}
+// === MAPA ===
+function drawMap(ctx, camera, tileStyles = {}) {
+
+  const startX = Math.floor(camera.x / mapeo.tileSize);
+  const startY = Math.floor(camera.y / mapeo.tileSize);
+  const endX = startX + Math.ceil(camera.w / mapeo.tileSize);
+  const endY = startY + Math.ceil(camera.h / mapeo.tileSize);
+  function _bucle(x, y) {
+    return [x * mapeo.tileSize - camera.x, y * mapeo.tileSize - camera.y, mapeo.tileSize, mapeo.tileSize];
+  }
+  for (let y = startY; y < endY; y++) {
+
+    for (let x = startX; x < endX; x++) {
+      const tile = mapeo.map[y]?.[x];
+      if (!tile) continue;
+
+      const style = tileStyles[tile.type];
+      
+      if (style?.color) {
+        ctx.fillStyle = style.color;
+        ctx.fillRect(..._bucle(x, y));
+      }
+
+      if (style?.image) {
+        ctx.drawImage(style.image, ..._bucle(x, y));
+      }
+      if (tile.solid) {
+        ctx.strokeStyle = "#ff00004d";
+        ctx.strokeRect(..._bucle(x, y));
+      }
+    }
+  }
+}
+
+
+let frameCount = 0;
+let waveOffset = 0;
+
+function urlTerrain(url) {
+  const wallImg = new Image();
+  wallImg.src = url;
+  return wallImg
+}
+const urlDefault="https://dainnin.github.io/proyectowebimg/assets/img/"
+const tileStyles = {
+  wall: { color: "#594769", solid: true/* , image: wallImg  */ },
+  rock: { image: urlTerrain(urlDefault+"rock.png"), /* color: "#6d351bf1", */ solid: true },
+  grass: { image: urlTerrain(urlDefault+"grass.png"), /* color: "#88c070", */ solid: false },
+  /* lava: { image: lavaImg }, */
+  water: { color: "#3399ff", solid: false }
+};
+
+const playerImage = new Image();
+
+const rpgClasses = { ...rpgClasses_ };
+const classStats = { ...classStats_ };
+
+const player = {
+  name: "Sin nombre",
+  clase: {},
+  x: 100,
+  y: 100,
+  w: 40,
+  h: 40,
+  speed: 2,
+  vida: 100,
+  vidaMax: 100,
+  daño: 5,
+  rangoAtaque: 100,
+  cooldownAtaque: 500,
+  ultimoAtaque: 0,
+  objetivo: null,
+  rangoVision: 200,
+  experiencia: 0,
+  estado: "vivo"
+};
+
+function seleccionarObjetivo(npcs, player) {
+  const enRango = npcs.filter(npc => {
+    const dx = npc.x - player.x;
+    const dy = npc.y - player.y;
+    const dist = Math.hypot(dx, dy);
+    return dist < player.rangoVision && npc.vida > 0;
+  });
+
+  enRango.sort((a, b) => {
+    const da = Math.hypot(a.x - player.x, a.y - player.y);
+    const db = Math.hypot(b.x - player.x, b.y - player.y);
+    return da - db;
+  });
+
+  return enRango[0] || null;
+}
+
+function respawnPlayer() {
+  for (let y = 1; y < mapeo.mapHeight - 1; y++) {
+    for (let x = 1; x < mapeo.mapWidth - 1; x++) {
+      const tile = mapeo.map[y]?.[x];
+      if (tile && !tile.solid) {
+        player.x = x * mapeo.tileSize;
+        player.y = y * mapeo.tileSize;
+        player.vida = player.vidaMax;
+        player.objetivo = null;
+        player.estado = "respawn";
+        return;
+      }
+    }
+  }
+}
+
+function updatePlayer(keys, npcs) {
+  const ahora = Date.now();
+
+  if (player.vida <= 0) {
+    if (ahora - player.ultimoAtaque > 2000) {
+      respawnPlayer();
+    }
+    return;
+  }
+
+  let dx = 0, dy = 0;
+
+  if (keys["ArrowUp"] || keys["w"]) dy -= player.speed;
+  if (keys["ArrowDown"] || keys["s"]) dy += player.speed;
+  if (keys["ArrowLeft"] || keys["a"]) dx -= player.speed;
+  if (keys["ArrowRight"] || keys["d"]) dx += player.speed;
+
+  if (keys["t"]) {
+    player.objetivo = player.objetivo ? null : seleccionarObjetivo(npcs, player);
+  }
+
+  const nextX = player.x + dx;
+  const nextY = player.y + dy;
+
+  const futureX = { ...player, x: nextX };
+  const futureY = { ...player, y: nextY };
+
+  const colisionX = mapeo.obstacles.some(obs => isColliding(futureX, obs));
+  const colisionY = mapeo.obstacles.some(obs => isColliding(futureY, obs));
+
+  if (keys[" "] && ahora - player.ultimoAtaque > player.cooldownAtaque) {
+    if (player.objetivo && player.objetivo.vida > 0) {
+      const dx = player.objetivo.x - player.x;
+      const dy = player.objetivo.y - player.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < player.rangoAtaque) {
+        player.objetivo.vida = Math.max(0, player.objetivo.vida - player.daño);
+        player.ultimoAtaque = ahora;
+      }
+    }
+  }
+
+  if (isInsideMap(nextX, player.y) && !colisionX) {
+    player.x = nextX;
+  }
+  if (isInsideMap(player.x, nextY) && !colisionY) {
+    player.y = nextY;
+  }
+
+  for (const npc of npcs) {
+    if (npc.solid && isColliding(player, npc)) {
+      if (player.canalizando) {
+        player.canalizando = false;
+        player.estado = "interrumpido";
+        player.hechizoActivo = null;
+      }
+    }
+  }
+
+  if (
+    player.objetivo &&
+    (player.objetivo.vida <= 0 ||
+      Math.hypot(player.objetivo.x - player.x, player.objetivo.y - player.y) > player.rangoVision)
+  ) {
+    player.objetivo = null;
+  }
+}
+
+function drawPlayer(ctx, camera) {
+  if (player.name === "Sin nombre" || player.vida <= 0) return;
+
+  const tileX = Math.floor(player.x / mapeo.tileSize);
+  const tileY = Math.floor(player.y / mapeo.tileSize);
+  const tile = mapeo.map[tileY]?.[tileX];
+
+  if (tile?.solid) {
+    for (let y = tileY - 1; y <= tileY + 1; y++) {
+      for (let x = tileX - 1; x <= tileX + 1; x++) {
+        const t = mapeo.map[y]?.[x];
+        if (t && !t.solid) {
+          player.x = x * mapeo.tileSize;
+          player.y = y * mapeo.tileSize;
+          break;
+        }
+      }
+    }
+  }
+
+  if (player.image) {
+    ctx.drawImage(
+      player.image,
+      player.x - camera.x,
+      player.y - camera.y,
+      player.w,
+      player.h
+    );
+  } else if (player.color) {
+    ctx.fillStyle = player.color;
+    ctx.fillRect(
+      player.x - camera.x,
+      player.y - camera.y,
+      player.w,
+      player.h
+    );
+  }
+
+  const vidaRatio = Math.max(player.vida / player.vidaMax, 0);
+  ctx.fillStyle = "red";
+  ctx.fillRect(player.x - camera.x, player.y - 10 - camera.y, player.w, 7);
+  ctx.fillStyle = "lime";
+  ctx.fillRect(player.x - camera.x, player.y - 10 - camera.y, player.w * vidaRatio, 7);
+
+  ctx.font = "12px monospace";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "white";
+  ctx.fillText(
+    `${player.name} Vida: ${player.vida}`,
+    player.x + player.w / 2 - camera.x,
+    player.y - 28 - camera.y
+  );
+
+  ctx.fillText(
+    `Class: ${player.clase.nombre} Expe: ${player.experiencia}`,
+    player.x + player.w / 2 - camera.x,
+    player.y - 16 - camera.y
+  );
+}
+
+// === NPCs ===
+
+
+function generateNpc(name, type, color, extras = {}) {
+    let attempts = 0;
+    let x, y;
+    do {
+        x = Math.floor(Math.random() * mapeo.mapWidth) * mapeo.tileSize;
+        y = Math.floor(Math.random() * mapeo.mapHeight) * mapeo.tileSize;
+        attempts++;
+    } while (!isValidNpcPosition(x, y) && attempts < 100);
+
+    return {
+        x,
+        y,
+        spawnX: x,
+        spawnY: y,
+        w: 40,
+        h: 40,
+        name,
+        type,
+        color,
+        solid: true,
+        hostil: false,
+        velocidad: 0,
+        daño: 0,
+        comportamiento: "idle",        
+        tipoEntidad: "npc",             
+        jugabilidad: false,            
+        controladoPor: "IA",         
+        ...extras                     
+    };
+}
+
+
+const npcConfig = {
+    guard: { cantidad: 9, color: "purple", hostil: false, vida: 30, vidaMax: 30 },
+    merchant: { cantidad: 5, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
+
+    bandit: {
+        cantidad: 20,
+        imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/bandido_1.png",
+        color: "blue",
+        hostil: true,
+        velocidad: 1.5,
+        daño: 3,
+        vida: 50,
+        vidaMax: 50,
+        rangoVision: 200,
+        rangoAtaque: 44,
+        cooldownAtaque: 1000,
+        comportamiento: "patrulla",
+        muertoDesde: null,
+        ultimoAtaque: 0,
+        respawnTime: 10000, // en ms
+        experienciaOtorgada: 10
+
+    }
+
+
+
+};
+
+const npcs = [];
+for (const tipo in npcConfig) {
+    const config = npcConfig[tipo];
+    for (let i = 0; i < config.cantidad; i++) {
+        let image = null;
+        if (config.imageSrc) {
+            image = new Image();
+            image.src = config.imageSrc;
+        }
+
+
+        npcs.push(generateNpc(`${tipo}_${i + 1}`, tipo, config.color, {
+            image: config.imageSrc ? (() => {
+                const img = new Image();
+                img.src = config.imageSrc;
+                return img;
+            })() : null,
+            hostil: config.hostil,
+            velocidad: config.velocidad || 0,
+            daño: config.daño || 0,
+            vida: config.vida || 0,
+            vidaMax: config.vidaMax || config.vida || 0,
+            rangoVision: config.rangoVision || 0,
+            rangoAtaque: config.rangoAtaque || 0,
+            cooldownAtaque: config.cooldownAtaque || 1000,
+            comportamiento: config.comportamiento || "idle",
+            tipoEntidad: config.tipoEntidad || "npc",
+            jugabilidad: config.jugabilidad || false,
+            controladoPor: config.controladoPor || "IA",
+            muertoDesde: config.muertoDesde || null,
+            respawnTime: config.respawnTime || 5000,
+            ultimoAtaque: config.ultimoAtaque || 0,
+            experienciaOtorgada: config.experienciaOtorgada || 0,
+        }));
+
+
+
+
+
+    }
+}
+
+
+function updateNpcs(npcs, player) {
+    for (const npc of npcs) {
+       
+        if (npc.vida > 0 && npc.hostil) {
+            const dx = player.x - npc.x;
+            const dy = player.y - npc.y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < npc.rangoVision) {
+                const dirX = dx / dist;
+                const dirY = dy / dist;
+
+                if (dist < npc.rangoAtaque) {
+                    npc.estado = "atacando";
+
+                    const ahora = Date.now();
+
+                    if (ahora - npc.ultimoAtaque > npc.cooldownAtaque) {
+                        player.vida = Math.max(0, player.vida - npc.daño);
+                        npc.ultimoAtaque = ahora;
+
+                    }
+
+                } else {
+                    npc.estado = "persiguiendo";
+
+                    const nextX = npc.x + dirX * npc.velocidad;
+                    const nextY = npc.y + dirY * npc.velocidad;
+
+                    if (!mapeo.obstacles.some(obs => isColliding({ ...npc, x: nextX }, obs))) npc.x = nextX;
+                    if (!mapeo.obstacles.some(obs => isColliding({ ...npc, y: nextY }, obs))) npc.y = nextY;
+                }
+
+                // Empuje entre NPCs
+                for (const otro of npcs) {
+                    if (otro !== npc && isColliding(npc, otro)) {
+                        const empuje = 0.5;
+                        const dirX = npc.x - otro.x;
+                        const dirY = npc.y - otro.y;
+                        const dist = Math.hypot(dirX, dirY);
+
+                        if (dist > 0) {
+                            npc.x += (dirX / dist) * empuje;
+                            npc.y += (dirY / dist) * empuje;
+                        }
+                    }
+                }
+            } else {
+                npc.estado = "idle";
+
+               
+                if (npc.comportamiento === "patrulla") {
+                    npc.direccion = npc.direccion || { x: 1, y: 0 };
+                    npc.tiempoDireccion = npc.tiempoDireccion || 0;
+
+                    npc.tiempoDireccion--;
+
+                    if (npc.tiempoDireccion <= 0) {
+                        const direcciones = [
+                            { x: 1.25, y: 0 },
+                            { x: -1.25, y: 0 },
+                            { x: 0, y: 1.25 },
+                            { x: 0, y: -1.25 }
+                        ];
+                        npc.direccion = direcciones[Math.floor(Math.random() * direcciones.length)];
+                        npc.tiempoDireccion = 60 + Math.floor(Math.random() * 60); // 1–2 segundos
+                    }
+
+                    const nextX = npc.x + npc.direccion.x * npc.velocidad;
+                    const nextY = npc.y + npc.direccion.y * npc.velocidad;
+
+                    const colX = mapeo.obstacles.some(obs => isColliding({ ...npc, x: nextX }, obs));
+                    const colY = mapeo.obstacles.some(obs => isColliding({ ...npc, y: nextY }, obs));
+
+                    if (!colX) npc.x = nextX;
+                    else npc.tiempoDireccion = 0;
+
+                    if (!colY) npc.y = nextY;
+                    else npc.tiempoDireccion = 0;
+                }
+
+            
+                const distSpawn = Math.hypot(npc.x - npc.spawnX, npc.y - npc.spawnY);
+                if (distSpawn > 10) { // umbral de distancia para considerar "lejos"
+                    const dirX = (npc.spawnX - npc.x) / distSpawn;
+                    const dirY = (npc.spawnY - npc.y) / distSpawn;
+
+                    const nextX = npc.x + dirX * npc.velocidad;
+                    const nextY = npc.y + dirY * npc.velocidad;
+
+                    if (!mapeo.obstacles.some(obs => isColliding({ ...npc, x: nextX }, obs))) npc.x = nextX;
+                    if (!mapeo.obstacles.some(obs => isColliding({ ...npc, y: nextY }, obs))) npc.y = nextY;
+                }
+
+            }
+        }
+
+        
+        if (npc.vida <= 0) {
+            if (!npc.experienciaOtorgadaYa) {
+                player.experiencia += npc.experienciaOtorgada || 0;
+                npc.experienciaOtorgadaYa = true; // para no duplicar
+            }
+
+            if (npc.muertoDesde === null) {
+                npc.muertoDesde = Date.now(); // iniciar reloj
+            } else {
+                const tiempoMuerto = Date.now() - npc.muertoDesde;
+                const distJugador = Math.hypot(player.x - npc.x, player.y - npc.y);
+
+                if (tiempoMuerto >= npc.respawnTime && distJugador > npc.rangoVision) {
+                    npc.x = npc.spawnX;
+                    npc.y = npc.spawnY;
+                    npc.vida = npc.vidaMax;
+                    npc.estado = "idle";
+                    npc.muertoDesde = null;
+                }
+            }
+        }
+    }
+}
+
+
+function drawNPCs(ctx, camera) {
+
+    ctx.font = "12px monospace";
+    ctx.textAlign = "center";
+
+    for (const npc of npcs) {
+        const tileX = Math.floor(npc.x / mapeo.tileSize);
+        const tileY = Math.floor(npc.y / mapeo.tileSize);
+        const tile = mapeo.map[tileY]?.[tileX];
+        if (tile?.solid) {
+            // Buscar un tile libre cercano
+            for (let y = tileY - 1; y <= tileY + 1; y++) {
+                for (let x = tileX - 1; x <= tileX + 1; x++) {
+                    const t = mapeo.map[y]?.[x];
+                    if (t && !t.solid) {
+                        npc.x = x * mapeo.tileSize;
+                        npc.y = y * mapeo.tileSize;
+                        break;
+                    }
+                }
+            }
+        }
+        const x = npc.x - camera.x;
+        const y = npc.y - camera.y;
+
+        // Nombre
+        ctx.fillStyle = "white";
+        ctx.fillText(npc.name, x + npc.w / 2, y - 8);
+
+        // Sprite
+        if (npc.image instanceof Image && npc.image.complete) {
+            ctx.drawImage(npc.image, x, y, npc.w, npc.h);
+        } else {
+            ctx.fillStyle = npc.color || "gray";
+            ctx.fillRect(x, y, npc.w, npc.h);
+        }
+
+
+        // Si es el objetivo del jugador, dibujar borde
+        if (npc === player.objetivo) {
+            ctx.strokeStyle = "yellow";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y, npc.w, npc.h);
+        }
+
+
+        // Barra de vida
+        if (npc.vida !== undefined) {
+            const maxBarWidth = npc.w;
+            const barHeight = 4;
+            const vidaRatio = Math.max(npc.vida / npc.vidaMax, 0);
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y - 6, maxBarWidth, barHeight);
+
+            ctx.fillStyle = "lime";
+            ctx.fillRect(x, y - 6, maxBarWidth * vidaRatio, barHeight);
+        }
+    }
+}
+
+
+const keys = {};
+
+window.addEventListener("keydown", (e) => {
+  keys[e.key] = true;
+});
+
+window.addEventListener("keyup", (e) => {
+  keys[e.key] = false;
+});
+
+
+function seleccionarEntidad(x, y) {
+  for (const npc of npcs) {
+    if (
+      x >= npc.x && x <= npc.x + npc.w &&
+      y >= npc.y && y <= npc.y + npc.h &&
+      npc.vida > 0
+    ) {
+      return npc;
+    }
+  }
+  return null;
+}
+
+
+let botonesMovilInicializados = false;
+
+const timeouts = {};
+
+function activarTecla(key) {
+  keys[key] = true;
+
+  // Si ya hay un timeout, lo cancelamos
+  clearTimeout(timeouts[key]);
+
+  // Creamos uno nuevo que corta después de 500ms si no se liberó
+  /* timeouts[key] = setTimeout(() => {
+    keys[key] = false;
+    delete timeouts[key];
+  }, 500); */
+}
+
+
+function desactivarTecla(key) {
+  keys[key] = false;
+  clearTimeout(timeouts[key]);
+  delete timeouts[key];
+}
+
+function addEventButtonMovil() {
+  document.querySelectorAll("button[data-key]").forEach(btn => {
+    const key = btn.dataset.key;
+
+    if (!key || btn.dataset.bound) return;
+    btn.dataset.bound = "true";
+
+    btn.addEventListener("touchstart", e => {
+      e.preventDefault();
+      keys[key] = true;
+    });
+
+    btn.addEventListener("touchend", e => {
+      e.preventDefault();
+      keys[key] = false;
+    });
+
+    btn.addEventListener("touchcancel", () => {
+      keys[key] = false;
+    });
+
+    btn.addEventListener("mousedown", e => {
+      e.preventDefault();
+      keys[key] = true;
+    });
+
+    btn.addEventListener("mouseup", e => {
+      e.preventDefault();
+      keys[key] = false;
+    });
+
+    btn.addEventListener("mouseleave", () => {
+      keys[key] = false;
+    });
+
+    btn.addEventListener("pointerleave", () => {
+      keys[key] = false;
+    });
+  });
+}
+
+
+
+
+
+
+const camera = {
+  x: 0,
+  y: 0,
+  get w() {
+    return canvas.width / zoom;
+  },
+  get h() {
+    return canvas.height / zoom;
+  }
+};
+
+
+function updateCamera() {
+  camera.x = player.x + player.w / 2 - camera.w / 2;
+  camera.y = player.y + player.h / 2 - camera.h / 2;
+}
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+let zoom=1;//test
+document.addEventListener("contextmenu", e => e.preventDefault());
+/* document.addEventListener("keydown", e => {
+  const bloqueadas = ["F12", "F11"];
+  if (
+    bloqueadas.includes(e.key) ||
+    (e.ctrlKey && e.shiftKey && ["I", "J", "C", "K"].includes(e.key)) ||
+    (e.ctrlKey && e.key === "U") // ver código fuente
+  ) {
+    e.preventDefault();
+  }
+}); */
+const CreatePlayer=document.getElementById("CreatePlayer")
+// Generar HTML dentro del contenedor
+CreatePlayer.innerHTML = `
+<div class="collapse"> 
+  <input type="checkbox" class="BTNcollapse">
+  <label>Nombre del jugador:</label><br>
+  <input type="text" id="playerNameInput" placeholder="Escribí tu nombre"><br><br>
+
+  <label>Clase:</label><br>
+  <select id="classSelect">
+    ${Object.keys(classStats).map(clave => {
+      const clase = classStats[clave];
+      return `<option value="${clave}">${clase.nombre}</option>`;
+    }).join("")}
+  </select><br><br>
+
+  <button id="confirmarBtn">Confirmar</button>
+</div>
+<div style="margin:18px 0;">
+<label for="zoom" >Zoom</label>
+<input name="zoom" type="range" min="0.5" max="1.5" step="0.05" value="1">
+</div>  
+<div id="mobileControls" style="position:fixed; bottom:10px; left:10px; z-index:999;">
+  <div style="display:flex; justify-content:center;">
+    <button data-key="w">Up</button>
+  </div>
+  <div style="display:flex; justify-content:center;">
+    <button data-key="a">Left</button>
+    <button data-key="s">Down</button>
+    <button data-key="d">Rigth</button>
+  </div>
+</div>
+
+<div id="actionControls" style="position:fixed; bottom:10px; right:10px; z-index:999;">
+  <button data-key="t"> Target (T)</button>
+  <button data-key=" "> Atk (Espacio)</button>
+</div>
+
+`;
+document.getElementsByName("zoom")[0].addEventListener("input",(e)=>{
+  zoom=e.target.value
+})
+addEventButtonMovil()
+
+function ajustarCanvas() {
+  canvas.height = window.innerHeight * 0.8;
+canvas.width = canvas.height * 4 / 3;
+
+}
+window.addEventListener("resize", ajustarCanvas);
+ajustarCanvas()
+
+function isColliding(a, b) {
+  return (
+    a.x < b.x + b.w &&
+    a.x + a.w > b.x &&
+    a.y < b.y + b.h &&
+    a.y + a.h > b.y
+  );
+}
+
+  let lastFrameTime = 0;
+const targetFPS = 60;
+const frameDuration = 1000 / targetFPS;
+
+function gameLoop(timestamp) {
+  const delta = timestamp - lastFrameTime;
+
+  if (delta >= frameDuration) {
+    lastFrameTime = timestamp;
+
+    
+    updateNpcs(npcs, player, delta);
+    updatePlayer(keys, npcs, delta);
+    updateCamera();
+
+    // Render
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.setTransform(zoom, 0, 0, zoom, 0, 0); 
+
+    drawMap(ctx, camera, tileStyles);
+    drawNPCs(ctx, camera);
+    drawPlayer(ctx, camera);
+
+    ctx.restore();
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+
+document.getElementById("confirmarBtn").addEventListener("click", () => {
+  const nombre = document.getElementById("playerNameInput").value.trim();
+  const claseSeleccionada = document.getElementById("classSelect").value;
+
+  if (!nombre) {
+    alert("Por favor ingresá un nombre.");
+    return;
+  }
+
+  player.name = nombre;
+  player.clase = structuredClone(classStats[claseSeleccionada]); // copia profunda
+
+  if (player.clase.image && player.clase.image.includes("/assets/img/")) {
+  player.image = playerImage;
+  player.image.src = player.clase.image;
+  delete player.color;
+} else {
+  player.color = player.clase.color;
+  delete player.image;
+}
+
+  
+
+
+ 
+  const btn = document.getElementById("confirmarBtn");
+  const _input = document.getElementById("playerNameInput");playerNameInput
+  btn.disabled = true;
+  _input.disabled = true;
+
+  btn.textContent = "Confirmado";
+
+  console.log("Jugador creado:", player);
+  
+gameLoop();
+
+});
+
+canvas.addEventListener("mousedown", e => {
+  if (e.button === 0) {
+    const rect = canvas.getBoundingClientRect();
+    const rawX = e.clientX - rect.left;
+    const rawY = e.clientY - rect.top;
+
+    const clickX = (rawX / zoom) + camera.x;
+    const clickY = (rawY / zoom) + camera.y;
+
+    const npc = seleccionarEntidad(clickX, clickY);
+
+    if (npc) {
+      player.objetivo = npc;
+      npc.seleccionado = true;
+    } else {
+      player.objetivo = null;
+    }
+  }
+});
+
+/* frameTimer++;
+if (frameTimer >= frameSpeed) {
+  currentFrame = (currentFrame + 1) % 4; // si tenés 4 frames
+  frameTimer = 0;
+} */
+</script>
+</div>
+</div>
+  <div id="_main"></div>
+  <div id="scripts-dinamicos"></div>
+  <footer id="_footer">PGRpdj4NCiAgIDwhLS0gIDxoMj4NCiAgICAgICAgZW4gY29uc3RydWNjaW9uIGZvcnJvDQogICAgPC9oMj4gLS0+DQo8L2Rpdj4=</footer>
+  <script>
+    const QPPath = (req, enabled = false) => {
+      const inital = { search: {}, path: '', hash: '' };
+      if (!req) return '';
+      const { pathname, hash, href, origin } = req;
+
+      if (href.includes('?')) {
+        for (const a of href.substring(href.indexOf('?') + 1).split("&")) {
+          const [k, v] = a.split("=");
+          if (v) inital.search[k] = v;
+        }
+      }
+
+      if (enabled) {
+        inital.hash = hash.includes('#', 1) ? hash.substring(hash.indexOf('#', 1)) : '';
+        inital.path = hash.includes('#', 1)
+          ? hash.substring(1, hash.indexOf('#', 1) - 1)
+          : hash.replace('#', '');
+      } else {
+        inital.hash = hash.includes('#', 0) ? hash : '';
+        const lastSlash = pathname.lastIndexOf('/');
+        inital.path = pathname.length - 1 === lastSlash
+          ? (hash === '' ? pathname.substring(0, lastSlash) : '/' + hash.substring(0, hash.indexOf('?')))
+          : pathname;
+      }
+
+      if (inital.path.includes('?')) {
+        inital.path = inital.path.substring(0, inital.path.indexOf('?'));
+      }
+
+      Object.assign(inital, { url: origin + inital.path, href });
+      return inital;
+    };
+    function getAtt(el, attr) {
+      return el.getAttribute(attr)
+    }
+    const _$_ = new function () {
+      this._doc = document;
+      this._body = this._doc.body;
+      this._main = this._doc.getElementById("_main");
+      this._header = this._doc.getElementById("_header");
+      this._footer = this._doc.getElementById("_footer");
+      this.createElement = function (arg) { return this._doc(arg) }
+      this.getAtt = getAtt
+      this.queryAll = function (param, ok = false) {
+        if (!ok) return document.querySelectorAll(param)
+        return document.querySelector(param)
+      }
+      this._enabled = false;
+
+      this.voidMain = () => {
+        this._main.innerHTML = "";
+      };
+
+      this.classInBody = ({ header, main, footer }) => {
+        if (header) this._header.className = header;
+        if (main) this._main.className = main;
+        if (footer) this._footer.className = footer;
+      };
+
+      Object.defineProperties(this, {
+        hash: { get: () => QPPath(location, this._enabled).hash },
+        search: { get: () => QPPath(location, this._enabled).search },
+        path: { get: () => QPPath(location, this._enabled).path },
+        QPPath: { get: () => QPPath },
+        HashEnabled: {
+          get: () => {
+            this._enabled = !this._enabled;
+            if (location.hash === '') location.hash = '#/';
+          }
+        }
+      });
+    };
+
+  </script>
+
+
+  <div t="" id="staticScript">
+
+  </div>
+
+  <script defer="true">
+    /* 
+Element.prototype.addEventListener = function (type, listener, options = {}) {
+  const isOnce = options.once === true;
+  const signal = options.signal;
+
+  const nombre = listener.name || `anon_${type}_${Date.now()}`;
+  const envuelto = function (event) {
+    Object.assign(event, {
+      nameEvent: type,
+      nameFunc: listener
+    });
+    return listener.call(this, event);
+  };
+
+  const registro = listenerRegistry.get(this) || [];
+  registro.push({ type, handler: envuelto, signal });
+  listenerRegistry.set(this, registro);
+
+  ElementAddEventListener.call(this, type, envuelto, options);
+
+  // Si hay señal, agrego listener de aborto
+  if (signal instanceof AbortSignal) {
+    signal.addEventListener("abort", () => {
+      this.removeEventListener(type, envuelto);
+    });
+  }
+
+  return envuelto;
+};
+
+ */
+
+    //Listener..... 
+
+    const ElementAddEventListener = Element.prototype.addEventListener;
+    const DocumentAddEventListener = Document.prototype.addEventListener;
+    const WindowAddEventListener = Window.prototype.addEventListener;
+    const listenerRegistry = new WeakMap();
+
+    Element.prototype.addEventListener = function (type, listener, options) {
+      const isOnce = options && options.once === true;
+      if (isOnce) {
+        return ElementAddEventListener.call(this, type, listener, options);
+      }
+      const nombre = listener.name || `anon_${type}_${Date.now()}`;
+      const envuelto = function (event) {
+        if (listener.name === "") listener.name = nombre;
+        Object.assign(event, {
+          nameEvent: type,
+          nameFunc: listener
+        });
+        return listener.call(this, event);
+      };
+
+      const registro = listenerRegistry.get(this) || [];
+      registro.push({ type, handler: envuelto });
+      listenerRegistry.set(this, registro);
+
+      return ElementAddEventListener.call(this, type, envuelto, options);
+    };
+    Document.prototype.addEventListener = function (type, listener, options) {
+
+      const isOnce = options && options.once === true;
+
+      if (isOnce) {
+        return DocumentAddEventListener.call(this, type, listener, options);
+      }
+
+      const nombre = listener.name || `anon_${type}_${Date.now()}`;
+
+      const envuelto = function (event) {
+        if (listener.name === "") listener.name = nombre;
+        Object.assign(event, {
+          nameEvent: type,
+          nameFunc: listener
+        });
+        return listener.call(this, event);
+      };
+
+      const registro = listenerRegistry.get(this) || [];
+      registro.push({ type, handler: envuelto });
+      listenerRegistry.set(this, registro);
+
+      return DocumentAddEventListener.call(this, type, envuelto, options);
+    };
+    Window.prototype.addEventListener = function (type, listener, options) {
+      const isOnce = options && options.once === true;
+
+      if (isOnce) {
+        return WindowAddEventListener.call(this, type, listener, options);
+      }
+
+      const nombre = listener.name || `anon_${type}_${Date.now()}`;
+
+      const envuelto = function (event) {
+        if (listener.name === "") listener.name = nombre;
+        Object.assign(event, {
+          nameEvent: type,
+          nameFunc: listener
+        });
+        return listener.call(this, event);
+      };
+
+
+      const registro = listenerRegistry.get(this) || [];
+      registro.push({ type, handler: envuelto });
+      listenerRegistry.set(this, registro);
+
+      return WindowAddEventListener.call(this, type, envuelto, options);
+    };
+
+
+
+    function _$_carrusel() {
+
+      this._insertarEvento = function ($control, $carrusel) {
+
+        const _imagenes = $carrusel.children
+        const _puntos = $control.getElementsByTagName("span")
+        const lengthPuntos = () => _puntos.length > _imagenes.length ? _imagenes.length : _puntos.length
+        let position = 0;
+        const tempDots = document.createDocumentFragment()
+        function mostrarImagen(indice) {
+
+          if (_puntos.length > _imagenes.length) {
+            while (_puntos.length > _imagenes.length) {
+              tempDots.appendChild(_puntos[_puntos.length - 1]);
+            }
+
+          } else if ((tempDots.children.length > 0) && (_puntos.length < _imagenes.length)) {
+            for (const x of tempDots.children) {
+
+              $control.insertBefore(x, _puntos[0]);
+            }
+          }
+          for (let i = 0; i < _imagenes.length; i++) {
+            Object.assign(_imagenes[i], {
+              _Carrusel_Cards: `_Carrusel_Cards`,
+              style: `
+                                height:0;
+                                visibility:collapse;
+                                opacity:0;
+                                                `})
+
+            _puntos[i % lengthPuntos()].classList.remove('_ActiveDots');
+          }
+          if (_imagenes.length === 1) {
+            Object.assign(_imagenes[indice], {
+              style: `
+                              visibility:visibility;
+                              opacity:1;
+                                                    `})
+          }
+          _puntos[indice % lengthPuntos()].classList.add('_ActiveDots');
+        }
+
+        const pag = {
+          mov: (a) => {
+            position = (position + a + _imagenes.length) % _imagenes.length;
+            return position;
+          },
+
+        }
+
+        $control.addEventListener('click', function (event) {
+          const etiqueta = event.target
+
+          if (etiqueta.className.includes("btnIzq")) {
+
+            return mostrarImagen(pag.mov(-1))
+
+          } else if (etiqueta.className.includes("btnDer")) {
+            return mostrarImagen(pag.mov(1))
+
+          }
+
+        });
+        window.addEventListener("DOMContentLoaded", mostrarImagen(position), { once: true })
+        if (document.querySelector("#__Bcarrusel")) return
+        const _styleBase = document.createElement("style")
+        _styleBase.id = "__Bcarrusel"
+        _styleBase.textContent = `
+            [_Carrusel_Cards] {
+                position: relative;
+                top: 0;
+                transition: opacity 3s ease;
+            }
+
+            [_Carrusel_Control_Dots] {
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #e04343ff;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+                justify-content: center;
+            }
+
+            [_Carrusel_Control] {
+                display: flex;
+                justify-content: center;
+
+            }
+
+            [_Carrusel_Control_Dots]._ActiveDots {
+                background-color: #139b94ff;
+            }
+            `
+        document.body.appendChild(_styleBase)
+      }
+      this.bodyHTML = function (_arg) {
+
+        const _setDefault = {
+          attrContCarr: "Content_Cars" + _$_.queryAll("[_Carrusel]").length,
+          attrControls: "Content_Controls" + _$_.queryAll("[_Carrusel_Controls]").length,
+          attrContCards: "Content_Cards" + _$_.queryAll("[_Carrusel]").length,
+
+        }
+        if (!_arg) {
+          _arg = { ..._setDefault }
+        }
+
+        const _control = document.createElement("div")
+
+        const _carrusel = document.createElement("div")
+
+
+
+        _control.innerHTML = `
+            <button class="btnIzq">Izq</button>
+            <span _Carrusel_Control_Dots="true" class="_ActiveDots"></span>
+            <span _Carrusel_Control_Dots="true" class="_ActiveDots"></span>
+            <span _Carrusel_Control_Dots="true" class="_ActiveDots"></span>
+            <button class="btnDer">Der</button>
+                `;
+        _control.setAttribute("_Carrusel_Controls", _arg.attrControls)
+        _carrusel.setAttribute("_Carrusel", _arg.attrContCarr)
+        _carrusel.innerHTML = "<div>Hola test2</div><div>Hola test3</div><div>Hola test4</div><div>Hola test5</div>"
+
+        document.body.appendChild(_control)
+        document.body.appendChild(_carrusel)
+
+        this._insertarEvento(_control, _carrusel)
+
+      }
+
+      Object.defineProperties(this, {
+
+      }
+      )
+
+
+
+
+    }
+
+    const checkImages = () => {
+      setTimeout(() => {
+        const images = [...document.querySelectorAll("img")].filter(img => getAtt(img, "datasrc"));
+
+        images.forEach(img => {
+          const rect = () => img.getBoundingClientRect();
+          const rectB = () => window.innerHeight;
+          const isVisible = () => {
+            const r = rect();
+            return (
+              r.top < window.innerHeight &&
+              r.bottom > 0 /* &&
+    r.left < window.innerWidth &&
+    r.right > 0 */
+            );
+
+          };
+
+          if (isVisible()) {
+            img.src = getAtt(img, "datasrc");
+            img.removeAttribute("datasrc");
+          }
+        });
+      }, 145)
+    };
+
+    function activarScripts(nodo, nodoDestino = false, active = false) {
+      const scripts = nodo.querySelectorAll("script");
+      scripts.forEach(script => {
+        const nuevoScript = document.createElement("script");
+        if (active) { nuevoScript.textContent = "if(true){" + script.textContent + "}"; } else {
+          nuevoScript.textContent = script.textContent;
+        }
+        // Copiar atributos si es necesario
+
+
+        Array.from(script.attributes).forEach(attr => {
+          nuevoScript.setAttribute(attr.name, attr.value);
+        });
+        if (nodoDestino) {
+          _$_._doc.getElementById(nodoDestino).appendChild(nuevoScript)
+          script.remove()
+        } else {
+
+          script.replaceWith(nuevoScript);
+        }
+
+      });
+
+    }
+
+    const estadoInicial = new Set(Object.getOwnPropertyNames(window));
+    let estadoFinal = Object.getOwnPropertyNames(window);
+
+    const createUpdate = async (vistas = {}, componentes = {}) => {
+
+      const _$_b64 = vistas["path"]
+
+      if (_$_b64 !== undefined) {
+        vistas = { ...JSON.parse(atob(_$_b64)) }
+      } else {
+
+        vistas = { ...JSON.parse(atob(vistas._$_Base64)) }
+      }
+      function renderVista() {
+        const _scripts = _$_._doc.getElementById("scripts-dinamicos");
+        estadoFinal = Object.getOwnPropertyNames(window);
+        const nuevasClaves = estadoFinal.filter((k) => {
+
+          return !estadoInicial.has(k)
+        });
+
+        return (new Promise((resolve, reject) => {
+          try {
+            if (estadoFinal.length > estadoInicial.size) {
+
+              for (const a of nuevasClaves) {
+
+                window[a] = null
+                delete window[a]
+
+              }
+
+            }
+
+            _$_._main.querySelectorAll('*').forEach(nodo => {
+              const registro = listenerRegistry.get(nodo);
+
+              if (registro) {
+
+                registro.forEach(({ type, handler }) => {
+                  nodo.removeEventListener(type, handler);
+                });
+                listenerRegistry.delete(nodo);
+              }
+
+              nodo.remove()
+            });
+            Object.values(_scripts.children).forEach(e => e.remove())
+            const path = _$_.path || '/';
+            const idVista = vistas[path] || "vista-404";
+
+            const vista = document.getElementById(idVista);
+
+
+            if (!vista) throw new Error("Vista no encontrada: " + idVista);
+            const vistaDoc = _$_._doc.createElement("div")
+            vistaDoc.innerHTML = vista.innerHTML
+
+            _$_._main.innerHTML = atob(vistaDoc.innerHTML);
+            vistaDoc.remove()
+
+
+            activarScripts(_$_._main, "scripts-dinamicos", true)
+
+
+            estadoFinal = Object.getOwnPropertyNames(window);
+
+            if (controlMemory2()) location.reload()
+            resolve();
+          } catch (error) {
+            console.error("Error en renderizado:", error);
+            reject(error);
+          }
+        })).then(() => checkImages());
+      }
+
+      window.addEventListener("popstate", renderVista);
+
+
+
+      if (componentes.header && _$_._doc.getElementById("_header").innerHTML.trim() === "") {
+        const r = await fetch(componentes.header);
+        const html = await r.text();
+        _$_._doc.getElementById("_header").innerHTML = atob(html);
+
+      }
+
+      if (componentes.footer && _$_._doc.getElementById("_footer").innerHTML.trim() === "") {
+        const r = await fetch(componentes.footer);
+        const html = await r.text();
+        _$_._doc.getElementById("_footer").innerHTML = atob(html);
+      }
+
+      renderVista();
+    };
+
+    _$_._header.innerHTML = atob(_$_._header.innerHTML)
+    _$_._footer.innerHTML = atob(_$_._footer.innerHTML)
+
+    activarScripts(_$_._header);
+    activarScripts(_$_._footer);
+
+    function controlMemory2() {
+      const largeMain = _$_._main.querySelectorAll('*').length
+      if (performance.memory) {
+        if (Math.round(performance.memory.totalJSHeapSize / 1024 ** 2) > 80) {
+          return true
+        } else {
+          return false
+        }
+      } else
+        if (largeMain > 2500) {
+          return true
+        }
+      return false
+    }
+    window.addEventListener("scroll", checkImages);
+    window.addEventListener("resize", checkImages);
+    _$_._body.addEventListener("click", (event) => {
+      const Target = event.target;
+      const Father = Target.parentNode;
+      const eTag = Target.tagName;
+      const eHref = Target.href;
+      const hrefSTR = Target.getAttribute("href")
+      if (eTag === 'A' || Father.tagName === 'A') {
+
+
+        if (!(getAtt(Target, "r") === "true" || getAtt(Father, "r") === "true")) event.preventDefault();
+
+        const destino = (eTag === 'A' ? eHref : Father.href).replace(location.origin, '');
+
+        if (destino !== location.href && destino !== _$_.QPPath(location, true).url) {
+
+          if (!hrefSTR.includes("/") && hrefSTR.indexOf("#") === 0) {
+            try {
+              return _$_.queryAll(hrefSTR, true).scrollIntoView({ behavior: "smooth" })
+            } catch {
+              return
+            }
+          } else if (location.hash.replace("#", "") !== destino) window.scrollTo(0, 0);
+
+
+          location.hash = destino;
+
+        }
+
+      }
+    });
+
+  </script>
+
+
+  <script>
+
+
+    
+    window.addEventListener("DOMContentLoaded", () => {
+      function func(funcion) {
+      const isTrue = typeof funcion === "function"
+
+      if (isTrue && funcion.name !== undefined) {
+        if (funcion.length === 1) window[funcion.name] = funcion
+
+      } else if (funcion.length > 0) {
+        for (const a of funcion) {
+
+          if (typeof a === "function" && a.name !== undefined) window[a.name] = a
+        }
+      }
+    }
+   
+    const urls = {
+      online: {
+        app: "http://127.0.0.1:3000"
+      }
+    }
+   
+        _$_.HashEnabled;
+        createUpdate({"_$_Base64":"ewoiLyI6InZpc3RhLWluZGV4Igp9"});
+   
+    },{once:true});
+
+  </script>
+
+
+
+
+
+
+
+ 
+
+<script type="text/html" id="vista-404" data-path="/404.html" defer="true">
+PGg0PiBFcnJvcjogYXJjaGl2byBubyBlbmNvbnRyYWRvIDwvaDQ+</script>
+
+</script>
+</body></html>
