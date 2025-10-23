@@ -1,4 +1,4 @@
-/*   div[id=mobileControls] {
+div[id=mobileControls] {
      
       display: none;
 
@@ -16,7 +16,7 @@
   }
 
   canvas {
-      background: #222;
+      background: #05b3dfb0;
       display: flex;
       
       border: 2px solid teal;
@@ -29,21 +29,21 @@
 
   #_main {
       display: flex;
-
+      justify-content: space-between;  
   }
 
   #actionControls button,
   #mobileControls button {
       margin: 10px;
       min-width: calc(10vh + 10px);
-      min-height: calc(10vh + 10px);
+      min-height: calc(10vh + 7px);
 
   }
 
   #mobileControls,
   #actionControls {
       position: fixed;
-      bottom: 10%;
+      bottom: 1%;
       z-index: 999;
   }
 
@@ -75,4 +75,4 @@
 
   #stats {
       display: none;
-  } */
+  } 

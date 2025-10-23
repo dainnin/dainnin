@@ -184,7 +184,7 @@ canvas.addEventListener("mousedown", e => {
 });
 function ajustarCanvas() {
   canvas.height = window.innerHeight * 0.8;
-canvas.width = canvas.height * 4 / 3;
+canvas.width = window.innerWidth * 8 / 10;
 
 }
 window.addEventListener("resize", ajustarCanvas);

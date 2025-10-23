@@ -1,13 +1,6 @@
 // === NPCs ===
 
-function isColliding(a, b) {
-    return (
-        a.x < b.x + b.w &&
-        a.x + a.w > b.x &&
-        a.y < b.y + b.h &&
-        a.y + a.h > b.y
-    );
-}
+
 function estaEnVista(npc, player, margen = 600) {
     const dx = Math.abs(npc.x - player.x);
     const dy = Math.abs(npc.y - player.y);
@@ -48,8 +41,8 @@ function generateNpc(name, type, color, extras = {}) {
 
 
 const npcConfig = {
-    guard: { cantidad: 1900, color: "purple", hostil: false, vida: 30, vidaMax: 30 },
-    merchant: { cantidad: 1500, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
+    guard: { cantidad: 1200, color: "purple", hostil: false, vida: 30, vidaMax: 30 },
+    merchant: { cantidad: 1000, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
 
     bandit: {
         cantidad: 1000,
@@ -71,7 +64,7 @@ const npcConfig = {
 
     },
     ente: {
-        cantidad: 2090,
+        cantidad: 5000,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/3.png",
         color: "blue",
         hostil: true,
@@ -465,6 +458,5 @@ function drawNPCs(ctx, camera) {
         }
     }
 }
-
 
 

@@ -354,4 +354,11 @@ function drawPlayer(ctx, camera) {
     player.x + player.w / 2 - camera.x,
     player.y - 16 - camera.y
   );
+  ctx.font = "30px monospace";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "white";
+  ctx.fillText(
+    `X cam: ${camera.x}, Y cam: ${camera.y}`,
+    500,30
+  );
 }
