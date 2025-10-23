@@ -1,16 +1,19 @@
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-let zoom=1;//test
+let zoom = 1;//test
 const rpgClasses = { ...rpgClasses_ };
 const classStats = { ...classStats_ };
+
 const btn = document.getElementById("confirmarBtn");
-  const _input = document.getElementsByClassName("BTNcollapse")[0];
-  _input.addEventListener("change",(e)=>{
-    const mobileControls=document.getElementById("mobileControls")
-    if(e.target.checked)mobileControls.style.display="block"
-    else mobileControls.style.display="none"
-  })
+const btnHechizos = document.getElementById("hechizos");
+const  keysCast=btnHechizos.getElementsByTagName("button")
+const _input = document.getElementsByClassName("BTNcollapse")[0];
+_input.addEventListener("change", (e) => {
+  const mobileControls = document.getElementById("mobileControls")
+  if (e.target.checked) mobileControls.style.display = "block"
+  else mobileControls.style.display = "none"
+})
 function capitalize(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
@@ -20,7 +23,7 @@ function atributoEscalado({ lvl, max, coef = 1, tipo = "exp" }) {
   let progreso = 0;
 
   if (tipo === "log") {
-    progreso = Math.log2((lvl / coef)+1) / Math.log2(max + 1);
+    progreso = Math.log2((lvl / coef) + 1) / Math.log2(max + 1);
   } else if (tipo === "exp") {
     progreso = Math.pow(lvl / max, coef);
   } else {
@@ -31,22 +34,22 @@ function atributoEscalado({ lvl, max, coef = 1, tipo = "exp" }) {
 }
 const worker = new Worker("./config/set/npcsWorker.js");
 
-    const tareasPendientes = {};
+const tareasPendientes = {};
 
-    worker.onmessage = function(e) {
-      const { tipo, resultado, id } = e.data;
-      if (tareasPendientes[id]) {
-        tareasPendientes[id](resultado);
-        delete tareasPendientes[id];
-      }
-    };
+worker.onmessage = function (e) {
+  const { tipo, resultado, id } = e.data;
+  if (tareasPendientes[id]) {
+    tareasPendientes[id](resultado);
+    delete tareasPendientes[id];
+  }
+};
 
-    function sendData(tipo, datos, callback) {
-      const id = crypto.randomUUID();
-      tareasPendientes[id] = callback;
-      
-      worker.postMessage({ tipo, datos, id });
-    }
+function sendData(tipo, datos, callback) {
+  const id = crypto.randomUUID();
+  tareasPendientes[id] = callback;
+
+  worker.postMessage({ tipo, datos, id });
+}
 document.addEventListener("contextmenu", e => e.preventDefault());
 /* document.addEventListener("keydown", e => {
   const bloqueadas = ["F12", "F11"];
@@ -58,16 +61,16 @@ document.addEventListener("contextmenu", e => e.preventDefault());
     e.preventDefault();
   }
 }); */
-const CreatePlayer=document.getElementById("classSelect")
+const CreatePlayer = document.getElementById("classSelect")
 // Generar HTML dentro del contenedor
 CreatePlayer.innerHTML = `
     ${Object.keys(classStats).map(clave => {
-      const clase = classStats[clave];
-      return `<option value="${clave}">${clase.nombre}</option>`;
-    }).join("")}
+  const clase = classStats[clave];
+  return `<option value="${clave}">${clase.nombre}</option>`;
+}).join("")}
 `;
-document.getElementsByName("zoom")[0].addEventListener("input",(e)=>{
-  zoom=e.target.value
+document.getElementsByName("zoom")[0].addEventListener("input", (e) => {
+  zoom = e.target.value
 })
 function addEventButtonMovil() {
   document.querySelectorAll("button[data-key]").forEach(btn => {
@@ -124,32 +127,32 @@ document.getElementById("confirmarBtn").addEventListener("click", () => {
   player.clase = structuredClone(classStats[claseSeleccionada]); // copia profunda
 
   if (player.clase.image && player.clase.image.includes("/assets/img/")) {
- 
-  playerImg[nombre]=player.clase.image ? (() => {
-                const img = new Image();
-                img.src = player.clase.image;
-                return img;
-            })() : null;
-  delete player.color;
-} else {
-  player.color = player.clase.color;
-  
-}
 
-  
+    playerImg[nombre] = player.clase.image ? (() => {
+      const img = new Image();
+      img.src = player.clase.image;
+      return img;
+    })() : null;
+    delete player.color;
+  } else {
+    player.color = player.clase.color;
+
+  }
 
 
- 
-  
-  
+
+
+
+
+
   btn.disabled = true;
   playerNameInput.disabled = true;
-  _input.checked=true
+  _input.checked = true
   btn.textContent = "Confirmado";
 
-  
-dataPlayer(player)
-_input.insertAdjacentHTML("afterend",`
+
+  dataPlayer(player)
+  _input.insertAdjacentHTML("afterend", `
   <div id="stats">
     <ul>
       <li>Fuerza: ${player.fuerza}</li>
@@ -158,8 +161,8 @@ _input.insertAdjacentHTML("afterend",`
     </ul>
   </div>
   `)
-  mobileControls.style.display="block"
-gameLoop();
+  mobileControls.style.display = "block"
+  gameLoop();
 
 });
 
@@ -184,7 +187,7 @@ canvas.addEventListener("mousedown", e => {
 });
 function ajustarCanvas() {
   canvas.height = window.innerHeight * 0.8;
-canvas.width = window.innerWidth * 8 / 10;
+  canvas.width = window.innerWidth * 0.7;
 
 }
 window.addEventListener("resize", ajustarCanvas);

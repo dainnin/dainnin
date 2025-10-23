@@ -1,5 +1,6 @@
 // === NPCs ===
 
+const entidadesTemporales = [];
 
 function estaEnVista(npc, player, margen = 600) {
     const dx = Math.abs(npc.x - player.x);

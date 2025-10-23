@@ -1,3 +1,11 @@
+const efectosTemporales = [];
+
+function activarEfectoTemporal(callback, duracionMs) {
+  efectosTemporales.push({
+    callback,
+    expiraEn: performance.now() + duracionMs
+  });
+}
 
 
 let lastFrameTime = 0;
@@ -10,7 +18,6 @@ function gameLoop(timestamp) {
   if (delta >= frameDuration) {
     lastFrameTime = timestamp;
 
-    
     updateNpcs(npcs, player, delta);
     updatePlayer(keys, npcs, delta);
     updateCamera();
@@ -24,12 +31,30 @@ function gameLoop(timestamp) {
     drawNPCs(ctx, camera);
     drawPlayer(ctx, camera);
 
+    // 🔧 Ejecutar efectos temporales
+    const ahora = performance.now();
+    for (const efecto of efectosTemporales) {
+      if (ahora < efecto.expiraEn) {
+        efecto.callback(ctx, camera); // pasamos contexto si lo necesita
+      }
+    }
+
+    // 🔧 Limpiar expirados
+    for (let i = efectosTemporales.length - 1; i >= 0; i--) {
+      if (ahora >= efectosTemporales[i].expiraEn) {
+        efectosTemporales.splice(i, 1);
+      }
+    }
+for (const entidad of entidadesTemporales) {
+  entidad.actualizar?.();
+  entidad.dibujar?.(ctx);
+}
+
     ctx.restore();
   }
 
   requestAnimationFrame(gameLoop);
 }
-
 
 
 

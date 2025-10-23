@@ -7,10 +7,17 @@ div[id=mobileControls] {
   input[name=zoom] {
       position: absolute;
       transform: rotate(90deg);
-      left: -7%;
+      left: -50px;
       top: 50%;
   }
-
+  #hechizos{
+    margin: 5px 60px;
+    
+  }
+  #hechizos button *{
+    font-size: 10px;
+    height: min-content !important;
+  }
   body {
       overflow: hidden;
   }
@@ -35,8 +42,9 @@ div[id=mobileControls] {
   #actionControls button,
   #mobileControls button {
       margin: 10px;
-      min-width: calc(10vh + 10px);
+      min-width: calc(10vh + 5px);
       min-height: calc(10vh + 7px);
+      font-size: medium;
 
   }
 
@@ -76,3 +84,6 @@ div[id=mobileControls] {
   #stats {
       display: none;
   } 
+  *{
+    user-select: none;
+  }

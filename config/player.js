@@ -1,48 +1,7 @@
 
 
 const playerImg = {}
-const estilosHechizo = {
-  fuego: { color: "#ff4500"/* , image: imgHechizo.fuego */ },
-  hielo: { color: "#00ccff"/* , image: imgHechizo.hielo  */ },
-  cura: { color: "#00ff88"/* , image: imgHechizo.cura */ }
-};
-function Hechizo({ x, y, objetivo, tipo = "fuego", daño = 50, rangoMax = 300 }) {
-  this.x = x;
-  this.y = y;
-  this.objetivo = objetivo;
-  this.tipo = tipo;
-  this.daño = daño;
-  this.rangoMax = rangoMax;
-  this.distanciaRecorrida = 0;
-  this.activo = true;
 
-  this.actualizar = function () {
-    if (!this.activo) return;
-
-    // Lógica irreal: impacto directo
-    this.x = this.objetivo.x;
-    this.y = this.objetivo.y;
-
-    aplicarEfecto(this.objetivo, this.tipo, this.daño);
-    this.activo = false;
-  };
-
-  this.dibujar = function (ctx) {
-    const estilo = estilosHechizo[this.tipo];
-    if (!estilo) return;
-
-    if (estilo.color) {
-      ctx.fillStyle = estilo.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    if (estilo.image) {
-      ctx.drawImage(estilo.image, this.x - 16, this.y - 16, 32, 32);
-    }
-  };
-}
 
 const player = {
   name: "Sin nombre",
@@ -69,16 +28,18 @@ const player = {
   vida: 100,
   vidaMax: 100,
   daño: 5,
-  rangoAtaque: 100,
+  rangoAtaque: 10000,
   cooldownAtaque: 500,
   ultimoAtaque: 0,
   objetivo: null,
-  rangoVision: 200,
+  rangoVision: 20000,
   experiencia: 0,
   estado: "vivo",
   facing: "right", // o "left"
   nivel: 1,
-  lvlUp: 0
+  lvlUp: 0,
+  puedeCastear: true
+
 };
 
 function dataPlayer(player) {
@@ -136,6 +97,11 @@ function seleccionarObjetivo(npcs, player) {
   return enRango[0] || null;
 }
 
+
+
+
+
+
 function respawnPlayer() {
   for (let y = 1; y < mapeo.mapHeight - 1; y++) {
     for (let x = 1; x < mapeo.mapWidth - 1; x++) {
@@ -183,13 +149,22 @@ function updatePlayer(keys, npcs) {
   if (keys["t"]) {
     player.objetivo = player.objetivo ? null : seleccionarObjetivo(npcs, player);
   }
-
+  if(keys["1"]){
+    
+    keysCast[0].onclick()
+  }
+    if(keys["2"]){
+    keysCast[1].onclick()
+  }
+    if(keys["3"]){
+    keysCast[2].onclick()
+  }
   const nextX = player.x + dx;
   const nextY = player.y + dy;
 
 
-const colisionX = hayColisionRect(nextX, player.y, player.w, player.h);
-const colisionY = hayColisionRect(player.x, nextY, player.w, player.h);
+  const colisionX = hayColisionRect(nextX, player.y, player.w, player.h);
+  const colisionY = hayColisionRect(player.x, nextY, player.w, player.h);
 
 
 
@@ -354,11 +329,11 @@ function drawPlayer(ctx, camera) {
     player.x + player.w / 2 - camera.x,
     player.y - 16 - camera.y
   );
-  ctx.font = "30px monospace";
-  ctx.textAlign = "center";
-  ctx.fillStyle = "white";
-  ctx.fillText(
-    `X cam: ${camera.x}, Y cam: ${camera.y}`,
-    500,30
-  );
+  /*  ctx.font = "30px monospace";
+   ctx.textAlign = "center";
+   ctx.fillStyle = "white";
+   ctx.fillText(
+     `X cam: ${camera.x}, Y cam: ${camera.y}`,
+     500,30
+   ); */
 }
