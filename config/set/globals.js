@@ -7,7 +7,7 @@ const classStats = { ...classStats_ };
 
 const btn = document.getElementById("confirmarBtn");
 const btnHechizos = document.getElementById("hechizos");
-const  keysCast=btnHechizos.getElementsByTagName("button")
+const keysCast = btnHechizos.getElementsByTagName("button")
 const _input = document.getElementsByClassName("BTNcollapse")[0];
 _input.addEventListener("change", (e) => {
   const mobileControls = document.getElementById("mobileControls")

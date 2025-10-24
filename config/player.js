@@ -1,101 +1,5 @@
 
 
-const playerImg = {}
-
-
-const player = {
-  name: "Sin nombre",
-  clase: {},
-  stats: {
-    set: {},
-    buff: {},
-    raza: {},
-    debuff: {},
-    pasivos: {},
-    speed: 2,
-    vida: 100,
-    vidaMax: 100,
-    daño: 5,
-    rangoAtaque: 100,
-    cooldownAtaque: 500,
-    rangoVision: 200,
-  },
-  x: 100,
-  y: 100,
-  w: 40,
-  h: 40,
-  speed: 2,
-  vida: 100,
-  vidaMax: 100,
-  daño: 5,
-  rangoAtaque: 10000,
-  cooldownAtaque: 500,
-  ultimoAtaque: 0,
-  objetivo: null,
-  rangoVision: 20000,
-  experiencia: 0,
-  estado: "vivo",
-  facing: "right", // o "left"
-  nivel: 1,
-  lvlUp: 0,
-  puedeCastear: true
-
-};
-
-function dataPlayer(player) {
-  const { vidaMax, nivel, clase } = player
-  const { fuerza, musculatura, vitalidad } = clase.atributos
-  //fuerza
-  const _fuerza = fuerza;
-  const _musculatura = musculatura;
-  const _vitalidad = vitalidad;
-  const _intelecto = "_musculatura"
-  player.fuerza = atributoEscalado({
-    lvl: nivel,
-    max: _fuerza + nivel / 5,
-    coef: 1,
-    tipo: "log"
-  }) + _fuerza;
-  player.musculatura = atributoEscalado({
-    lvl: nivel,
-    max: _musculatura + nivel / 5,
-    coef: 1,
-    tipo: "log"
-  }) + _musculatura;
-  player.vitalidad = atributoEscalado({
-    lvl: nivel,
-    max: _fuerza + nivel / 5,
-    coef: 1,
-    tipo: "log"
-  }) + vidaMax;
-  player.vidaMax = atributoEscalado({
-    lvl: nivel,
-    max: 100 + _fuerza + musculatura,
-    coef: 0.9,
-    tipo: "log"
-  }) + 100;
-  player.vida = player.vidaMax;
-
-
-
-}
-
-function seleccionarObjetivo(npcs, player) {
-  const enRango = npcs.filter(npc => {
-    const dx = npc.x - player.x;
-    const dy = npc.y - player.y;
-    const dist = Math.hypot(dx, dy);
-    return dist < player.rangoVision && npc.vida > 0;
-  });
-
-  enRango.sort((a, b) => {
-    const da = Math.hypot(a.x - player.x, a.y - player.y);
-    const db = Math.hypot(b.x - player.x, b.y - player.y);
-    return da - db;
-  });
-
-  return enRango[0] || null;
-}
 
 
 
@@ -149,15 +53,34 @@ function updatePlayer(keys, npcs) {
   if (keys["t"]) {
     player.objetivo = player.objetivo ? null : seleccionarObjetivo(npcs, player);
   }
-  if(keys["1"]){
-    
+  if(player.mana>0){
+  if (keys["1"]&&keysCast[0].disabled===false) {
+ if(player.mana>=2){
     keysCast[0].onclick()
+    keysCast[0].disabled = true
+    keysCast[0].style.background = "red"
+   player.mana-=2
+    setTimeout(keysCast[0].disabled = false, 5000)}
   }
-    if(keys["2"]){
+  if (keys["2"]&&keysCast[1].disabled===false) {
+    if(player.mana>=3){player.mana-=3
     keysCast[1].onclick()
+    keysCast[1].disabled = true
+    keysCast[1].style.background = "red"
+    
+    setTimeout(keysCast[1].disabled = false, 2500)}
   }
-    if(keys["3"]){
+  if (keys["3"]&&keysCast[2].disabled===false) {
+    if(player.mana>=4){player.mana-=4
     keysCast[2].onclick()
+    keysCast[2].disabled = true
+    keysCast[2].style.background = "red"
+    if((player.vida + 5) <player.vidaMax)player.vida += 5;
+    else if(player.vidaMax<player.vida)player.vida=player.vidaMax
+    
+    setTimeout(keysCast[2].disabled = false, 3500)
+  }
+  }
   }
   const nextX = player.x + dx;
   const nextY = player.y + dy;
@@ -309,6 +232,11 @@ function drawPlayer(ctx, camera) {
   ctx.fillRect(playerCamX(), player.y - 10 - camera.y, player.w, 7);
   ctx.fillStyle = "lime";
   ctx.fillRect(playerCamX(), player.y - 10 - camera.y, player.w * vidaRatio, 7);
+  const manaRatio = Math.max(player.mana / player.manaMax, 0);
+  ctx.fillStyle = "red";
+  ctx.fillRect(playerCamX(), player.y - 5 - camera.y, player.w, 7);
+  ctx.fillStyle = "blue";
+  ctx.fillRect(playerCamX(), player.y - 5 - camera.y, player.w * manaRatio, 7);
 
   ctx.font = "14px monospace";
   ctx.textAlign = "center";
