@@ -112,7 +112,7 @@ function addEventButtonMovil() {
     });
   });
 }
-
+  
 addEventButtonMovil()
 document.getElementById("confirmarBtn").addEventListener("click", () => {
   const nombre = document.getElementById("playerNameInput").value.trim();

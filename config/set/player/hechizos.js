@@ -3,7 +3,7 @@ const estilosHechizo = {
   hielo: { color: "#00ccff"/* , image: imgHechizo.hielo  */ },
   cura: { color: "#00ff88"/* , image: imgHechizo.cura */ }
 };
-function efectoOrbitalDesdePlayer({ player, tileSize = 32, duracionMs = 3000 }) {
+function efectoOrbitalDesdePlayer({ player,camera, tileSize = 32, duracionMs = 3000 }) {
   const origen = { x: player.x, y: player.y };
   const direccion = player.direccion || { x: 1, y: 0 }; // por defecto hacia la derecha
   const distanciaMax = tileSize * 5;
@@ -14,7 +14,7 @@ function efectoOrbitalDesdePlayer({ player, tileSize = 32, duracionMs = 3000 }) 
   let distanciaRecorrida = 0;
   let fase = "ida"; // o "vuelta"
 
-  activarEfectoTemporal((ctx, camera) => {
+  activarEfectoTemporal((ctx, cameras=camera) => {
     const dx = direccion.x * velocidad;
     const dy = direccion.y * velocidad;
 
@@ -39,11 +39,11 @@ function efectoOrbitalDesdePlayer({ player, tileSize = 32, duracionMs = 3000 }) 
 
     ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
     ctx.beginPath();
-    ctx.arc(x - camera.x, y - camera.y, 12, 0, Math.PI * 2);
+    ctx.arc(x - cameras.x, y - cameras.y, 12, 0, Math.PI * 2);
     ctx.fill();
   }, duracionMs);
 }
-function Seguidor({ origen, objetivo, velocidad = 3 }) {
+function Seguidor({ origen,camera,objetivo, velocidad = 3 }) {
   this.x = origen.x;
   this.y = origen.y;
   this.objetivo = objetivo;
@@ -72,7 +72,7 @@ function Seguidor({ origen, objetivo, velocidad = 3 }) {
     ctx.fill();
   };
 }
-function efectoDesdeCamaraHastaNPC({ player, objetivo, duracionMs = 5000, velocidad = 3 }) {
+function efectoDesdeCamaraHastaNPC({ player, camera,objetivo, duracionMs = 5000, velocidad = 3 }) {
   const origen = {
     x: player.x,
     y: player.y

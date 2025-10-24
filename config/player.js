@@ -72,7 +72,10 @@ function updatePlayer(keys, npcs) {
   }
   if (keys["3"]&&keysCast[2].disabled===false) {
     if(player.mana>=4){player.mana-=4
-    keysCast[2].onclick()
+       efectoOrbitalDesdePlayer({
+  player,
+  camera
+  })
     keysCast[2].disabled = true
     keysCast[2].style.background = "red"
     if((player.vida + 5) <player.vidaMax)player.vida += 5;
