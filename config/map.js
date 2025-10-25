@@ -4,8 +4,8 @@ const mapeo = new function () {
   this.obstacles = {};
   const data = {
     tileSize: 48,
-    mapWidth: 10500,
-    mapHeight: 1250,
+    mapWidth: 70,
+    mapHeight: 30,
   }
   Object.defineProperties(this, {
     _map: {
@@ -140,4 +140,5 @@ function drawMap(ctx, camera, tileStyles = {}) {
     }
   }
 }
+
 
