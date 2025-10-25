@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 function respawnPlayer() {
   for (let y = 1; y < mapeo.mapHeight - 1; y++) {
     for (let x = 1; x < mapeo.mapWidth - 1; x++) {
@@ -53,98 +45,68 @@ function updatePlayer(keys, npcs) {
   if (keys["t"]) {
     player.objetivo = player.objetivo ? null : seleccionarObjetivo(npcs, player);
   }
-  if(player.mana>0){
-  if (keys["1"]&&keysCast[0].disabled===false) {
- if(player.mana>=2){
-    keysCast[0].onclick()
-    keysCast[0].disabled = true
-    keysCast[0].style.background = "red"
-   player.mana-=2
-    setTimeout(keysCast[0].disabled = false, 5000)}
-  }
-  if (keys["2"]&&keysCast[1].disabled===false) {
-    if(player.mana>=3){player.mana-=3
-    keysCast[1].onclick()
-    keysCast[1].disabled = true
-    keysCast[1].style.background = "red"
-    
-    setTimeout(keysCast[1].disabled = false, 2500)}
-  }
-  if (keys["3"]&&keysCast[2].disabled===false) {
-    if(player.mana>=4){player.mana-=4
-       efectoOrbitalDesdePlayer({
-  player,
-  camera
-  })
-    keysCast[2].disabled = true
-    keysCast[2].style.background = "red"
-    if((player.vida + 5) <player.vidaMax)player.vida += 5;
-    else if(player.vidaMax<player.vida)player.vida=player.vidaMax
-    
-    setTimeout(keysCast[2].disabled = false, 3500)
-  }
-  }
-  }
-  const nextX = player.x + dx;
-  const nextY = player.y + dy;
 
 
-  const colisionX = hayColisionRect(nextX, player.y, player.w, player.h);
-  const colisionY = hayColisionRect(player.x, nextY, player.w, player.h);
+const nextX = player.x + dx;
+const nextY = player.y + dy;
+
+
+const colisionX = hayColisionRect(nextX, player.y, player.w, player.h);
+const colisionY = hayColisionRect(player.x, nextY, player.w, player.h);
 
 
 
-  if (keys[" "] && ahora - player.ultimoAtaque > player.cooldownAtaque) {
-    if (player.objetivo && player.objetivo.vida > 0) {
-      const dx = player.objetivo.x - player.x;
-      const dy = player.objetivo.y - player.y;
-      const dist = Math.hypot(dx, dy);
+if (keys[" "] && ahora - player.ultimoAtaque > player.cooldownAtaque) {
+  if (player.objetivo && player.objetivo.vida > 0) {
+    const dx = player.objetivo.x - player.x;
+    const dy = player.objetivo.y - player.y;
+    const dist = Math.hypot(dx, dy);
 
-      if (dist < player.rangoAtaque) {
-        player.objetivo.vida = Math.max(0, player.objetivo.vida - player.daño);
-        player.objetivo.wasHit = true; // 🔴 Marca el golpe
-        player.ultimoAtaque = ahora;
-        player.objetivo.npcDGM = player.daño;
-        player.objetivo.isAtked = player.name
-        setTimeout(() => {
-          if (player.objetivo) player.objetivo.wasHit = false; // 🔵 Apaga el efecto después de 100ms
-        }, 100);
-      }
-
-
-      /*  function drawAttackEffect(x, y, color = "rgba(255, 0, 0, 0.5)") {
-     ctx.fillStyle = color;
-     ctx.beginPath();
-     ctx.arc(x, y, 16, 0, Math.PI * 2);
-     ctx.fill(); */
+    if (dist < player.rangoAtaque) {
+      player.objetivo.vida = Math.max(0, player.objetivo.vida - player.daño);
+      player.objetivo.wasHit = true; // 🔴 Marca el golpe
+      player.ultimoAtaque = ahora;
+      player.objetivo.npcDGM = player.daño;
+      player.objetivo.isAtked = player.name
+      setTimeout(() => {
+        if (player.objetivo) player.objetivo.wasHit = false; // 🔵 Apaga el efecto después de 100ms
+      }, 100);
     }
 
+
+    /*  function drawAttackEffect(x, y, color = "rgba(255, 0, 0, 0.5)") {
+   ctx.fillStyle = color;
+   ctx.beginPath();
+   ctx.arc(x, y, 16, 0, Math.PI * 2);
+   ctx.fill(); */
   }
 
-  if (isInsideMap(nextX, player.y) && !colisionX) {
-    player.x = nextX;
-  }
-  if (isInsideMap(player.x, nextY) && !colisionY) {
-    player.y = nextY;
-  }
+}
 
-  for (const npc of npcs) {
-    if (npc.solid && isColliding(player, npc)) {
-      if (player.canalizando) {
-        player.canalizando = false;
-        player.estado = "interrumpido";
-        player.hechizoActivo = null;
-      }
+if (isInsideMap(nextX, player.y) && !colisionX) {
+  player.x = nextX;
+}
+if (isInsideMap(player.x, nextY) && !colisionY) {
+  player.y = nextY;
+}
+
+for (const npc of npcs) {
+  if (npc.solid && isColliding(player, npc)) {
+    if (player.canalizando) {
+      player.canalizando = false;
+      player.estado = "interrumpido";
+      player.hechizoActivo = null;
     }
   }
+}
 
-  if (
-    player.objetivo &&
-    (player.objetivo.vida <= 0 ||
-      Math.hypot(player.objetivo.x - player.x, player.objetivo.y - player.y) > player.rangoVision)
-  ) {
-    player.objetivo = null;
-  }
+if (
+   player.objetivo &&
+  (player.objetivo.vida <= 0 ||
+    Math.hypot(player.objetivo.x - player.x, player.objetivo.y - player.y) > player.rangoVision)
+) {
+  player.objetivo = null;
+}
 }
 
 function drawPlayer(ctx, camera) {

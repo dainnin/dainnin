@@ -6,8 +6,7 @@ const rpgClasses = { ...rpgClasses_ };
 const classStats = { ...classStats_ };
 
 const btn = document.getElementById("confirmarBtn");
-const btnHechizos = document.getElementById("hechizos");
-const keysCast = btnHechizos.getElementsByTagName("button")
+
 const _input = document.getElementsByClassName("BTNcollapse")[0];
 _input.addEventListener("change", (e) => {
   const mobileControls = document.getElementById("mobileControls")
@@ -50,17 +49,8 @@ function sendData(tipo, datos, callback) {
 
   worker.postMessage({ tipo, datos, id });
 }
-document.addEventListener("contextmenu", e => e.preventDefault());
-/* document.addEventListener("keydown", e => {
-  const bloqueadas = ["F12", "F11"];
-  if (
-    bloqueadas.includes(e.key) ||
-    (e.ctrlKey && e.shiftKey && ["I", "J", "C", "K"].includes(e.key)) ||
-    (e.ctrlKey && e.key === "U") // ver código fuente
-  ) {
-    e.preventDefault();
-  }
-}); */
+
+
 const CreatePlayer = document.getElementById("classSelect")
 // Generar HTML dentro del contenedor
 CreatePlayer.innerHTML = `
@@ -69,51 +59,7 @@ CreatePlayer.innerHTML = `
   return `<option value="${clave}">${clase.nombre}</option>`;
 }).join("")}
 `;
-document.getElementsByName("zoom")[0].addEventListener("input", (e) => {
-  zoom = e.target.value
-})
-function addEventButtonMovil() {
-  document.querySelectorAll("button[data-key]").forEach(btn => {
-    const key = btn.dataset.key;
 
-    if (!key || btn.dataset.bound) return;
-    btn.dataset.bound = "true";
-
-    btn.addEventListener("touchstart", e => {
-      e.preventDefault();
-      keys[key] = true;
-    });
-
-    btn.addEventListener("touchend", e => {
-      e.preventDefault();
-      keys[key] = false;
-    });
-
-    btn.addEventListener("touchcancel", () => {
-      keys[key] = false;
-    });
-
-    btn.addEventListener("mousedown", e => {
-      e.preventDefault();
-      keys[key] = true;
-    });
-
-    btn.addEventListener("mouseup", e => {
-      e.preventDefault();
-      keys[key] = false;
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      keys[key] = false;
-    });
-
-    btn.addEventListener("pointerleave", () => {
-      keys[key] = false;
-    });
-  });
-}
-  
-addEventButtonMovil()
 document.getElementById("confirmarBtn").addEventListener("click", () => {
   const nombre = document.getElementById("playerNameInput").value.trim();
   const claseSeleccionada = document.getElementById("classSelect").value;
@@ -166,25 +112,7 @@ document.getElementById("confirmarBtn").addEventListener("click", () => {
 
 });
 
-canvas.addEventListener("mousedown", e => {
-  if (e.button === 0) {
-    const rect = canvas.getBoundingClientRect();
-    const rawX = e.clientX - rect.left;
-    const rawY = e.clientY - rect.top;
 
-    const clickX = (rawX / zoom) + camera.x;
-    const clickY = (rawY / zoom) + camera.y;
-
-    const npc = seleccionarEntidad(clickX, clickY);
-
-    if (npc) {
-      player.objetivo = npc;
-      npc.seleccionado = true;
-    } else {
-      player.objetivo = null;
-    }
-  }
-});
 function ajustarCanvas() {
   canvas.height = window.innerHeight * 0.8;
   canvas.width = window.innerWidth * 0.7;

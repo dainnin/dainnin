@@ -1,86 +1,95 @@
+// 🔥 Estilos y hechizos disponibles
 const estilosHechizo = {
-  fuego: { color: "#ff4500"/* , image: imgHechizo.fuego */ },
-  hielo: { color: "#00ccff"/* , image: imgHechizo.hielo  */ },
-  cura: { color: "#00ff88"/* , image: imgHechizo.cura */ }
+  fuego: { color: "#ff4500" },
+  hielo: { color: "#00ccff" },
+  cura: { color: "#00ff88" }
 };
-function efectoOrbitalDesdePlayer({ player,camera, tileSize = 32, duracionMs = 3000 }) {
+
+const Hechizos = {
+  1: efectoCurvo,
+  2: efectoDesdeCamaraHastaNPC,
+  3: efectoOrbitalDesdePlayer
+};
+
+// 🧠 Estado de entrada y cooldowns
+
+const cooldowns = {};
+
+
+// ✅ Cooldown antifallo
+function puedeCastear(key, costoMana) {
+  const ahora = performance.now();
+  return !(cooldowns[key] > ahora || player.mana < costoMana);
+}
+
+function aplicarCooldown(key, duracionMs) {
+  cooldowns[key] = performance.now() + duracionMs;
+  const btn = document.querySelector(`button[data-key='${key}']`);
+  if (btn) {
+    btn.disabled = true;
+    btn.style.background = "red";
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.style.background = "rgb(233, 233, 237)";
+    }, duracionMs);
+  }
+}
+
+// ✅ Efectos temporales
+function activarEfectoTemporal(callback, duracionMs) {
+  efectosTemporales.push({
+    callback,
+    expiraEn: performance.now() + duracionMs
+  });
+}
+
+// 🔥 Hechizos
+function efectoOrbitalDesdePlayer({ tileSize = 32, duracionMs = 3000, key }) {
+  if (!puedeCastear(key, 4) || player.vida >= player.vidaMax) return;
+
+  aplicarCooldown(key, duracionMs);
+  player.mana -= 4;
+
   const origen = { x: player.x, y: player.y };
-  const direccion = player.direccion || { x: 1, y: 0 }; // por defecto hacia la derecha
+  const direccion = player.direccion || { x: 1, y: 0 };
   const distanciaMax = tileSize * 5;
   const velocidad = 6;
 
-  let x = origen.x;
-  let y = origen.y;
-  let distanciaRecorrida = 0;
-  let fase = "ida"; // o "vuelta"
+  let x = origen.x, y = origen.y, distanciaRecorrida = 0, fase = "ida";
 
-  activarEfectoTemporal((ctx, cameras=camera) => {
+  activarEfectoTemporal((ctx, camera) => {
     const dx = direccion.x * velocidad;
     const dy = direccion.y * velocidad;
 
     if (fase === "ida") {
-      x += dx;
-      y += dy;
+      x += dx; y += dy;
       distanciaRecorrida += Math.hypot(dx, dy);
-      if (distanciaRecorrida >= distanciaMax) {
-        fase = "vuelta";
-      }
+      if (distanciaRecorrida >= distanciaMax) fase = "vuelta";
     } else {
-      x -= dx;
-      y -= dy;
+      x -= dx; y -= dy;
       distanciaRecorrida -= Math.hypot(dx, dy);
       if (distanciaRecorrida <= 0) {
-        
-        
-        keysCast[2].style.background = "rgb(233, 233, 237)"
-        // Termina automáticamente cuando vuelve
+        player.vida = Math.min(player.vida + 5, player.vidaMax);
+        return;
       }
     }
 
     ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
     ctx.beginPath();
-    ctx.arc(x - cameras.x, y - cameras.y, 12, 0, Math.PI * 2);
+    ctx.arc(x - camera.x, y - camera.y, 12, 0, Math.PI * 2);
     ctx.fill();
   }, duracionMs);
 }
-function Seguidor({ origen,camera,objetivo, velocidad = 3 }) {
-  this.x = origen.x;
-  this.y = origen.y;
-  this.objetivo = objetivo;
-  this.activo = true;
 
-  this.actualizar = function () {
-    if (!this.activo || !this.objetivo) return;
+function efectoDesdeCamaraHastaNPC({ duracionMs = 5000, velocidad = 3, key }) {
+  if (!puedeCastear(key, 3) || !player.objetivo) return;
 
-    const dx = this.objetivo.x - this.x;
-    const dy = this.objetivo.y - this.y;
-    const dist = Math.hypot(dx, dy);
+  aplicarCooldown(key, duracionMs);
+  player.mana -= 3;
 
-    if (dist < 2) return; // ya está cerca
-
-    const dirX = dx / dist;
-    const dirY = dy / dist;
-
-    this.x += dirX * velocidad;
-    this.y += dirY * velocidad;
-  };
-
-  this.dibujar = function (ctx) {
-    ctx.fillStyle = "rgba(250, 63, 16, 0.7)";
-    ctx.beginPath();
-    ctx.arc(this.x - camera.x, this.y - camera.y, 10, 0, Math.PI * 2);
-    ctx.fill();
-  };
-}
-function efectoDesdeCamaraHastaNPC({ player, camera,objetivo, duracionMs = 5000, velocidad = 3 }) {
-  const origen = {
-    x: player.x,
-    y: player.y
-  };
-
-  let x = origen.x;
-  let y = origen.y;
-  let activo = true;
+  const origen = { x: player.x, y: player.y };
+  const objetivo = player.objetivo;
+  let x = origen.x, y = origen.y, activo = true;
 
   activarEfectoTemporal((ctx, camera) => {
     if (!activo || !objetivo) return;
@@ -91,18 +100,14 @@ function efectoDesdeCamaraHastaNPC({ player, camera,objetivo, duracionMs = 5000,
 
     if (dist < 5) {
       activo = false;
-      objetivo.vida -= 2 * (Math.ceil(Math.random()*player.daño)+1 )
-      objetivo.wasHit = true
-     
-      keysCast[1].style.background = "rgb(233, 233, 237)"
-      
-      setTimeout(objetivo.wasHit = false, 700)
+      objetivo.vida -= 2 * (Math.ceil(Math.random() * player.daño) + 1);
+      objetivo.wasHit = true;
+      setTimeout(() => objetivo.wasHit = false, 700);
       return;
     }
 
     const dirX = dx / dist;
     const dirY = dy / dist;
-
     x += dirX * velocidad;
     y += dirY * velocidad;
 
@@ -112,18 +117,16 @@ function efectoDesdeCamaraHastaNPC({ player, camera,objetivo, duracionMs = 5000,
     ctx.fill();
   }, duracionMs);
 }
-function efectoCurvo({ player, camera, objetivo, duracionMs = 5000, velocidad = 3, amplitud = 20 }) {
-  const origen = {
-    x: camera.x + canvas.width / (2 * zoom),
-    y: camera.y + canvas.height / (2 * zoom)
-  };
-  let t = 0;
 
+function efectoCurvo({ duracionMs = 5000, velocidad = 3, amplitud = 20, key }) {
+  if (!puedeCastear(key, 2) || !player.objetivo) return;
 
+  aplicarCooldown(key, duracionMs);
+  player.mana -= 2;
 
-  let x = origen.x;
-  let y = origen.y;
-  let activo = true;
+  const origen = { x: player.x, y: player.y };
+  const objetivo = player.objetivo;
+  let t = 0, x = origen.x, y = origen.y, activo = true;
 
   activarEfectoTemporal((ctx, camera) => {
     if (!activo || !objetivo) return;
@@ -134,27 +137,22 @@ function efectoCurvo({ player, camera, objetivo, duracionMs = 5000, velocidad = 
 
     if (dist < 5) {
       activo = false;
-      objetivo.vida -= (1 * (Math.ceil(Math.random() * 4)+1 ))
-      objetivo.wasHit = true
-      keysCast[0].style.background = "rgb(233, 233, 237)"
-      setTimeout(objetivo.wasHit = false, 700)
+      objetivo.vida -= (1 * (Math.ceil(Math.random() * 4) + 1));
+      objetivo.wasHit = true;
+      setTimeout(() => objetivo.wasHit = false, 700);
       return;
     }
 
     const dirX = dx / dist;
     const dirY = dy / dist;
-
     x += dirX * velocidad;
     y += dirY * velocidad;
     t += 0.1;
-
-    x += dirX * velocidad;
-    y += dirY * velocidad + Math.sin(t) * amplitud;
+    y += Math.sin(t) * amplitud;
 
     ctx.fillStyle = "rgba(0, 200, 255, 0.4)";
     ctx.beginPath();
     ctx.arc(x - camera.x, y - camera.y, 10, 0, Math.PI * 2);
     ctx.fill();
   }, duracionMs);
-
 }
