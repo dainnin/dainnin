@@ -92,7 +92,10 @@ function dataPlayer(player) {
     player.mana = player.manaMax;
     player.vida = player.vidaMax;
 
-    setInterval(function(){if(player.mana<player.manaMax)player.mana+=2},5000)
+    setInterval(function(){
+        if(player.mana<player.manaMax)player.mana+=2*nivel
+        if(player.vida<player.vidaMax)player.vida+=Math.ceil(1.5*nivel)
+    },5000)
 
 }
 

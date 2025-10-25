@@ -6,6 +6,7 @@ function respawnPlayer() {
         player.x = x * mapeo.tileSize;
         player.y = y * mapeo.tileSize;
         player.vida = player.vidaMax;
+        player.mana = player.manaMax;
         player.objetivo = null;
         player.estado = "respawn";
         return;

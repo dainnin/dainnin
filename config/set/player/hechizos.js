@@ -50,7 +50,7 @@ function efectoOrbitalDesdePlayer({ tileSize = 32, duracionMs = 3000, key }) {
 
   let x = origen.x, y = origen.y, distanciaRecorrida = 0, fase = "ida";
   setTimeout(function () {
-    if ((player.vida + 5) <= player.vidaMax) player.vida += 5
+    if ((player.vida + 5) <= player.vidaMax) player.vida += 5*player.nivel
     else if ((player.vida + 5) > player.vidaMax) player.vida = player.vidaMax
   }, 500)
   activarEfectoTemporal((ctx, camera) => {
@@ -96,7 +96,7 @@ function efectoDesdeCamaraHastaNPC({ duracionMs = 5000, velocidad = 3, key }) {
 
     if (dist < 5) {
       activo = false;
-      objetivo.vida -= 2 * (Math.ceil(Math.random() * player.daño) + 1);
+      objetivo.vida -=( 2 * (Math.ceil(Math.random() * player.daño) + 1))*player.nivel;
       objetivo.wasHit = true;
       setTimeout(() => objetivo.wasHit = false, 700);
       return;
@@ -133,7 +133,7 @@ function efectoCurvo({ duracionMs = 5000, velocidad = 3, amplitud = 20, key }) {
 
     if (dist < 5) {
       activo = false;
-      objetivo.vida -= (1.5 * (Math.ceil(Math.random() * 4) + 3));
+      objetivo.vida -= (1.5 * (Math.ceil(Math.random() * 4) + 3))*player.nivel;
       objetivo.wasHit = true;
       setTimeout(() => objetivo.wasHit = false, 700);
       return;
