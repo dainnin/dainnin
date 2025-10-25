@@ -51,8 +51,9 @@ const nextX = player.x + dx;
 const nextY = player.y + dy;
 
 
-const colisionX = hayColisionRect(nextX, player.y, player.w, player.h);
-const colisionY = hayColisionRect(player.x, nextY, player.w, player.h);
+const colisionX = hayColisionRect(nextX, player.y, player.w, player.h, Object.values(npcsEnVista));
+const colisionY = hayColisionRect(player.x, nextY, player.w, player.h, Object.values(npcsEnVista));
+
 
 
 
@@ -83,14 +84,11 @@ if (keys[" "] && ahora - player.ultimoAtaque > player.cooldownAtaque) {
 
 }
 
-if (isInsideMap(nextX, player.y) && !colisionX) {
-  player.x = nextX;
-}
-if (isInsideMap(player.x, nextY) && !colisionY) {
-  player.y = nextY;
-}
+if (isInsideMap(nextX, player.y) && !colisionX) player.x = nextX;
+if (isInsideMap(player.x, nextY) && !colisionY) player.y = nextY;
 
-for (const npc of npcs) {
+
+/* for (const npc of npcs) {
   if (npc.solid && isColliding(player, npc)) {
     if (player.canalizando) {
       player.canalizando = false;
@@ -98,7 +96,7 @@ for (const npc of npcs) {
       player.hechizoActivo = null;
     }
   }
-}
+} */
 
 if (
    player.objetivo &&
