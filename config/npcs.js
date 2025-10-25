@@ -42,11 +42,11 @@ function generateNpc(name, type, color, extras = {}) {
 
 
 const npcConfig = {
-    guard: { cantidad: 120, color: "purple", hostil: false, vida: 30, vidaMax: 30 },
-    merchant: { cantidad: 100, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
+    guard: { cantidad: 30, color: "purple", hostil: false, vida: 30, vidaMax: 30 },
+    merchant: { cantidad: 10, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
 
     bandit: {
-        cantidad: 150,
+        cantidad: 50,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/bandido_1.png",
         color: "blue",
         hostil: true,
@@ -65,7 +65,7 @@ const npcConfig = {
         solid:true,
     },
     ente: {
-        cantidad: 100,
+        cantidad: 35,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/3.png",
         color: "blue",
         hostil: true,
@@ -359,6 +359,7 @@ function drawNPCs(ctx, camera) {
 
     }
 }
+
 
 
 
