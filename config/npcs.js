@@ -46,7 +46,7 @@ const npcConfig = {
     merchant: { cantidad: 100, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
 
     bandit: {
-        cantidad: 250,
+        cantidad: 150,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/bandido_1.png",
         color: "blue",
         hostil: true,
@@ -65,7 +65,7 @@ const npcConfig = {
         solid:true,
     },
     ente: {
-        cantidad: 95000,
+        cantidad: 100,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/3.png",
         color: "blue",
         hostil: true,
@@ -359,5 +359,6 @@ function drawNPCs(ctx, camera) {
 
     }
 }
+
 
 
