@@ -56,7 +56,8 @@ function efectoOrbitalDesdePlayer({ tileSize = 32, duracionMs = 3000, key }) {
   const velocidad = 6;
 
   let x = origen.x, y = origen.y, distanciaRecorrida = 0, fase = "ida";
-
+  setTimeout(function(){if((player.vida+5)<=player.vidaMax)player.vida +=5
+        else if((player.vida+5)>player.vidaMax)player.vida=player.vidaMax},500)
   activarEfectoTemporal((ctx, camera) => {
     const dx = direccion.x * velocidad;
     const dy = direccion.y * velocidad;
@@ -69,7 +70,7 @@ function efectoOrbitalDesdePlayer({ tileSize = 32, duracionMs = 3000, key }) {
       x -= dx; y -= dy;
       distanciaRecorrida -= Math.hypot(dx, dy);
       if (distanciaRecorrida <= 0) {
-        player.vida = Math.min(player.vida + 5, player.vidaMax);
+        
         return;
       }
     }
@@ -137,7 +138,7 @@ function efectoCurvo({ duracionMs = 5000, velocidad = 3, amplitud = 20, key }) {
 
     if (dist < 5) {
       activo = false;
-      objetivo.vida -= (1 * (Math.ceil(Math.random() * 4) + 1));
+      objetivo.vida -= (1.5 * (Math.ceil(Math.random() * 4) + 3));
       objetivo.wasHit = true;
       setTimeout(() => objetivo.wasHit = false, 700);
       return;
