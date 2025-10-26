@@ -116,7 +116,8 @@ const npcsImg = {};
 const npcsEnVista = {};
 
 
-for (const tipo in npcConfig) {
+function GenerarNpc(){
+    for (const tipo in npcConfig) {
     const config = npcConfig[tipo];
     npcsImg[tipo] = config.imageSrc ? (() => {
         const img = new Image();
@@ -149,6 +150,7 @@ for (const tipo in npcConfig) {
             experienciaOtorgadaYa: false,
         }));
     }
+}
 }
 
 // 📍 Utilidades
