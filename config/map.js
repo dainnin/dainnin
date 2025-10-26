@@ -212,7 +212,7 @@ function mostrarSelectorDeMapas(listaArchivos) {
       .catch(err => {
         alert("Error al cargar el mapa seleccionado");
         cerrarPrompt();
-        console.log(err)
+        
       });
   };
 }
@@ -275,4 +275,3 @@ function drawMap(ctx, camera, tileStyles = {}) {
     }
   }
 }
-
