@@ -1,4 +1,4 @@
-function crearMapeo(mapaPredefinido = null) {
+function crearMapeo() {
   const _this = {};
   _this.map = [];
   _this.obstacles = {};
@@ -32,7 +32,7 @@ function crearMapeo(mapaPredefinido = null) {
     data.tileSize = json.tileSize || data.tileSize;
     data.mapWidth = json.mapWidth;
     data.mapHeight = json.mapHeight;
-
+   
     for (let y = 0; y < data.mapHeight; y++) {
       const fila = json.tiles[y];
       const expandida = typeof fila[0] === "string" ? fila : expandirFilaComprimida(fila);
@@ -44,6 +44,7 @@ function crearMapeo(mapaPredefinido = null) {
         row.push({ type, solid });
       }
       _this.map.push(row);
+      
     }
 
     actualizarObstaculosDesdeMapa();
@@ -116,7 +117,7 @@ function crearMapeo(mapaPredefinido = null) {
     return vecinos.some(v => !v);
   };
 
-  _this.generar = function () {
+  _this.generar = function (mapaPredefinido = null) {
     if (mapaPredefinido?.tiles) {
       generarDesdeMapaPredefinido(mapaPredefinido);
     } else {
@@ -127,10 +128,14 @@ function crearMapeo(mapaPredefinido = null) {
   return _this;
 }
 
+
+
+const mapeo = crearMapeo();
 // const mapeo = crearMapeo(); // no genera nada aún
 // mapeo.generar(); // genera aleatorio
 
 // o con mapa comprimido
+
 const mapaComprimido = {
   tileSize: 48,
   mapWidth: 30,
@@ -140,588 +145,89 @@ const mapaComprimido = {
     [ {wall: 10} ]
   ]
 };
-const mapT={
-  "tileSize": 48,
-  "mapWidth": 50,
-  "mapHeight": 27,
-  "tiles": [
-    [
-      {
-        "wall": 20
-      },
-      {
-        "grass": 3
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 13
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 6
-      },
-      {
-        "wall": 5
-      }
-    ],
-    [
-      {
-        "grass": 19
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 3
-      },
-      {
-        "wall": 3
-      },
-      {
-        "grass": 12
-      },
-      {
-        "rock": 1
-      },
-      {
-        "grass": 11
-      }
-    ],
-    [
-      {
-        "grass": 19
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 6
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 11
-      },
-      {
-        "rock": 1
-      },
-      {
-        "grass": 11
-      }
-    ],
-    [
-      {
-        "grass": 19
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 6
-      },
-      {
-        "wall": 2
-      },
-      {
-        "grass": 11
-      },
-      {
-        "rock": 1
-      },
-      {
-        "grass": 10
-      }
-    ],
-    [
-      {
-        "grass": 19
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 7
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 11
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 9
-      }
-    ],
-    [
-      {
-        "grass": 19
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 6
-      },
-      {
-        "wall": 2
-      },
-      {
-        "grass": 12
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 8
-      }
-    ],
-    [
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 13
-      },
-      {
-        "rock": 1
-      },
-      {
-        "grass": 9
-      }
-    ],
-    [
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 11
-      },
-      {
-        "rock": 3
-      },
-      {
-        "grass": 9
-      }
-    ],
-    [
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 10
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 11
-      }
-    ],
-    [
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 9
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 12
-      }
-    ],
-    [
-      {
-        "grass": 26
-      },
-      {
-        "wall": 2
-      },
-      {
-        "grass": 8
-      },
-      {
-        "rock": 1
-      },
-      {
-        "grass": 13
-      }
-    ],
-    [
-      {
-        "grass": 27
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 22
-      }
-    ],
-    [
-      {
-        "grass": 27
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 22
-      }
-    ],
-    [
-      {
-        "wall": 20
-      },
-      {
-        "grass": 7
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 20
-      },
-      {
-        "water": 2
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 17
-      },
-      {
-        "water": 5
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 17
-      },
-      {
-        "water": 5
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 26
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 16
-      },
-      {
-        "water": 3
-      },
-      {
-        "grass": 2
-      },
-      {
-        "rock": 1
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 11
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 28
-      },
-      {
-        "water": 3
-      },
-      {
-        "grass": 3
-      },
-      {
-        "rock": 2
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 10
-      },
-      {
-        "water": 4
-      },
-      {
-        "grass": 25
-      },
-      {
-        "water": 3
-      },
-      {
-        "grass": 5
-      },
-      {
-        "rock": 2
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 9
-      },
-      {
-        "water": 6
-      },
-      {
-        "grass": 23
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 6
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 1
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 8
-      },
-      {
-        "water": 8
-      },
-      {
-        "grass": 20
-      },
-      {
-        "water": 3
-      },
-      {
-        "grass": 6
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 2
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 9
-      },
-      {
-        "water": 6
-      },
-      {
-        "grass": 11
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 8
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 6
-      },
-      {
-        "rock": 4
-      },
-      {
-        "grass": 2
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 10
-      },
-      {
-        "water": 4
-      },
-      {
-        "grass": 12
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 7
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 7
-      },
-      {
-        "rock": 3
-      },
-      {
-        "grass": 3
-      }
-    ],
-    [
-      {
-        "rock": 1
-      },
-      {
-        "grass": 11
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 13
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 6
-      },
-      {
-        "water": 2
-      },
-      {
-        "grass": 7
-      },
-      {
-        "rock": 4
-      },
-      {
-        "grass": 3
-      }
-    ],
-    [
-      {
-        "rock": 2
-      },
-      {
-        "grass": 25
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 6
-      },
-      {
-        "water": 1
-      },
-      {
-        "grass": 15
-      }
-    ],
-    [
-      {
-        "rock": 3
-      },
-      {
-        "grass": 24
-      },
-      {
-        "wall": 1
-      },
-      {
-        "grass": 7
-      },
-      {
-        "rock": 2
-      },
-      {
-        "grass": 13
-      }
-    ],
-    [
-      {
-        "rock": 10
-      },
-      {
-        "grass": 17
-      },
-      {
-        "wall": 1
-      },
-      {
-        "rock": 8
-      },
-      {
-        "grass": 14
-      }
-    ]
-  ]
+
+
+function cerrarPrompt() {
+  const contenedor = document.getElementById("promptOverlay");
+  if (contenedor) contenedor.remove();
 }
-const mapeo = crearMapeo(mapT);
-mapeo.generar(); // genera desde mapa comprimido
 
+function mostrarSelectorDeMapas(listaArchivos) {
+  const contenedor = document.createElement("div");
+  contenedor.id = "promptOverlay";
+  contenedor.style = `
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+    width: 80vw;
+    height: 80vh;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    z-index: 99999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  `;
 
+  const lista = listaArchivos
+    .filter(item => item.name.endsWith(".json"))
+    .map(item => `<option value="https://dainnin.github.io/${item.path}">${item.name}</option>`)
+    .join("");
 
+  contenedor.innerHTML = `
+    <div style="margin-bottom: 20px; font-size: 1.2em;">Seleccioná un mapa para cargar</div>
+    <select id="selectorMapa" style="width: 60%; padding: 10px; font-size: 1em;">
+    <option value="ramdon">Aleatorio Generado</option>
+      ${lista}
+    </select>
+    <button id="btnAceptarMapa" style="margin-top: 20px; padding: 10px 20px;">Aceptar</button>
+  `;
+
+  document.body.appendChild(contenedor);
+
+  document.getElementById("btnAceptarMapa").onclick = () => {
+    const url = document.getElementById("selectorMapa").value;
+    if(url==="ramdon"){
+       mapeo.generar();
+       cerrarPrompt();
+       GenerarNpc()
+       return
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+       
+       
+        mapeo.generar(json);
+        cerrarPrompt();
+        GenerarNpc()
+      })
+      .catch(err => {
+        alert("Error al cargar el mapa seleccionado");
+        cerrarPrompt();
+        GenerarNpc()
+      });
+  };
+}
+
+// 🔁 Cargar lista de mapas desde GitHub
+fetch("https://api.github.com/repos/dainnin/dainnin.github.io/contents/assets/maps")
+  .then(res => res.json())
+  .then(lista => {
+    
+    mostrarSelectorDeMapas(lista)
+  })
+  .catch(err => {
+    console.warn("No se pudo cargar lista de mapas, generando aleatorio");
+  
+    mapeo.generar();
+    GenerarNpc()
+  });
 
 function isValidNpcPosition(x, y) {
   return mapeo.isValidNpcPosition(x, y)
@@ -767,4 +273,3 @@ function drawMap(ctx, camera, tileStyles = {}) {
     }
   }
 }
-
