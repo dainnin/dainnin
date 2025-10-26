@@ -15,6 +15,7 @@ const tileStyles = {
   /* lava: { image: lavaImg }, */
   water: { color: "#3399ff", solid: false }
 };
+
 for(const key in tileStyles){
 
   if(tileStyles[key].image)imgTile[key]={["image"]:urlTerrain(tileStyles[key].image)}

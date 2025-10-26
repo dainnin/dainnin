@@ -46,7 +46,7 @@ const npcConfig = {
     merchant: { cantidad: 5, color: "orange", hostil: false, vida: 20, vidaMax: 20 },
 
     bandit: {
-        cantidad: 7,
+        cantidad: 100,
         imageSrc: "https://dainnin.github.io/proyectowebimg/assets/img/bandido_1.png",
         color: "blue",
         hostil: true,

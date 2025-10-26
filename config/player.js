@@ -14,6 +14,18 @@ function respawnPlayer() {
     }
   }
 }
+
+function DOMdataPlayer() {return [`Nivel: ${player.nivel}`,
+      `Daño: ${player.daño}`,
+      `Fuerza: ${player.fuerza}`,
+      `Agilidad: ${player.clase.atributos?.agilidad}`,
+      `Inteligencia: ${player.inteligencia}`,
+      `Vida maxima: ${player.vidaMax}`,
+      `Mana maxima: ${player.manaMax}`,
+      `Vida: ${player.vida}`,
+      `Mana : ${player.mana}`,
+    ]}
+
 function updatePlayer(keys, npcs) {
   const ahora = Date.now();
   if (player.experiencia > player.nivel * 100) {
@@ -105,6 +117,10 @@ if (
     Math.hypot(player.objetivo.x - player.x, player.objetivo.y - player.y) > player.rangoVision)
 ) {
   player.objetivo = null;
+}
+if(document.querySelectorAll("#stats>ul>li"))for (const [i,data] of document.querySelectorAll("#stats>ul>li").entries()){
+  data.textContent=DOMdataPlayer()[i]
+  
 }
 }
 

@@ -85,12 +85,6 @@ document.getElementById("confirmarBtn").addEventListener("click", () => {
 
   }
 
-
-
-
-
-
-
   btn.disabled = true;
   playerNameInput.disabled = true;
   _input.checked = true
@@ -101,9 +95,16 @@ document.getElementById("confirmarBtn").addEventListener("click", () => {
   _input.insertAdjacentHTML("afterend", `
   <div id="stats">
     <ul>
+      <li atr="ok">Nivel: ${player.nivel}</li>
+      <li atr="ok">Daño: ${player.daño}</li>
       <li>Fuerza: ${player.fuerza}</li>
-      <li>Vida maxima: ${player.vidaMax}</li>
-      
+      <li>Agilidad: ${player.clase?.atributos.agilidad}</li>
+      <li>Inteligencia: ${player.inteligencia}</li>
+      <li atr="ok">Vida maxima: ${player.vidaMax}</li>
+      <li atr="ok">Mana maxima: ${player.manaMax}</li>
+      <li atr="ok">Vida: ${player.vida}</li>
+      <li atr="ok">Mana : ${player.mana}</li>
+
     </ul>
   </div>
   `)

@@ -38,7 +38,9 @@ div[id=mobileControls] {
       display: flex;
       justify-content: space-between;  
   }
-
+ li{
+        list-style: none;
+    }
   #actionControls button,
   #mobileControls button {
       margin: 10px;
