@@ -123,6 +123,7 @@ function crearMapeo() {
     } else {
       generarAleatorio();
     }
+    GenerarNpc()
   };
 
   return _this;
@@ -131,6 +132,7 @@ function crearMapeo() {
 
 
 const mapeo = crearMapeo();
+
 // const mapeo = crearMapeo(); // no genera nada aún
 // mapeo.generar(); // genera aleatorio
 
@@ -195,7 +197,7 @@ function mostrarSelectorDeMapas(listaArchivos) {
     if(url==="ramdon"){
        mapeo.generar();
        cerrarPrompt();
-       GenerarNpc()
+     
        return
     }
     fetch(url)
@@ -205,12 +207,12 @@ function mostrarSelectorDeMapas(listaArchivos) {
        
         mapeo.generar(json);
         cerrarPrompt();
-        GenerarNpc()
+        
       })
       .catch(err => {
         alert("Error al cargar el mapa seleccionado");
         cerrarPrompt();
-        GenerarNpc()
+        
       });
   };
 }
@@ -226,7 +228,7 @@ fetch("https://api.github.com/repos/dainnin/dainnin.github.io/contents/assets/ma
     console.warn("No se pudo cargar lista de mapas, generando aleatorio");
   
     mapeo.generar();
-    GenerarNpc()
+  
   });
 
 function isValidNpcPosition(x, y) {
