@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WASM C Demo</title>
+</head>
+
+<body>
+  <h1>Resultado: <span id="resultado">...</span></h1>
+  <script >
+    //    const response = await fetch("modulo.wasm");
+    // const bytes = await response.arrayBuffer();
+    // var { instance } = await WebAssembly.instantiate(bytes);
+    // const {duplicar}=instance.exports
+    // console.log(duplicar(21)); // → 42
+    // 1) obtener bytes
+   async function test() {
+       
+     try{
+    const resp = await fetch("main.wasm");
+    const bytes =await  resp.arrayBuffer();
+    const { instance, module } = await WebAssembly.instantiate(bytes, {}); // devuelve { instance, module }
+
+    // console.log(instance.exports.duplicar(21));
+
+
+    // // 4) llamar
+
+    // console.log(instance.exports.sumar(2, 3));               // 5
+    // console.log(instance.exports.multiplicar_por_factor(4)); // 12
+ const inc = performance.now();
+    const { sumar } = instance.exports;
+
+// modo 0: suma directa
+console.log(sumar(2, 3, 0, 0),"result"); // → 5
+
+// modo 1: repetir suma 1000 veces
+console.log(sumar(2, 3, 1, 1000),"result"); // → 5000
+
+// modo 2: patrón más complejo
+console.log(sumar(2, 3, 2, 1190000),"result"); // → resultado acumulado
+
+        const fin = performance.now();
+        console.log(fin-inc,"ms",inc,"_____",fin)
+}catch(e){console.error(e)}
+   }
+   
+(function () {
+  // Parámetros de la prueba
+  var ITERATIONS = 1_000_000; // ajustá según tu CPU/objetivo
+  var WARMUP = 1000;
+
+  // Implementaciones JS equivalentes
+  function js_duplicar(x) { return x * 2; }
+  function js_sumar(a, b) { return a + b; }
+  var FACTOR = 3;
+  function js_multiplicar_por_factor(x) { return x * FACTOR; }
+
+  // Helper de medición
+  function now() { return (typeof performance !== 'undefined') ? performance.now() : Date.now(); }
+
+  // Prueba micro: ejecuta fn repetidas veces, devuelve {total, perCall}
+  function bench(fn, argsArray, iterations) {
+    var t0 = now();
+    var i = 0;
+    // bucle simple, sin comprobaciones para reducir overhead
+    for (; i < iterations; i++) {
+      // argumentos se pasan como arreglo
+      fn.apply(null, argsArray);
+    }
+    var t1 = now();
+    var total = t1 - t0;
+    return { total: total, perCall: total / iterations };
+  }
+
+  // Carga y prueba WASM (usa arrayBuffer -> instantiate para compatibilidad)
+  function loadAndBenchWasm(url, cb) {
+    var tFetch0 = now();
+    fetch(url).then(function (r) { return r.arrayBuffer(); })
+      .then(function (bytes) {
+        var tFetch = now() - tFetch0;
+        var tCompile0 = now();
+        return WebAssembly.instantiate(bytes, {}).then(function (res) {
+          var tCompile = now() - tCompile0;
+          var instance = res.instance;
+          cb(null, { instance: instance, fetchMs: tFetch, instantiateMs: tCompile, bytesLength: bytes.byteLength });
+        });
+      })
+      .catch(function (err) { cb(err); });
+  }
+
+  // Orquestador: carga wasm, hace warmup y bench para las 3 funciones y compara con JS
+  function runAll() {
+    console.log('Starting benchmark — iterations:', ITERATIONS);
+    loadAndBenchWasm('main.wasm', function (err, info) {
+      if (err) { console.error('WASM load error:', err); return; }
+      var inst = info.instance;
+      console.log('WASM loaded. fetch(ms):', info.fetchMs.toFixed(2), 'instantiate(ms):', info.instantiateMs.toFixed(2), 'size(bytes):', info.bytesLength);
+
+      // Sanity: listar exports
+      console.log('WASM exports:', Object.keys(inst.exports));
+
+      // Warmup (WASM)
+      for (var w = 0; w < WARMUP; w++) { inst.exports.duplicar(21); }
+
+      // Bench WASM duplicar
+      var r1 = bench(function (x) { return inst.exports.duplicar(x); }, [21], ITERATIONS);
+      console.log('WASM duplicar total(ms):', r1.total.toFixed(3), 'per call(ms):', r1.perCall.toExponential(6));
+
+      // Bench JS duplicar
+      // warmup JS
+      for (var w2 = 0; w2 < WARMUP; w2++) { js_duplicar(21); }
+      var r1js = bench(js_duplicar, [21], ITERATIONS);
+      console.log('JS duplicar total(ms):', r1js.total.toFixed(3), 'per call(ms):', r1js.perCall.toExponential(6));
+
+      // WASM sumar
+      for (var w3 = 0; w3 < WARMUP; w3++) { inst.exports.sumar(2,3); }
+      var r2 = bench(function (a,b) { return inst.exports.sumar(a,b); }, [2,3], ITERATIONS);
+      console.log('WASM sumar total(ms):', r2.total.toFixed(3), 'per call(ms):', r2.perCall.toExponential(6));
+
+      // JS sumar
+      for (var w4 = 0; w4 < WARMUP; w4++) { js_sumar(2,3); }
+      var r2js = bench(js_sumar, [2,3], ITERATIONS);
+      console.log('JS sumar total(ms):', r2js.total.toFixed(3), 'per call(ms):', r2js.perCall.toExponential(6));
+
+      // WASM multiplicar_por_factor
+      for (var w5 = 0; w5 < WARMUP; w5++) { inst.exports.multiplicar_por_factor(4); }
+      var r3 = bench(function (x) { return inst.exports.multiplicar_por_factor(x); }, [4], ITERATIONS);
+      console.log('WASM multiplicar total(ms):', r3.total.toFixed(3), 'per call(ms):', r3.perCall.toExponential(6));
+
+      // JS multiplicar_por_factor
+      for (var w6 = 0; w6 < WARMUP; w6++) { js_multiplicar_por_factor(4); }
+      var r3js = bench(js_multiplicar_por_factor, [4], ITERATIONS);
+      console.log('JS multiplicar total(ms):', r3js.total.toFixed(3), 'per call(ms):', r3js.perCall.toExponential(6));
+
+      // Resumen comparativo rápido
+      console.log('--- SUMMARY (lower is faster) ---');
+      console.log('duplicar: WASM', r1.perCall.toExponential(6), 'ms vs JS', r1js.perCall.toExponential(6), 'ms');
+      console.log('sumar:   WASM', r2.perCall.toExponential(6), 'ms vs JS', r2js.perCall.toExponential(6), 'ms');
+      console.log('mult:    WASM', r3.perCall.toExponential(6), 'ms vs JS', r3js.perCall.toExponential(6), 'ms');
+    });
+  }
+
+  // Ejecutar al cargar (podés llamarlo manualmente)
+  runAll();
+
+})();
+
+
+  </script>
+</body>
+
+</html>
