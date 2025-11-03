@@ -42,7 +42,7 @@ console.log(sumar(2, 3, 1, 1000),"result"); // → 5000
 console.log(sumar(2, 3, 2, 1190000),"result"); // → resultado acumulado
 
         const fin = performance.now();
-       const strAlert=toString(fin-inc,"ms",inc,"_____",fin)
+       const strAlert=(String(fin-inc+" ms "+inc+" _____ "+fin))
     alert(strAlert)
 }catch(e){console.error(e)}
    }
@@ -154,3 +154,4 @@ console.log(sumar(2, 3, 2, 1190000),"result"); // → resultado acumulado
 
 
 </html>
+
